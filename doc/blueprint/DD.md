@@ -2,82 +2,76 @@
 
 ---
 
+## TABELA => USUÁRIO
+
+| Campo        | Descrição                               | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                         |
+|--------------|-----------------------------------------|---------------|---------|-------------|----------------|-------------------|-----------------------------------|
+| id           | Identificador único do usuário          | INT           | -       | Sim         | Sim            | Não               | Auto incremento                    |
+| nome         | Nome completo do usuário                 | NVARCHAR      | 100     | Sim         | Não            | Não               |                                   |
+| email        | Email do usuário                         | NVARCHAR      | 100     | Sim         | Não            | Não               | Deve ser único                    |
+| senhaHash    | Senha armazenada em formato criptografado| NVARCHAR    | 255     | Sim         | Não            | Não               |                                   |
+| perfilId     | Identificador do perfil do usuário      | INT           | -       | Sim         | Não            | Sim               | FK para tabela PERFIL             |
+| ativo        | Indica se o usuário está ativo           | BIT           | -       | Sim         | Não            | Não               | Valores: 1 (ativo), 0 (inativo)  |
+| dataCadastro | Data e hora do cadastro do usuário       | DATETIME      | -       | Sim         | Não            | Não               |                                   |
+
+---
+
+## TABELA => PERFIL
+
+| Campo | Descrição                    | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                      |
+|-------|------------------------------|---------------|---------|-------------|----------------|-------------------|--------------------------------|
+| id    | Identificador único do perfil | INT           | -       | Sim         | Sim            | Não               | Auto incremento                 |
+| nome  | Nome do perfil               | NVARCHAR      | 50      | Sim         | Não            | Não               | Ex: Administrador, Organizador, Membro |
+
+---
+
 ## TABELA => TIPO DE EVENTOS
 
-- **Nome do Campo**: ID.
-- **Descrição**: Identificador da tabela.
-- **Tipo de Dados**: INT.
-- **Tamanho**: -
-- **Obrigação**: Sim.
-- **Chave Primária**: Sim.
-- **Chave Secundária**: Não.
-- **Observação**: Gearado Automaticamente
-
-- **Nome do Campo**: Nome
-- **Descrição**: Nome do Evento.
-- **Tipo de Dados**: NVARCHAR.
-- **Tamanho**: 50.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Não.
-- **Observação**: Deve Ser Único.
+| Campo | Descrição                     | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                   |
+|-------|-------------------------------|---------------|---------|-------------|----------------|-------------------|-----------------------------|
+| id    | Identificador único do tipo de evento | INT    | -       | Sim         | Sim            | Não               | Auto incremento              |
+| nome  | Nome do tipo de evento         | NVARCHAR      | 50      | Sim         | Não            | Não               | Ex: Culto, Vigília, Encontro de Jovens |
 
 ---
 
 ## TABELA => EVENTOS
 
-- **Nome do Campo**: ID.
-- **Descrição**: Identificador da tabela.
-- **Tipo de Dados**: INT.
-- **Tamanho**: -.
-- **Obrigação**: Sim.
-- **Chave Primária**: Sim.
-- **Chave Secundária**: Não.
-- **Observação**: Gearado Automaticamente
+| Campo           | Descrição                                    | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                                                        |
+|-----------------|----------------------------------------------|---------------|---------|-------------|----------------|-------------------|------------------------------------------------------------------|
+| id              | Identificador único do evento                 | INT           | -       | Sim         | Sim            | Não               | Auto incremento                                                  |
+| titulo          | Título do evento                              | NVARCHAR      | 100     | Sim         | Não            | Não               |                                                                  |
+| descricao       | Descrição detalhada do evento                  | NVARCHAR(MAX) | -       | Sim         | Não            | Não               |                                                                  |
+| dataHoraInicio  | Data e hora de início do evento                | DATETIME      | -       | Sim         | Não            | Não               |                                                                  |
+| dataHoraFim     | Data e hora de término do evento               | DATETIME      | -       | Sim         | Não            | Não               |                                                                  |
+| local           | Local onde o evento será realizado             | NVARCHAR      | 100     | Sim         | Não            | Não               |                                                                  |
+| tipoEventoId    | Identificador do tipo de evento                | INT           | -       | Sim         | Não            | Sim               | FK para tabela TIPO DE EVENTOS                                   |
+| usuarioId       | Identificador do usuário que criou/organizou o evento | INT    | -       | Sim         | Não            | Sim               | FK para tabela USUÁRIO                                           |
+| statusAprovacao | Status da aprovação do evento                   | NVARCHAR      | 20      | Sim         | Não            | Não               | Valores possíveis: 'Pendente', 'Aprovado', 'Rejeitado'          |
+| imagemUrl       | URL da imagem relacionada ao evento (opcional) | NVARCHAR(MAX) | -       | Não         | Não            | Não               | Pode ser arte, panfleto, etc.                                   |
 
-- **Nome do Campo**: Nome
-- **Descrição**: Nome do Evento.
-- **Tipo de Dados**: NVARCHAR.
-- **Tamanho**: 50.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Não.
-- **Observação**: Deve Ser Único.
+---
 
-- **Nome do Campo**: Descricao
-- **Descrição**: Detalhes (Informações) do Evento.
-- **Tipo de Dados**: NVARCHARMAX.
-- **Tamanho**: -.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Não.
-- **Observação**: Deve Ser Preenchido Manualmente as Informações do Evento ou Culto.
+## TABELA => PRESENÇA
 
-- **Nome do Campo**: Imagem
-- **Descrição**: Imagem do Evento.
-- **Tipo de Dados**: NVARCHARMAX.
-- **Tamanho**: -.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Não.
-- **Observação**: Deve Ser Colocado a Imagem (Panfleto) do Evento ou Culto.
+| Campo           | Descrição                                    | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                   |
+|-----------------|----------------------------------------------|---------------|---------|-------------|----------------|-------------------|-----------------------------|
+| id              | Identificador único da presença               | INT           | -       | Sim         | Sim            | Não               | Auto incremento              |
+| usuarioId       | Identificador do usuário                      | INT           | -       | Sim         | Não            | Sim               | FK para tabela USUÁRIO       |
+| eventoId        | Identificador do evento                        | INT           | -       | Sim         | Não            | Sim               | FK para tabela EVENTOS       |
+| dataHoraCheckin | Data e hora do check-in                        | DATETIME      | -       | Sim         | Não            | Não               |                             |
+| dataHoraCheckout| Data e hora do check-out (futuro opcional)    | DATETIME      | -       | Não         | Não            | Não               |                             |
 
-- **Nome do Campo**: TipoEventoID
-- **Descrição**: Identificador do Tipo deEvento.
-- **Tipo de Dados**: INT.
-- **Tamanho**: -.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Sim.
-- **Observação**: Deve Ser Único.
+---
 
-- **Nome do Campo**: DataEvento
-- **Descrição**: Data de Agendamento do Evento e Culto.
-- **Tipo de Dados**: DATE.
-- **Tamanho**: -.
-- **Obrigação**: Sim.
-- **Chave Primária**: Não.
-- **Chave Secundária**: Não.
-- **Observação**: Deve Ser Preenchido Automaticamente.
+## TABELA => SUGESTÃO PRIVADA
+
+| Campo      | Descrição                                   | Tipo de Dados | Tamanho | Obrigatório | Chave Primária | Chave Estrangeira | Observações                                             |
+|------------|---------------------------------------------|---------------|---------|-------------|----------------|-------------------|-------------------------------------------------------|
+| id         | Identificador único da sugestão              | INT           | -       | Sim         | Sim            | Não               | Auto incremento                                        |
+| usuarioId  | Identificador do usuário                      | INT           | -       | Sim         | Não            | Sim               | FK para tabela USUÁRIO                                 |
+| eventoId   | Identificador do evento                       | INT           | -       | Sim         | Não            | Sim               | FK para tabela EVENTOS                                 |
+| conteudo   | Conteúdo da sugestão                          | TEXT          | -       | Sim         | Não            | Não               |                                                       |
+| dataEnvio  | Data e hora do envio                          | DATETIME      | -       | Sim         | Não            | Não               |                                                       |
+| status     | Status da sugestão                            | NVARCHAR      | 20      | Não         | Não            | Não               | Valores: 'Nova', 'Em análise', 'Respondida' (opcional) |
 
 ---
