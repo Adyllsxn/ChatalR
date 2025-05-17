@@ -1,8 +1,8 @@
 namespace Kairos.Domain.ValueObjets;
 public class NomeCompleto
 {
-    public string? Nome { get; set; }
-    public string? SobreNome { get; set; }
+    public string Nome { get; private set; } = null!;
+    public string SobreNome { get; private set; } = null!;
 
     public NomeCompleto(string nome, string sobreNome)
     {

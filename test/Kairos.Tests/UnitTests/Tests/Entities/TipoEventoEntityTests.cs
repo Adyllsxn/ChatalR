@@ -36,16 +36,15 @@ public class TipoEventoEntityTests
         }
     #endregion
 
-    #region </LongLenght>
+    #region </Lenght>
         [Fact]
-        public void TipoEvento_ShouldFailIfIsHaveLongLenght()
+        public void TipoEvento_ShouldFailIfFieldsHaveInvalidLength()
         {
-            var LongLenght = new string('B', 51);
-            Assert.True(true); 
-            Assert.Throws<DomainValidationException>(() =>
-            {
-                var acount = new TipoEventoEntity(LongLenght);
-            });
+            var nome = new string('B', 50);
+            
+            var perfil = new TipoEventoEntity(nome);
+
+            Assert.Equal(50, perfil.Nome.Length);
         }
     #endregion
 

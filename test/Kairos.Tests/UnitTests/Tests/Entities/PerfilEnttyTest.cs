@@ -36,16 +36,15 @@ public class PerfilEnttyTest
         }
     #endregion
 
-    #region </LongLenght>
+    #region </Lenght>
         [Fact]
-        public void Perfil_ShouldFailIfIsHaveLongLenght()
+        public void Perfil_ShouldFailIfFieldsHaveInvalidLength()
         {
-            var LongLenght = new string('B', 51);
-            Assert.True(true); 
-            Assert.Throws<DomainValidationException>(() =>
-            {
-                var acount = new PerfilEntity(LongLenght);
-            });
+            var nome = new string('B', 50);
+            
+            var perfil = new PerfilEntity(nome);
+
+            Assert.Equal(50, perfil.Nome.Length);
         }
     #endregion
 

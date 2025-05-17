@@ -38,20 +38,21 @@ public sealed class EventoEntity : EntityBase, IAgragateRoot
     }
     public void ValidationDomain(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, string imagemUrl)
     {
-        DomainValidationException.When(string.IsNullOrWhiteSpace(titulo), "Local é obrigatório.");
-        DomainValidationException.When(titulo.Length > 100, "Local deve ter no máximo 100 caracteres.");
+        DomainValidationException.When(string.IsNullOrWhiteSpace(titulo), "Título é obrigatório.");
+        DomainValidationException.When(titulo.Length > 100, "Título deve ter no máximo 100 caracteres.");
 
-        DomainValidationException.When(string.IsNullOrWhiteSpace(descricao), "Descrição é obrigatório.");
-        DomainValidationException.When(descricao.Length < 1, "Descrição deve ter no mínimo 1 caracteres.");
+        DomainValidationException.When(string.IsNullOrWhiteSpace(descricao), "Descrição é obrigatória.");
+        DomainValidationException.When(descricao.Length < 1, "Descrição deve ter no mínimo 1 caractere.");
 
         DomainValidationException.When(string.IsNullOrWhiteSpace(local), "Local é obrigatório.");
         DomainValidationException.When(local.Length > 250, "Local deve ter no máximo 250 caracteres.");
 
-        DomainValidationException.When(tipoEventoID <= 0 , "ID deve ser maior que zero.");
-        DomainValidationException.When(usuarioID <= 0 , "ID deve ser maior que zero.");
+        DomainValidationException.When(tipoEventoID <= 0 , "Tipo de evento deve ser maior que zero.");
+        DomainValidationException.When(usuarioID <= 0 , "Usuário deve ser maior que zero.");
 
-        DomainValidationException.When(string.IsNullOrWhiteSpace(imagemUrl), "Imagem é obrigatório.");
-        DomainValidationException.When(imagemUrl.Length < 1, "Imagem deve ter no mínimo 1 caracteres.");
+        DomainValidationException.When(string.IsNullOrWhiteSpace(imagemUrl), "Imagem é obrigatória.");
+        DomainValidationException.When(imagemUrl.Length < 1, "Imagem deve ter no mínimo 1 caractere.");
+
 
         Titulo = titulo;
         Descricao = descricao;

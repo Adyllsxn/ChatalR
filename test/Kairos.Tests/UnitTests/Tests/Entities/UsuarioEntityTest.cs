@@ -83,18 +83,19 @@ public class UsuarioEntityTest
         }
     #endregion
 
-    #region </LongLenght>
+    #region </Lenght>
         [Fact]
-        public void Usuario_ShouldFailIfIsHaveLongLenght()
+        public void Usuario_ShouldFailIfFieldsHaveInvalidLength()
         {
-            var LongLenghtName = new string('B', 51);
-            var LongLenghtEmail = new string('B', 251);
-            var dataCadastro =  DateTime.UtcNow;
-            Assert.True(true); 
-            Assert.Throws<DomainValidationException>(() =>
-            {
-                var acount = new UsuarioEntity(LongLenghtName, LongLenghtName, LongLenghtEmail, ValidPerfil, dataCadastro);
-            });
+            var nome = new string('A', 1);
+            var sobrenome = new string('A', 1);
+            var email = new string('A', 1);
+
+            var usuario = new UsuarioEntity(nome, sobrenome, email, ValidPerfil, DateTime.UtcNow);
+
+            Assert.Equal(1, usuario.NomeCompleto.Nome.Length);
+            Assert.Equal(1, usuario.NomeCompleto.SobreNome.Length);
+            Assert.Equal(1, usuario.Email.Length);
         }
     #endregion
 

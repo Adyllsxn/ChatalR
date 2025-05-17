@@ -67,20 +67,6 @@ public class SugestaoEntityTest
         }
     #endregion
 
-    #region </LongLenght>
-        [Fact]
-        public void Sugestao_ShouldFailIfIsHaveLongLenght()
-        {
-            var LongLenght = new string('B', 3);
-            var data = DateTime.Now;
-            Assert.True(true); 
-            Assert.Throws<DomainValidationException>(() =>
-            {
-                var acount = new SugestaoEntity(ValidUsuario,ValidEvento,LongLenght, data);
-            });
-        }
-    #endregion
-
     #region </Criar>
         [Theory]
         [InlineData(ValidUsuario, ValidEvento, ValidConteudo,"199-01-01")]

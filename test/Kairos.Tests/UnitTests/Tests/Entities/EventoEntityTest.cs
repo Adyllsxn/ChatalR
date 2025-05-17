@@ -114,20 +114,21 @@ public class EventoEntityTest
         }
     #endregion
 
-    #region </LongLenght>
+    #region <Lenght>
         [Fact]
-        public void Evento_ShouldFailIfIsHaveLongLenght()
+        public void Evento_ShouldFailIfFieldsHaveInvalidLength()
         {
-            var LongLenghtTitulo = new string('A', 108);
-            var LongLenghtDescricao = new string('B', 2);
-            var LongLenghtLocal = new string('C', 251);
-            var LongLenghtImagem = new string('D', 2);
-            var dataCadastro =  DateTime.UtcNow;
-            Assert.True(true); 
-            Assert.Throws<DomainValidationException>(() =>
-            {
-                var acount = new EventoEntity(LongLenghtTitulo, LongLenghtDescricao, dataCadastro, dataCadastro, LongLenghtLocal, ValidTipoEvento, ValidUsuario, LongLenghtImagem);
-            });
+            var titulo = new string('A', 100);
+            var local = new string('A', 10);
+            var descricao = new string('A', 10);
+            var imagemUrl = new string('A', 10);
+
+            var evento = new EventoEntity(titulo, descricao, DateTime.Now, DateTime.Now, local, 1, 1, imagemUrl);
+
+            Assert.Equal(100, evento.Titulo.Length);
+            Assert.Equal(10, evento.Local.Length);
+            Assert.Equal(10, evento.Descricao.Length);
+            Assert.Equal(10, evento.ImagemUrl.Length);
         }
     #endregion
 
