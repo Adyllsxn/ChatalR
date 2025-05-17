@@ -1,9 +1,7 @@
-namespace Kairos.Domain.Abstrations.Enums
+namespace Kairos.Domain.Abstrations.Enums;
+public enum EStatusAprovacao
 {
-    public enum EStatusAprovacao
-    {
-        Pendente,
-        Aprovado,
-        Rejeitado
-    }
+    Pendente,
+    Aprovado,
+    Rejeitado
 }

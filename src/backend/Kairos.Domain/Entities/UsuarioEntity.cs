@@ -5,6 +5,7 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
     public string Email { get; private set; } = null!;
     public int PerfilID { get; private set; }
     public DateTime DataCadastro { get; set; } = DateTime.UtcNow;
+    public bool IsActive { get; private set; }
     public byte[] PasswordHash { get; private set; } = null!;
     public byte[] PasswordSalt { get; private set; } = null!;
 
@@ -13,6 +14,12 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
 
     [JsonIgnore]
     public ICollection<EventoEntity> Eventos { get; private set; } = null!;
+
+    [JsonIgnore]
+    public ICollection<PresencaEntity> Presencas { get; private set; } = null!;
+
+    [JsonIgnore]
+    public ICollection<SugestaoEntity> Sugestoes { get; private set; } = null!;
 
     [JsonConstructor]
     public UsuarioEntity(){}
@@ -32,6 +39,10 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
         PasswordHash = passwordHash;
         PasswordSalt = passwordSalt;
     }
+    public void SetStatus(bool isActive)
+    {
+        IsActive = isActive;
+    }
     public void ValidationDomain( string nome, string sobreNome, string email, int perfilID, DateTime dataCadastro)
     {
         DomainValidationException.When(string.IsNullOrWhiteSpace(email), "Email é obrigatório.");
@@ -43,5 +54,6 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
         Email = email;
         PerfilID = perfilID;
         DataCadastro = dataCadastro;
+        IsActive = true;
     }
 }

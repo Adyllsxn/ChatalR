@@ -17,20 +17,26 @@ public sealed class EventoEntity : EntityBase, IAgragateRoot
     [JsonIgnore]
     public UsuarioEntity Usuario { get; private set; } = null!;
 
+    [JsonIgnore]
+    public ICollection<PresencaEntity> Presencas { get; private set; } = null!;
+
+    [JsonIgnore]
+    public ICollection<SugestaoEntity> Sugestoes { get; private set; } = null!;
+
     [JsonConstructor]
     public EventoEntity(){}
 
-    public EventoEntity(int id, string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, EStatusAprovacao statusAprovacao, string imagemUrl)
+    public EventoEntity(int id, string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, string imagemUrl)
     {
         DomainValidationException.When(id <= 0 , "ID deve ser maior que zero.");
         Id = id;
-        ValidationDomain(titulo, descricao, dataHoraInicio, dataHoraFim, local, tipoEventoID, usuarioID, statusAprovacao, imagemUrl);
+        ValidationDomain(titulo, descricao, dataHoraInicio, dataHoraFim, local, tipoEventoID, usuarioID, imagemUrl);
     }
-    public EventoEntity(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, EStatusAprovacao statusAprovacao, string imagemUrl)
+    public EventoEntity(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, string imagemUrl)
     {
-        ValidationDomain(titulo, descricao, dataHoraInicio, dataHoraFim, local, tipoEventoID, usuarioID, statusAprovacao, imagemUrl);
+        ValidationDomain(titulo, descricao, dataHoraInicio, dataHoraFim, local, tipoEventoID, usuarioID, imagemUrl);
     }
-    public void ValidationDomain(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, EStatusAprovacao statusAprovacao, string imagemUrl)
+    public void ValidationDomain(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, string imagemUrl)
     {
         DomainValidationException.When(string.IsNullOrWhiteSpace(titulo), "Local é obrigatório.");
         DomainValidationException.When(titulo.Length > 100, "Local deve ter no máximo 100 caracteres.");
