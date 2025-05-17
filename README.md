@@ -33,7 +33,7 @@ KAIROS/
 │
 ├── .github/                        # Configurações de CI/CD com GitHub Actions
 │   ├── workflows/
-│   │   └── (ex: Domain.yml)        # Arquivos de automação para build/teste
+│   │   └── (ex: Applicatio.yml)    # Arquivos de automação para build/teste
 │   │    
 │   └── workflows.md                #Explica os fluxos automatizados (CI/CD)  
 │
