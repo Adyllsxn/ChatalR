@@ -1,16 +1,16 @@
 ###############################################################################
-# Normalização de final de linha (EOL)
+# .gitattributes para projetos .NET
+# Define comportamentos de normalização, merge e tratamento de arquivos binários
 ###############################################################################
 
-# Normaliza os finais de linha automaticamente com base no SO
+###############################################################################
+# Normalização de final de linha (EOL)
+###############################################################################
 * text=auto
 
 ###############################################################################
 # Tratamento de arquivos de solução e projeto do Visual Studio
 ###############################################################################
-
-# Arquivos de projeto são tratados como binários
-# Isso evita conflitos automáticos que podem corromper os arquivos
 *.sln       merge=binary
 *.csproj    merge=binary
 *.vbproj    merge=binary
@@ -19,8 +19,6 @@
 ###############################################################################
 # Tratamento de arquivos de imagem
 ###############################################################################
-
-# Garante que imagens sejam tratadas como binários e não sejam mescladas ou analisadas como texto
 *.png       binary
 *.jpg       binary
 *.jpeg      binary
@@ -28,10 +26,7 @@
 *.svg       binary
 
 ###############################################################################
-# Configurações de diff opcionais para documentos (ativar se necessário)
+# Configurações de diff opcionais para documentos (descomentando ativa)
 ###############################################################################
-
-# Exibe conteúdo como texto ao fazer diff em arquivos binários
-# Requer configuração extra do Git para funcionar corretamente
 #*.docx      diff=astextplain
 #*.pdf       diff=astextplain
