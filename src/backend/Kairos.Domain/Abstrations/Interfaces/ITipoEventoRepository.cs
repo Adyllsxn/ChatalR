@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Abstrations.Interfaces;
-public interface TipoEventoRepository
+public interface ITipoEventoRepository
 {
     Task<Result<TipoEventoEntity>> CreateAsync (TipoEventoEntity entity, CancellationToken token);
     Task<Result<bool>> DeleteAsync (int entityId, CancellationToken token);

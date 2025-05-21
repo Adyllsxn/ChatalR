@@ -1,12 +1,33 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kairos.Infrastructure.Repositories
+namespace Kairos.Infrastructure.Repositories;
+public class PerfilRepository : IPerfilRepository
 {
-    public class PerfilRepository
+    public Task<Result<PerfilEntity>> CreateAsync(PerfilEntity entity, CancellationToken token)
     {
-        
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<bool>> DeleteAsync(int entityId, CancellationToken token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<List<PerfilEntity>?>> GetAllAsync(CancellationToken token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<PerfilEntity?>> GetByIdAsync(int entityId, CancellationToken token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<List<PerfilEntity>?>> SearchAsync(Expression<Func<PerfilEntity, bool>> expression, string entity, CancellationToken token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Result<PerfilEntity>> UpdateAsync(PerfilEntity entity, CancellationToken token)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Abstrations.Interfaces;
-public interface PerfilRepository
+public interface IPerfilRepository
 {
     Task<Result<PerfilEntity>> CreateAsync (PerfilEntity entity, CancellationToken token);
     Task<Result<bool>> DeleteAsync (int entityId, CancellationToken token);

@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Abstrations.Interfaces;
-public interface DashboardRepository
+public interface IDashboardRepository
 {
     Task<DashboardEntity> GetQtdItems(CancellationToken token);
 }

@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Abstrations.Interfaces;
-public interface SugestaoRepository
+public interface ISugestaoRepository
 {
     Task<Result<SugestaoEntity>> CreateAsync (SugestaoEntity entity, CancellationToken token);
     Task<Result<bool>> DeleteAsync (int entityId, CancellationToken token);
