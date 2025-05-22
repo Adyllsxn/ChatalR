@@ -1,4 +1,4 @@
-namespace Kairos.Tests.UnitTests.Tests.ValueObjets;
+namespace Kairos.Tests.UnitTests.ValueObjets;
 public class NomeCompletoTest
 {
     #region </Constants>

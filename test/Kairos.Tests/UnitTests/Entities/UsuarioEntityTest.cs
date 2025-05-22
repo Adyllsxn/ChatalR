@@ -1,4 +1,4 @@
-namespace Kairos.Tests.UnitTests.Tests.Entities;
+namespace Kairos.Tests.UnitTests.Entities;
 public class UsuarioEntityTest
 {
     #region </Constants>

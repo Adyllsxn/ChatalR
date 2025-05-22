@@ -1,7 +1,7 @@
 namespace Kairos.Domain.Abstrations.Shared;
 public class Result<TData>
 {
-    public int Code = StatusCode.DefaultStatusCode;
+    public int Code { get; set; } = StatusCode.DefaultStatusCode;
     public string? Message { get; set; }
     public TData? Data { get; set; }
 
