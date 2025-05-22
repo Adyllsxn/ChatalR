@@ -4,7 +4,15 @@ public static class InfrastructureDI
     public static void AddInfrastructureDI (this IServiceCollection services, IConfiguration configuration)
     {
         #region </Repositories>
-            
+            services.AddScoped<IAuthenticateIdentity, AuthenticateIdentity>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDashboardRepository, DashBoardRepository>();
+            services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+            services.AddScoped<IPresencaRepository, PresencaRepository>();
+            services.AddScoped<ISugestaoRepository, SugestaoRepository>();
+            services.AddScoped<ITipoEventoRepository, TipoEventoRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         #endregion
 
         #region </DbConnection>
