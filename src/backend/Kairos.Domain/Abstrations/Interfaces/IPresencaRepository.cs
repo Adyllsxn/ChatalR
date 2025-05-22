@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Abstrations.Interfaces;
-public interface PresencaRepository
+public interface IPresencaRepository
 {
     Task<Result<PresencaEntity>> CreateAsync (PresencaEntity entity, CancellationToken token);
     Task<Result<bool>> DeleteAsync (int entityId, CancellationToken token);
