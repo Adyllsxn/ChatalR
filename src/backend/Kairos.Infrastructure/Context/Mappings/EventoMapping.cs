@@ -36,8 +36,8 @@ public class EventoMapping : IEntityTypeConfiguration<EventoEntity>
                 builder.Property(x => x.ImagemUrl).
                         IsRequired(true);
                 
-                builder.HasOne(x => x.TipoEvento).WithMany(x => x.Eventos).HasForeignKey(x => x.TipoEventoID).HasConstraintName("FK_TipoEvento_Eventos").OnDelete(DeleteBehavior.Cascade);
+                builder.HasOne(x => x.TipoEvento).WithMany(x => x.Eventos).HasForeignKey(x => x.TipoEventoID).HasConstraintName("FK_TipoEvento_Eventos").OnDelete(DeleteBehavior.NoAction);
 
-                builder.HasOne(x => x.Usuario).WithMany(x => x.Eventos).HasForeignKey(x => x.UsuarioID).HasConstraintName("FK_Usuario_Eventos").OnDelete(DeleteBehavior.Cascade);
+                builder.HasOne(x => x.Usuario).WithMany(x => x.Eventos).HasForeignKey(x => x.UsuarioID).HasConstraintName("FK_Usuario_Eventos").OnDelete(DeleteBehavior.NoAction);
         }
 }

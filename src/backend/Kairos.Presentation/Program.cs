@@ -1,6 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
+    builder.AddBuildExtensions();
+
 var app = builder.Build();
+    app.UseAppExtensions();
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+var cultureInfo = new CultureInfo("en-US");
+    CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+    CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;

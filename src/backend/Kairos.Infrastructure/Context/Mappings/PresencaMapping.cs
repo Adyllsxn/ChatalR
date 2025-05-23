@@ -15,8 +15,8 @@ public class PresencaMapping : IEntityTypeConfiguration<PresencaEntity>
                 builder.Property(x => x.DataHoraCheckin).
                         IsRequired(true);
 
-                builder.HasOne(x => x.Evento).WithMany(x => x.Presencas).HasForeignKey(x => x.EventoID).HasConstraintName("FK_Evento_Presenca").OnDelete(DeleteBehavior.Cascade);
+                builder.HasOne(x => x.Evento).WithMany(x => x.Presencas).HasForeignKey(x => x.EventoID).HasConstraintName("FK_Evento_Presenca").OnDelete(DeleteBehavior.NoAction);
 
-                builder.HasOne(x => x.Usuario).WithMany(x => x.Presencas).HasForeignKey(x => x.UsuarioID).HasConstraintName("FK_Usuario_Presenca").OnDelete(DeleteBehavior.Cascade);
+                builder.HasOne(x => x.Usuario).WithMany(x => x.Presencas).HasForeignKey(x => x.UsuarioID).HasConstraintName("FK_Usuario_Presenca").OnDelete(DeleteBehavior.NoAction);
         }
 }

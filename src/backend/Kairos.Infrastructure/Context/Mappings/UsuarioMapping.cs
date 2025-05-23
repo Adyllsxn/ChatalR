@@ -23,6 +23,6 @@ public class UsuarioMapping : IEntityTypeConfiguration<UsuarioEntity>
                 builder.Property(x => x.IsActive).
                         IsRequired(true);
 
-                builder.HasOne(x => x.Perfil).WithMany(x => x.Usuarios).HasForeignKey(x => x.PerfilID).HasConstraintName("FK_Perfil_Usuario").OnDelete(DeleteBehavior.Cascade);
+                builder.HasOne(x => x.Perfil).WithMany(x => x.Usuarios).HasForeignKey(x => x.PerfilID).HasConstraintName("FK_Perfil_Usuario").OnDelete(DeleteBehavior.NoAction);
         }
 }
