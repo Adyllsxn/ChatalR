@@ -24,6 +24,7 @@
     global using Kairos.Application.UseCases.Dashboard;
 
     global using Kairos.Application.UseCases.TipoEvento.Create;
+    global using Kairos.Application.UseCases.TipoEvento.Delete;
     global using Kairos.Application.UseCases.TipoEvento.GetAll;
     global using Kairos.Application.UseCases.TipoEvento.GetById;
     global using Kairos.Application.UseCases.TipoEvento.Search;
