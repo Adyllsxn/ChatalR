@@ -6,8 +6,8 @@ public static class AppExtensions
         app.UseCorsExtensions();
         app.UseSweggerExtensions();
         app.UseHttpsRedirection();
-        app.UseAuthentication();
-        app.UseAuthorization();
+        //app.UseAuthentication();
+        //app.UseAuthorization();
         app.MapControllers();
         app.Run();
     }

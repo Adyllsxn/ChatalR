@@ -9,6 +9,7 @@
     global using Microsoft.OpenApi.Models;
     global using Microsoft.AspNetCore.Authentication.JwtBearer;
     global using Microsoft.IdentityModel.Tokens;
+    global using Microsoft.AspNetCore.Mvc;
 #endregion
 
 #region </Presentation>
@@ -19,4 +20,10 @@
 
 #region </Infrastructure>
     global using Kairos.Infrastructure.Abstractions.DI;
+#endregion
+
+#region </Application>
+    global using Kairos.Application.Abstractions.DI;
+    global using Kairos.Application.Abstractions.Interfaces;
+    global using Kairos.Application.UseCases.TipoEvento.GetAll;
 #endregion
