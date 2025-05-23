@@ -1,12 +1,2 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kairos.Application.UseCases.TipoEvento.Create
-{
-    public class CreateTipoEventoResponse
-    {
-        
-    }
-}
+namespace Kairos.Application.UseCases.TipoEvento.Create;
+public record CreateTipoEventoResponse : TipoEventoResponse;

@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kairos.Application.UseCases.TipoEvento.GetById
+namespace Kairos.Application.UseCases.TipoEvento.GetById;
+public record GetTipoEventoByIdCommand
 {
-    public class GetTipoEventoByIdCommand
-    {
-        
-    }
+    [Required(ErrorMessage = "ID é obrigatório")]
+    public int Id { get; set; }
 }

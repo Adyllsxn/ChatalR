@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kairos.Application.UseCases.TipoEvento.Create
+namespace Kairos.Application.UseCases.TipoEvento.Create;
+public record CreateTipoEventoCommand
 {
-    public class CreateTipoEventoCommand
-    {
-        
-    }
+    [Required(ErrorMessage = "Nome é obrigatório")]
+    [MaxLength(60, ErrorMessage = "O Nome deve ter 60 no máximo caracteres")]
+    [DataType(DataType.Text)]
+    public string Nome { get; set; } = null!;
 }
