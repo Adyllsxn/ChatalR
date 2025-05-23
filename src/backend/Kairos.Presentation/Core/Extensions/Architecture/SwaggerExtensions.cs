@@ -10,7 +10,7 @@ public static class SwaggerExtensions
                     c.SwaggerDoc("v1", new OpenApiInfo{
                         Title = "Kairos.API",
                         Version = "v1",
-                        Description = ""
+                        Description = "Sistema para facilitar a organização de cultos e eventos, com gestão de participantes, presença e envio de lembretes."
                     });
                 #endregion
 

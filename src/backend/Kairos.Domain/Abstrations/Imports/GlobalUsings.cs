@@ -9,6 +9,5 @@
     global using Kairos.Domain.Abstrations.Shared;
     global using Kairos.Domain.Abstrations.Enums;
     global using Kairos.Domain.Abstrations.Pagination;
-    global using Kairos.Domain.ValueObjets;
     global using Kairos.Domain.Entities;
 #endregion
