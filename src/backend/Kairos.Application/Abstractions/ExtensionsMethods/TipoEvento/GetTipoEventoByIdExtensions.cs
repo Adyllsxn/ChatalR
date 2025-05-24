@@ -1,7 +1,7 @@
 namespace Kairos.Application.Abstractions.ExtensionsMethods.TipoEvento;
 public static class GetTipoEventoByIdExtensions
 {
-     public static GetTipoEventoByIdResponse MapToTipoEventoById (this TipoEventoEntity entity)
+    public static GetTipoEventoByIdResponse MapToTipoEventoById (this TipoEventoEntity entity)
     {
         return new GetTipoEventoByIdResponse
         {

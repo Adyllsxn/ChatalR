@@ -5,5 +5,6 @@ public static class ServiceDI
     {
         services.AddScoped<IDashboardService, DashboardService>();
         services.AddScoped<ITipoEventoService, TipoEventoService>();
+        services.AddScoped<IPerfilService, PerfilService>();
     }
 }

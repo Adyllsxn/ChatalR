@@ -7,6 +7,12 @@ public static class UseCaseDI
             services.AddScoped<GetDashboardHandler>();
         #endregion
 
+        #region </Perfil>
+            services.AddScoped<GetPerfilByIdHandler>();
+            services.AddScoped<GetPerfilsHandler>();
+            services.AddScoped<SearchPerfilHandler>();
+        #endregion
+
         #region </TipoEventos>
             services.AddScoped<CreateTipoEventoHandler>();
             services.AddScoped<DeleteTipoEventoHandler>();

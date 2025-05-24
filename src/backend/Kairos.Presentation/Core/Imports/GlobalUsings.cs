@@ -32,4 +32,7 @@
     global using Kairos.Application.UseCases.TipoEvento.GetById;
     global using Kairos.Application.UseCases.TipoEvento.Search;
     global using Kairos.Application.UseCases.TipoEvento.Update;
+
+    global using Kairos.Application.UseCases.Perfil.GetById;
+    global using Kairos.Application.UseCases.Perfil.Search;
 #endregion
