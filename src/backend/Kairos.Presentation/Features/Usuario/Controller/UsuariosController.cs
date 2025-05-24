@@ -3,6 +3,7 @@ namespace Kairos.Presentation.Features.Usuario.Controller;
 [Route("v1/")]
 public class UsuariosController(IUsuarioService service, IAuthenticateIdentity authentication)  : ControllerBase
 {
+
     #region </Register>
         [HttpPost("Register"), EndpointSummary("Registrar um novo usuário.")]
         public async Task<ActionResult<TokenModel>> Register(CreateUsuarioCommand command, CancellationToken token)
@@ -82,12 +83,104 @@ public class UsuariosController(IUsuarioService service, IAuthenticateIdentity a
         }
     #endregion
 
+    #region </GetAll>
+        [HttpGet("Usuarios"), EndpointSummary("Obter Usuarios")]
+        [Authorize]
+        public async Task<ActionResult> Get([FromQuery] GetUsuariosCommand command,CancellationToken token)
+        {
+            var userId = User.GetId();
+            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
+            if(!(user.Data?.PerfilID == 1))
+            {
+                return Unauthorized("Você não tem permissão para consultar os usuários do sistema");
+            }
+
+            var response = await service.GetHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
+    #region </GetById>
+        [HttpGet("UsuarioById"), EndpointSummary("Obter Usuario Pelo Id")]
+        [Authorize]
+        public async Task<ActionResult> GetById([FromQuery] GetUsuarioByIdCommand command, CancellationToken token)
+        {
+            var userId = User.GetId();
+            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
+            if(command.Id == 0)
+            {
+                command.Id = userId;
+            }
+            bool isAdmin = user.Data?.PerfilID == 1;
+            bool consultandoProprioUsuario = user.Data?.Id == command.Id;
+
+            if (!consultandoProprioUsuario && !isAdmin)
+            {
+                return Unauthorized("Você não tem permissão para consultar os usuários do sistema.");
+            }
+            var response = await service.GetByIdHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
+    #region </Search>
+        [HttpGet("SearchUsuario"), EndpointSummary("Pesquisar Usuarios")]
+        [Authorize]
+        public async Task<ActionResult> Search([FromQuery] SearchUsuarioCommand command, CancellationToken token)
+        {
+            var response = await service.SearchHendler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
     #region </Delete>
         [HttpDelete("DeleteUsuario"), EndpointSummary("Excluir Usuario")]
+        [Authorize]
         public async Task<ActionResult> DeleteAsync([FromQuery] DeleteUsuarioCommand command, CancellationToken token)
         {
+            var userId = User.GetId();
+            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if (!(user.Data?.PerfilID == 1))
+            {
+                return Unauthorized("Você não tem permissão para deletar os usuários do sistema");
+            }
+
             var response = await service.DeleteHandler(command,token);
             return Ok(response);
         }
     #endregion
+
+    #region </Update>
+        [HttpPut("UpdateUsuario"), EndpointSummary("Editar o usuário.")]
+        [Authorize]
+        [Authorize]
+        public async Task<ActionResult> UpdateAsync(UpdateUsuarioCommand command, CancellationToken token)
+        {
+            try
+            {
+                var userId = User.GetId();
+                var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if (!(user.Data?.PerfilID == 1 && command.Id != userId))
+                {
+                    return Unauthorized("Você não tem permissão para alterar os usuários do sistema");
+                }
+                if (!(user.Data?.PerfilID == 1 && command.Id == userId && command.PerfilID == 1))
+                {
+                        return Unauthorized("Você não tem permissão para definir você mesmo com administardor");
+                }
+
+                var usuario = await service.UpdateHendler(command, token);
+                if (usuario == null)
+                {
+                    return BadRequest("Ocorreu um erro ao alterar o usuário!");
+                }
+                return Ok("Usuário alterado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+    #endregion
+
 }
