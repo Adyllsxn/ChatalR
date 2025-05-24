@@ -45,7 +45,7 @@ public class PerfilRepository(AppDbContext context) : IPerfilRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Perfils.FindAsync(entityId, token);
+                var response = await context.Perfils.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return new Result<bool>(
@@ -117,7 +117,7 @@ public class PerfilRepository(AppDbContext context) : IPerfilRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Perfils.FindAsync(entityId, token);
+                var response = await context.Perfils.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<PerfilEntity?>(

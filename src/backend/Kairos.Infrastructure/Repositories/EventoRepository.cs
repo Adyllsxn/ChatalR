@@ -45,7 +45,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Eventos.FindAsync(entityId, token);
+                var response = await context.Eventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return new Result<bool>(
@@ -117,7 +117,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Eventos.FindAsync(entityId, token);
+                var response = await context.Eventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<EventoEntity?>(
@@ -156,7 +156,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Eventos.FindAsync(entityId, token);
+                var response = await context.Eventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<EventoEntity?>(

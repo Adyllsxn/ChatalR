@@ -2,6 +2,7 @@ namespace Kairos.Domain.Entities;
 public sealed class UsuarioEntity: EntityBase, IAgragateRoot
 {
     public string Nome { get; private set; } = null!;
+    public string SobreNome { get; private set; } = null!;
     public string Email { get; private set; } = null!;
     public int PerfilID { get; private set; }
     public DateTime DataCadastro { get; set; } = DateTime.UtcNow;
@@ -23,15 +24,15 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
 
     [JsonConstructor]
     public UsuarioEntity(){}
-    public UsuarioEntity(int id, string nome, string email, int perfilID, DateTime dataCadastro)
+    public UsuarioEntity(int id, string nome, string sobrenome, string email, int perfilID, DateTime dataCadastro)
     {
         DomainValidationException.When(id <= 0 , "ID deve ser maior que zero.");
         Id = id;
-        ValidationDomain(nome, email, perfilID, dataCadastro);
+        ValidationDomain(nome, sobrenome,email, perfilID, dataCadastro);
     }
-    public UsuarioEntity( string nome,  string email, int perfilID, DateTime dataCadastro)
+    public UsuarioEntity( string nome, string sobrenome, string email, int perfilID, DateTime dataCadastro)
     {
-        ValidationDomain(nome, email, perfilID, dataCadastro);
+        ValidationDomain(nome, sobrenome, email, perfilID, dataCadastro);
     }
 
     public void UpdatePassword(byte[] passwordHash, byte[] passwordSalt)
@@ -39,14 +40,18 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
         PasswordHash = passwordHash;
         PasswordSalt = passwordSalt;
     }
-    public void SetStatus(bool isActive)
+    public void Deactivate()
     {
-        IsActive = isActive;
+        IsActive = false;
     }
-    public void ValidationDomain( string nome, string email, int perfilID, DateTime dataCadastro)
+
+    public void ValidationDomain( string nome, string sobrenome, string email, int perfilID, DateTime dataCadastro)
     {
         DomainValidationException.When(string.IsNullOrWhiteSpace(nome), "Nome é obrigatório.");
-        DomainValidationException.When(email.Length > 150, "Nome deve ter no máximo 150 caracteres.");
+        DomainValidationException.When(nome.Length > 50, "Nome deve ter no máximo 150 caracteres.");
+
+        DomainValidationException.When(string.IsNullOrWhiteSpace(sobrenome), "SobreNome é obrigatório.");
+        DomainValidationException.When(sobrenome.Length > 50, "SobreNome deve ter no máximo 150 caracteres.");
 
         DomainValidationException.When(string.IsNullOrWhiteSpace(email), "Email é obrigatório.");
         DomainValidationException.When(email.Length > 250, "Email deve ter no máximo 250 caracteres.");
@@ -54,6 +59,7 @@ public sealed class UsuarioEntity: EntityBase, IAgragateRoot
         DomainValidationException.When(perfilID <= 0 , "ID deve ser maior que zero.");
 
         Nome = nome;
+        SobreNome = sobrenome;
         Email = email;
         PerfilID = perfilID;
         DataCadastro = dataCadastro;

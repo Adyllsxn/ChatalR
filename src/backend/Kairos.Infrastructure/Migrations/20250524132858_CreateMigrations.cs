@@ -45,7 +45,8 @@ namespace Kairos.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "VARCHAR(150)", maxLength: 150, nullable: false),
+                    Nome = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
+                    SobreNome = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(250)", maxLength: 250, nullable: false),
                     PerfilID = table.Column<int>(type: "int", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),

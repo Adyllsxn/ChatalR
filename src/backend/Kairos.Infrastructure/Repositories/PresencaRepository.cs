@@ -45,7 +45,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Presencas.FindAsync(entityId, token);
+                var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return new Result<bool>(
@@ -117,7 +117,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Presencas.FindAsync(entityId, token);
+                var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<PresencaEntity?>(

@@ -45,7 +45,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Usuarios.FindAsync(entityId, token);
+                var response = await context.Usuarios.FirstOrDefaultAsync( x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return new Result<bool>(
@@ -54,7 +54,8 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "ID não encontrado."
                         );
                 }
-                context.Usuarios.Remove(response);
+                response.Deactivate();
+                context.Usuarios.Update(response);
                 return new Result<bool>(
                     true, 
                     200, 
@@ -72,12 +73,27 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
         }
     #endregion
 
+    #region </Exist>
+        public async Task<bool> GetIfExistAsync()
+        {
+            try
+            {
+                return  await context.Usuarios.AnyAsync();
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    #endregion
+    
     #region </GetAll>
         public async Task<PagedList<List<UsuarioEntity>?>> GetAllAsync(PagedRequest request, CancellationToken token)
         {
             try
             {
-                var query = context.Usuarios.AsNoTracking().AsQueryable();
+                var query = context.Usuarios.Where( x => x.IsActive == true).AsNoTracking().AsQueryable();
 
                 var result = await query
                             .Skip((request.PageNumber - 1) * request.PageSize)
@@ -117,7 +133,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Usuarios.FindAsync(entityId, token);
+                var response = await context.Usuarios.Where( x => x.IsActive == true).FirstOrDefaultAsync( x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<UsuarioEntity?>(
@@ -170,7 +186,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "Parâmetros não podem estar vazio."
                         );
                 }
-                var response = await context.Usuarios.Where(expression).ToListAsync(token);
+                var response = await context.Usuarios.Where( x => x.IsActive == true).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new Result<List<UsuarioEntity>?>(

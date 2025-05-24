@@ -3,6 +3,7 @@ public interface IUsuarioRepository
 {
     Task<Result<UsuarioEntity>> CreateAsync (UsuarioEntity entity, CancellationToken token);
     Task<Result<bool>> DeleteAsync (int entityId, CancellationToken token);
+    Task<bool> GetIfExistAsync();
     Task<Result<UsuarioEntity?>> GetByIdAsync (int entityId, CancellationToken token);
     Task<PagedList<List<UsuarioEntity>?>> GetAllAsync (PagedRequest request, CancellationToken token);
     Task<bool> GetIfUserExistAsync();

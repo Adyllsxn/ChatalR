@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Features.TipoEvento.Controller;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class TipoEventosController(ITipoEventoService service) : ControllerBase
 {
     #region </GetAll>

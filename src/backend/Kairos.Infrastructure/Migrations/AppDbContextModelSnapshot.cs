@@ -217,7 +217,7 @@ namespace Kairos.Infrastructure.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(150)
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
                     b.Property<byte[]>("PasswordHash")
@@ -230,6 +230,11 @@ namespace Kairos.Infrastructure.Migrations
 
                     b.Property<int>("PerfilID")
                         .HasColumnType("int");
+
+                    b.Property<string>("SobreNome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");
 

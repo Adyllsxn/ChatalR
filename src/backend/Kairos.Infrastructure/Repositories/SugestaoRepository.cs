@@ -45,7 +45,7 @@ public class SugestaoRepository(AppDbContext context) : ISugestaoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Sugestoes.FindAsync(entityId, token);
+                var response = await context.Sugestoes.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return new Result<bool>(
@@ -117,7 +117,7 @@ public class SugestaoRepository(AppDbContext context) : ISugestaoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Sugestoes.FindAsync(entityId, token);
+                var response = await context.Sugestoes.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<SugestaoEntity?>(

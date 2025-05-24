@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Features.Perfil.Controller;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class PerfilsController(IPerfilService service) : ControllerBase
 {
     #region </GetAll>

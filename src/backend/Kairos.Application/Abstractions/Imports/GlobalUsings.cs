@@ -1,5 +1,9 @@
 #region </System>
     global using System.ComponentModel.DataAnnotations;
+    global using System.ComponentModel.DataAnnotations.Schema;
+    global using System.Text.Json.Serialization;
+    global using System.Security.Cryptography;
+    global using System.Text;
 #endregion
 
 #region </Microsoft>
@@ -20,7 +24,9 @@
     global using Kairos.Application.Abstractions.ExtensionsMethods.TipoEvento;
     global using Kairos.Application.Abstractions.ExtensionsMethods.Dashboard;
     global using Kairos.Application.Abstractions.ExtensionsMethods.Perfil;
+    global using Kairos.Application.Abstractions.ExtensionsMethods.Usuario;
     global using Kairos.Application.Services;
+    
     
     global using Kairos.Application.UseCases.Dashboard;
 
@@ -34,4 +40,12 @@
     global using Kairos.Application.UseCases.Perfil.GetAll;
     global using Kairos.Application.UseCases.Perfil.GetById;
     global using Kairos.Application.UseCases.Perfil.Search;
+
+    global using Kairos.Application.UseCases.Usuario.Create;
+    global using Kairos.Application.UseCases.Usuario.GetById;
+    global using Kairos.Application.UseCases.Usuario.GetAll;
+    global using Kairos.Application.UseCases.Usuario.Search;
+    global using Kairos.Application.UseCases.Usuario.Update;
+    global using Kairos.Application.UseCases.Usuario.Delete;
+    global using Kairos.Application.UseCases.Usuario.Exist;
 #endregion
