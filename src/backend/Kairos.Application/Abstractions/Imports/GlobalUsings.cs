@@ -53,4 +53,9 @@
 
     global using Kairos.Application.UseCases.Evento.Create;
     global using Kairos.Application.UseCases.Evento.GetFile;
+    global using Kairos.Application.UseCases.Evento.GetAll;
+    global using Kairos.Application.UseCases.Evento.Delete;
+    global using Kairos.Application.UseCases.Evento.GetById;
+    global using Kairos.Application.UseCases.Evento.Search;
+    global using Kairos.Application.UseCases.Evento.Update;
 #endregion

@@ -15,7 +15,12 @@ public static class UseCaseDI
 
         #region </Evento>
             services.AddScoped<CreateEventoHandler>();
+            services.AddScoped<DeleteEventoHandler>();
             services.AddScoped<GetFileEventoHandler>();
+            services.AddScoped<GetEventosHandler>();
+            services.AddScoped<GetEventoByIdHandler>();
+            services.AddScoped<SearchEventoHandler>();
+            services.AddScoped<UpdateEventoHandler>();
         #endregion
 
         #region </Usuario>
