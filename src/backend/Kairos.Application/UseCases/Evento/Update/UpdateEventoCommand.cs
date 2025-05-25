@@ -1,6 +1,9 @@
-namespace Kairos.Presentation.Features.Evento.Model;
-public class CreateEventoModel
+namespace Kairos.Application.UseCases.Evento.Update;
+public record UpdateEventoCommand
 {
+    [Required(ErrorMessage = "ID é obrigatório")]
+    public int Id { get; set; }
+
     [Required(ErrorMessage = "Titulo é obrigatório")]
     [MaxLength(100, ErrorMessage = "Título deve ter no máximo 100 caracteres.")]
     [DataType(DataType.Text)]
@@ -30,6 +33,10 @@ public class CreateEventoModel
     [Required(ErrorMessage = "Usuário é obrigatório")]
     public int UsuarioID { get; set; }
 
+    [Required(ErrorMessage = "Status de Aprovação é obrigatório")]
+    public EStatusAprovacao StatusAprovacao { get; set; }
+
     [Required(ErrorMessage = "ImagemUrl é obrigatório")]
-    public IFormFile ImagemUrl { get; set; } = null!;
+    [MinLength(1, ErrorMessage = "Imagem deve ter no mínimo 1 caractere.")]
+    public string ImagemUrl { get; set; } = null!;
 }

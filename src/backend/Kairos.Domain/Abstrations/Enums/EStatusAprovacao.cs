@@ -1,7 +1,7 @@
 namespace Kairos.Domain.Abstrations.Enums;
 public enum EStatusAprovacao
 {
-    Pendente,
-    Aprovado,
-    Rejeitado
+    Pendente = 0,
+    Aprovado = 1,
+    Rejeitado = 2
 }
