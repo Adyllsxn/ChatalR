@@ -59,4 +59,7 @@
     global using Kairos.Application.UseCases.Evento.Search;
     global using Kairos.Application.UseCases.Evento.Update;
     global using Kairos.Application.UseCases.Evento.Status;
+    global using Kairos.Application.UseCases.Evento.GetAprovado;
+    global using Kairos.Application.UseCases.Evento.GetPendente;
+    global using Kairos.Application.UseCases.Evento.GetReijetado;
 #endregion

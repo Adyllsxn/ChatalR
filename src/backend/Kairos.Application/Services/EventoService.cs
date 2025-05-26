@@ -1,5 +1,5 @@
 namespace Kairos.Application.Services;
-public class EventoService(CreateEventoHandler create, DeleteEventoHandler delete,GetEventosHandler get ,GetFileEventoHandler getFile, GetEventoByIdHandler getById, SearchEventoHandler search, UpdateEventoHandler update, UpdateEventoStatusHandler updateStatus) : IEventoService
+public class EventoService(CreateEventoHandler create, DeleteEventoHandler delete,GetEventosHandler get ,GetFileEventoHandler getFile, GetEventoByIdHandler getById, GetEventosPendenteHandler pendente, GetEventosReijetadoHandler reijetado, GetEventosAprovadoHandler aprovado, SearchEventoHandler search, UpdateEventoHandler update, UpdateEventoStatusHandler updateStatus) : IEventoService
 {
     public async Task<Result<CreateEventoResponse>> CreateHandler(CreateEventoCommand command, CancellationToken token)
     {
@@ -9,6 +9,16 @@ public class EventoService(CreateEventoHandler create, DeleteEventoHandler delet
     public async Task<Result<bool>> DeleteHandler(DeleteEventoCommand command, CancellationToken token)
     {
         return await delete.DeleteHandler(command, token);
+    }
+
+    public async Task<PagedList<List<GetEventosResponse>?>> GePendentetHandler(GetEventosCommand command, CancellationToken token)
+    {
+        return await pendente.GePendentetHandler(command, token);
+    }
+
+    public async Task<PagedList<List<GetEventosResponse>?>> GetAprovadoHandler(GetEventosCommand command, CancellationToken token)
+    {
+        return await aprovado.GetAprovadoHandler(command, token);
     }
 
     public async Task<Result<GetEventoByIdResponse>> GetByIdHandler(GetEventoByIdCommand command, CancellationToken token)
@@ -24,6 +34,11 @@ public class EventoService(CreateEventoHandler create, DeleteEventoHandler delet
     public async Task<PagedList<List<GetEventosResponse>?>> GetHandler(GetEventosCommand command, CancellationToken token)
     {
         return await get.GetHandler(command, token);
+    }
+
+    public async Task<PagedList<List<GetEventosResponse>?>> GetReijetadoHandler(GetEventosCommand command, CancellationToken token)
+    {
+        return await reijetado.GetReijetadoHandler(command, token);
     }
 
     public async Task<Result<List<SearchEventoResponse>>> SearchHendler(SearchEventoCommand command, CancellationToken token)

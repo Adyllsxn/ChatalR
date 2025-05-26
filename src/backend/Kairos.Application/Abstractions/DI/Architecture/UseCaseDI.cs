@@ -22,6 +22,9 @@ public static class UseCaseDI
             services.AddScoped<SearchEventoHandler>();
             services.AddScoped<UpdateEventoHandler>();
             services.AddScoped<UpdateEventoStatusHandler>();
+            services.AddScoped<GetEventosReijetadoHandler>();
+            services.AddScoped<GetEventosAprovadoHandler>();
+            services.AddScoped<GetEventosPendenteHandler>();
         #endregion
 
         #region </Usuario>

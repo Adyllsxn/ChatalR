@@ -54,6 +54,7 @@
     global using Kairos.Application.UseCases.Evento.GetById;
     global using Kairos.Application.UseCases.Evento.Search;
     global using Kairos.Application.UseCases.Evento.Update;
+    global using Kairos.Application.UseCases.Evento.Status;
 #endregion
 
 #region </Domain>
