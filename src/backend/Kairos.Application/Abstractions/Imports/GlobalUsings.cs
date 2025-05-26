@@ -15,6 +15,7 @@
     global using Kairos.Domain.Abstrations.Interfaces;
     global using Kairos.Domain.Abstrations.Shared;
     global using Kairos.Domain.Abstrations.Enums;
+    global using Kairos.Domain.Abstrations.Exceptions;
     global using Kairos.Domain.Entities;
 #endregion
 
@@ -28,7 +29,6 @@
     global using Kairos.Application.Abstractions.ExtensionsMethods.Usuario;
     global using Kairos.Application.Abstractions.ExtensionsMethods.Evento;
     global using Kairos.Application.Services;
-    
     
     global using Kairos.Application.UseCases.Dashboard;
 
@@ -58,4 +58,5 @@
     global using Kairos.Application.UseCases.Evento.GetById;
     global using Kairos.Application.UseCases.Evento.Search;
     global using Kairos.Application.UseCases.Evento.Update;
+    global using Kairos.Application.UseCases.Evento.Status;
 #endregion

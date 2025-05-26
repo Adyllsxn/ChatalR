@@ -7,7 +7,7 @@ public class Result<TData>
 
     [JsonIgnore]
     public bool IsSuccess => Code is > 200 and <= 299;
-    
+
     [JsonConstructor]
     public Result() => Code = StatusCode.DefaultStatusCode;
     public Result(TData? data, int code = StatusCode.DefaultStatusCode, string? message = null)

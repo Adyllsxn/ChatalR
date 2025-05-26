@@ -1,3 +1,5 @@
+using Kairos.Application.UseCases.Evento.Status;
+
 namespace Kairos.Presentation.Features.Evento.Controller;
 [ApiController]
 [Route("api/")]
@@ -154,4 +156,14 @@ public class EventosController(IEventoService service) : ControllerBase
         }
 
     #endregion
+
+    #region </Status>
+        [HttpPut("UpdateStatusEvento"), EndpointSummary("Editar Status de AProvação de Evento")]
+        public async Task<ActionResult> Update(UpdateEventoStatusCommand command, CancellationToken token)
+        {
+            var response = await service.StatusHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
 }

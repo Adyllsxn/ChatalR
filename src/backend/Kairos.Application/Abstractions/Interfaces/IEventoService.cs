@@ -8,4 +8,5 @@ public interface IEventoService
     Task<Result<bool>> DeleteHandler(DeleteEventoCommand command, CancellationToken token);
     Task<Result<List<SearchEventoResponse>>> SearchHendler(SearchEventoCommand command, CancellationToken token);
     Task<Result<UpdateEventoResponse>> UpdateHendler(UpdateEventoCommand command, CancellationToken token);
+    Task<Result<UpdateEventoStatusResponse>> StatusHandler(UpdateEventoStatusCommand command, CancellationToken token);
 }

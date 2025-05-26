@@ -5,6 +5,7 @@ public static class UpdateEventoExtensions
     {
         return new EventoEntity
         (
+            command.Id,
             command.Titulo,
             command.Descricao,
             command.DataHoraInicio,

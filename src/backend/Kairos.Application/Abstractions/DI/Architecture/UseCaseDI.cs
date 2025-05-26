@@ -21,6 +21,7 @@ public static class UseCaseDI
             services.AddScoped<GetEventoByIdHandler>();
             services.AddScoped<SearchEventoHandler>();
             services.AddScoped<UpdateEventoHandler>();
+            services.AddScoped<UpdateEventoStatusHandler>();
         #endregion
 
         #region </Usuario>

@@ -1,5 +1,5 @@
 namespace Kairos.Application.Services;
-public class EventoService(CreateEventoHandler create, DeleteEventoHandler delete,GetEventosHandler get ,GetFileEventoHandler getFile, GetEventoByIdHandler getById, SearchEventoHandler search, UpdateEventoHandler update) : IEventoService
+public class EventoService(CreateEventoHandler create, DeleteEventoHandler delete,GetEventosHandler get ,GetFileEventoHandler getFile, GetEventoByIdHandler getById, SearchEventoHandler search, UpdateEventoHandler update, UpdateEventoStatusHandler updateStatus) : IEventoService
 {
     public async Task<Result<CreateEventoResponse>> CreateHandler(CreateEventoCommand command, CancellationToken token)
     {
@@ -29,6 +29,11 @@ public class EventoService(CreateEventoHandler create, DeleteEventoHandler delet
     public async Task<Result<List<SearchEventoResponse>>> SearchHendler(SearchEventoCommand command, CancellationToken token)
     {
         return await search.SearchHendler(command, token);
+    }
+
+    public async Task<Result<UpdateEventoStatusResponse>> StatusHandler(UpdateEventoStatusCommand command, CancellationToken token)
+    {
+        return await updateStatus.StatusHandler(command, token);
     }
 
     public async Task<Result<UpdateEventoResponse>> UpdateHendler(UpdateEventoCommand command, CancellationToken token)

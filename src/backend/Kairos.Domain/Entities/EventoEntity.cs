@@ -36,6 +36,26 @@ public sealed class EventoEntity : EntityBase, IAgragateRoot
     {
         ValidationDomain(titulo, descricao, dataHoraInicio, dataHoraFim, local, tipoEventoID, usuarioID, imagemUrl);
     }
+
+    public void AtualizarStatus(EStatusAprovacao novoStatus)
+    {
+        if (StatusAprovacao == EStatusAprovacao.Pendente)
+        {
+            if (novoStatus == EStatusAprovacao.Aprovado || novoStatus == EStatusAprovacao.Rejeitado)
+            {
+                StatusAprovacao = novoStatus;
+            }
+            else
+            {
+                throw new DomainValidationException("Status inválido para transição.");
+            }
+        }
+        else
+        {
+            throw new DomainValidationException("Status já foi definido e não pode ser alterado.");
+        }
+    }
+
     public void ValidationDomain(string titulo, string descricao, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int tipoEventoID, int usuarioID, string imagemUrl)
     {
         DomainValidationException.When(string.IsNullOrWhiteSpace(titulo), "Título é obrigatório.");

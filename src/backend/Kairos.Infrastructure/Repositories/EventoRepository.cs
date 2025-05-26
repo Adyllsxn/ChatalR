@@ -1,3 +1,4 @@
+
 namespace Kairos.Infrastructure.Repositories;
 public class EventoRepository(AppDbContext context) : IEventoRepository
 {
@@ -142,9 +143,84 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
             }
         }
     #endregion
+    
+    #region </GetAprovados>
+        public async Task<PagedList<List<EventoEntity>?>> GetEventosAprovadosAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Eventos
+                    .AsNoTracking()
+                    .Where(e => e.StatusAprovacao == EStatusAprovacao.Aprovado);
+
+                var result = await query
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToListAsync(token);
+
+                var count = await query.CountAsync(token);
+
+                return new PagedList<List<EventoEntity>?>(result, count, request.PageNumber, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<EventoEntity>?>(null, 500, $"Erro ao buscar eventos aprovados. Erro: {ex.Message}");
+            }
+        }
+    #endregion
+
+    #region </GetPendentes>
+        public async Task<PagedList<List<EventoEntity>?>> GetEventosPendentesAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Eventos
+                    .AsNoTracking()
+                    .Where(e => e.StatusAprovacao == EStatusAprovacao.Pendente);
+
+                var result = await query
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToListAsync(token);
+
+                var count = await query.CountAsync(token);
+
+                return new PagedList<List<EventoEntity>?>(result, count, request.PageNumber, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<EventoEntity>?>(null, 500, $"Erro ao buscar eventos aprovados. Erro: {ex.Message}");
+            }
+        }
+    #endregion
+
+    #region </GetRejeitados>
+        public async Task<PagedList<List<EventoEntity>?>> GetEventosRejeitadosAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Eventos
+                    .AsNoTracking()
+                    .Where(e => e.StatusAprovacao == EStatusAprovacao.Rejeitado);
+
+                var result = await query
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToListAsync(token);
+
+                var count = await query.CountAsync(token);
+
+                return new PagedList<List<EventoEntity>?>(result, count, request.PageNumber, request.PageSize);
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<EventoEntity>?>(null, 500, $"Erro ao buscar eventos aprovados. Erro: {ex.Message}");
+            }
+        }
+    #endregion
 
     #region </GetFile>
-        public async Task<Result<EventoEntity?>> GetFileAsync(int entityId, CancellationToken token)
+    public async Task<Result<EventoEntity?>> GetFileAsync(int entityId, CancellationToken token)
         {
             try
             {

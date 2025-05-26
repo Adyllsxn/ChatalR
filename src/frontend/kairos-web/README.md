@@ -83,6 +83,25 @@ Ionicon import link:
 --white: hsl(0, 0%, 100%);
 --black: hsl(0, 0%, 0%);
 --rythm: hsl(240, 9%, 53%);
+
+#a53118
+#d9782c
+#f1db89
+#f5f2b6
+#d4b37f
+#976c36
+#e6b55e
+#765f31
+#c7935c
+#ccc7a5
+
+
+#f2d98d
+#d99d55
+#f26e22
+#d92414
+#0d0d0d
+
 ```
 
 ## Typography

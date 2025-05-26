@@ -20,6 +20,7 @@
     global using Kairos.Domain.Abstrations.Authentication;
     global using Kairos.Domain.Abstrations.Pagination;
     global using Kairos.Domain.Abstrations.Shared;
+    global using Kairos.Domain.Abstrations.Enums;
 #endregion
 
 #region </Infrastructure>
