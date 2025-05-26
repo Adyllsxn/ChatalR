@@ -1,8 +1,7 @@
-using Kairos.Application.UseCases.Evento.Status;
-
 namespace Kairos.Presentation.Features.Evento.Controller;
 [ApiController]
 [Route("api/")]
+[Authorize]
 public class EventosController(IEventoService service) : ControllerBase
 {
     #region </GetAll>
@@ -10,6 +9,33 @@ public class EventosController(IEventoService service) : ControllerBase
         public async Task<ActionResult> GetAllAsync([FromQuery] GetEventosCommand command,CancellationToken token)
         {
             var response = await service.GetHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
+    #region </GetPendente>
+        [HttpGet("EventosPendetes"), EndpointSummary("Obter Eventos Pendentes")]
+        public async Task<ActionResult> GetPendente([FromQuery] GetEventosCommand command,CancellationToken token)
+        {
+            var response = await service.GePendentetHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
+    #region </GetAprovado>
+        [HttpGet("EventosAprovados"), EndpointSummary("Obter Eventos Aprovados")]
+        public async Task<ActionResult> GetAprovado([FromQuery] GetEventosCommand command,CancellationToken token)
+        {
+            var response = await service.GetAprovadoHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
+    #region </GetAll>
+        [HttpGet("EventosReijetados"), EndpointSummary("Obter Eventos Reijetados")]
+        public async Task<ActionResult> GetReijetado([FromQuery] GetEventosCommand command,CancellationToken token)
+        {
+            var response = await service.GetReijetadoHandler(command,token);
             return Ok(response);
         }
     #endregion

@@ -5,6 +5,9 @@ public interface IEventoService
     Task<Result<GetFileEventoResponse>> GetFileHandler(GetFileEventoCommand command, CancellationToken token);
     Task<Result<GetEventoByIdResponse>> GetByIdHandler(GetEventoByIdCommand command, CancellationToken token);
     Task<PagedList<List<GetEventosResponse>?>> GetHandler(GetEventosCommand command, CancellationToken token);
+    Task<PagedList<List<GetEventosResponse>?>> GetAprovadoHandler(GetEventosCommand command, CancellationToken token);
+    Task<PagedList<List<GetEventosResponse>?>> GePendentetHandler(GetEventosCommand command, CancellationToken token);
+    Task<PagedList<List<GetEventosResponse>?>> GetReijetadoHandler(GetEventosCommand command, CancellationToken token);
     Task<Result<bool>> DeleteHandler(DeleteEventoCommand command, CancellationToken token);
     Task<Result<List<SearchEventoResponse>>> SearchHendler(SearchEventoCommand command, CancellationToken token);
     Task<Result<UpdateEventoResponse>> UpdateHendler(UpdateEventoCommand command, CancellationToken token);
