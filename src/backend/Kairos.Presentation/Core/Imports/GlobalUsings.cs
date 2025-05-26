@@ -55,6 +55,11 @@
     global using Kairos.Application.UseCases.Evento.Search;
     global using Kairos.Application.UseCases.Evento.Update;
     global using Kairos.Application.UseCases.Evento.Status;
+
+    global using Kairos.Application.UseCases.Presenca.Create;
+    global using Kairos.Application.UseCases.Presenca.Delete;
+    global using Kairos.Application.UseCases.Presenca.GetAll;
+    global using Kairos.Application.UseCases.Presenca.GetById;
 #endregion
 
 #region </Domain>

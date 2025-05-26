@@ -3,7 +3,7 @@ public sealed class PresencaEntity: EntityBase, IAgragateRoot
 {
     public int UsuarioID { get; private set; }
     public int EventoID { get; private set; }
-    public DateTime DataHoraCheckin { get; private set; }
+    public DateTime DataHoraCheckin { get; private set; } = DateTime.UtcNow;
 
     [JsonIgnore]
     public UsuarioEntity Usuario { get; private set; } = null!;

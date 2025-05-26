@@ -1,0 +1,28 @@
+namespace Kairos.Application.Abstractions.ExtensionsMethods.Presenca;
+public static class CreatePresencaExtensions
+{
+    public static PresencaEntity MapToPresencaEntity(this CreatePresencaCommand command)
+    {
+        return new PresencaEntity
+        (
+            command.UsuarioID,
+            command.EventoID,
+            command.DataHoraCheckin = DateTime.UtcNow
+        );
+    }
+    
+    public static CreatePresencaResponse MapToCreatePresenca (this PresencaEntity entity)
+    {
+        return new CreatePresencaResponse
+        {
+            Id = entity.Id,
+            UsuarioID = entity.UsuarioID,
+            EventoID = entity.UsuarioID,
+            DataHoraCheckin = entity.DataHoraCheckin
+        };
+    }
+    public static IEnumerable<CreatePresencaResponse> MapToCreatePresenca(this IEnumerable<PresencaEntity> response)
+    {
+        return response.Select(entity => entity.MapToCreatePresenca());
+    }
+}

@@ -13,6 +13,21 @@ public static class UseCaseDI
             services.AddScoped<SearchPerfilHandler>();
         #endregion
 
+        #region </Presença>
+            services.AddScoped<CreatePresencaHandler>();
+            services.AddScoped<DeletePresencaHandler>();
+            services.AddScoped<GetPresencaHandler>();
+            services.AddScoped<GetPresencaByIdHandler>();
+        #endregion
+
+        #region </Presença>
+            services.AddScoped<CreateSugestaoHandler>();
+            services.AddScoped<DeleteSugestaoHandler>();
+            services.AddScoped<GetSugestaoHandler>();
+            services.AddScoped<GetSugestaoByIdHandler>();
+            services.AddScoped<UpdateSugestaoHandler>();
+        #endregion
+
         #region </Evento>
             services.AddScoped<CreateEventoHandler>();
             services.AddScoped<DeleteEventoHandler>();
