@@ -184,7 +184,7 @@ public class EventosController(IEventoService service) : ControllerBase
     #endregion
 
     #region </Status>
-        [HttpPut("UpdateStatusEvento"), EndpointSummary("Editar Status de AProvação de Evento")]
+        [HttpPatch("UpdateStatusEvento"), EndpointSummary("Editar Status de AProvação de Evento")]
         public async Task<ActionResult> Update(UpdateEventoStatusCommand command, CancellationToken token)
         {
             var response = await service.StatusHandler(command,token);

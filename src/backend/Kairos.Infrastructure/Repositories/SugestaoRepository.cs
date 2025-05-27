@@ -72,35 +72,99 @@ public class SugestaoRepository(AppDbContext context) : ISugestaoRepository
         }
     #endregion
 
+    #region </GetAllUnread>
+        public async Task<PagedList<List<SugestaoEntity>?>> GetAllUnreadAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Sugestoes.Where(x => x.StatusSugestao == EStatusSugestao.Nova).AsNoTracking().AsQueryable();
+
+                var result = await query
+                            .Skip((request.PageNumber - 1) * request.PageSize)
+                            .Take(request.PageSize)
+                            .ToListAsync();
+                
+                var count = await query.CountAsync();
+
+                return new PagedList<List<SugestaoEntity>?>(
+                    result,
+                    count,
+                    request.PageNumber,
+                    request.PageSize
+                );
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<SugestaoEntity>?>(
+                    null, 
+                    500, 
+                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    );
+            }
+        }
+    #endregion
+
+    #region </GetAllRead>
+        public async Task<PagedList<List<SugestaoEntity>?>> GetAllReadAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Sugestoes.Where(x => x.StatusSugestao == EStatusSugestao.Lida ).AsNoTracking().AsQueryable();
+
+                var result = await query
+                            .Skip((request.PageNumber - 1) * request.PageSize)
+                            .Take(request.PageSize)
+                            .ToListAsync();
+                
+                var count = await query.CountAsync();
+
+                return new PagedList<List<SugestaoEntity>?>(
+                    result,
+                    count,
+                    request.PageNumber,
+                    request.PageSize
+                );
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<SugestaoEntity>?>(
+                    null, 
+                    500, 
+                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    );
+            }
+        }
+    #endregion
+    
     #region </GellAll>
         public async Task<PagedList<List<SugestaoEntity>?>> GetAllAsync(PagedRequest request, CancellationToken token)
         {
             try
-                {
-                    var query = context.Sugestoes.AsNoTracking().AsQueryable();
+            {
+                var query = context.Sugestoes.AsNoTracking().AsQueryable();
 
-                    var result = await query
-                                .Skip((request.PageNumber - 1) * request.PageSize)
-                                .Take(request.PageSize)
-                                .ToListAsync();
-                    
-                    var count = await query.CountAsync();
+                var result = await query
+                            .Skip((request.PageNumber - 1) * request.PageSize)
+                            .Take(request.PageSize)
+                            .ToListAsync();
+                
+                var count = await query.CountAsync();
 
-                    return new PagedList<List<SugestaoEntity>?>(
-                        result,
-                        count,
-                        request.PageNumber,
-                        request.PageSize
+                return new PagedList<List<SugestaoEntity>?>(
+                    result,
+                    count,
+                    request.PageNumber,
+                    request.PageSize
+                );
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<SugestaoEntity>?>(
+                    null, 
+                    500, 
+                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
                     );
-                }
-                catch (Exception ex)
-                {
-                    return new PagedList<List<SugestaoEntity>?>(
-                        null, 
-                        500, 
-                        $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
-                        );
-                }
+            }
         }
     #endregion
 
@@ -144,7 +208,7 @@ public class SugestaoRepository(AppDbContext context) : ISugestaoRepository
     #endregion
 
     #region </Update>
-        public async Task<Result<SugestaoEntity>> UpdateAsync(SugestaoEntity entity, CancellationToken token)
+    public async Task<Result<SugestaoEntity>> UpdateAsync(SugestaoEntity entity, CancellationToken token)
         {
             try
             {
@@ -179,6 +243,25 @@ public class SugestaoRepository(AppDbContext context) : ISugestaoRepository
                     500, 
                     $"Erro ao executar a operação (UPDATE). Erro {ex.Message}."
                     );
+            }
+        }
+    #endregion
+
+    #region </MarkAsRead>
+        public async Task<Result<bool>> MarkAsReadAsync(int id, CancellationToken token)
+        {
+            var sugestao = await context.Sugestoes.FirstOrDefaultAsync(s => s.Id == id, token);
+            if (sugestao is null)
+                return Result<bool>.Failure("Sugestão não encontrada.");
+
+            try
+            {
+                sugestao.MarcarComoLida();
+                return Result<bool>.Success(true);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message);
             }
         }
     #endregion

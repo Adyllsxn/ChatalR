@@ -74,4 +74,7 @@
     global using Kairos.Application.UseCases.Sugestao.GetAll;
     global using Kairos.Application.UseCases.Sugestao.GetById;
     global using Kairos.Application.UseCases.Sugestao.Update;
+    global using Kairos.Application.UseCases.Sugestao.GetRead;
+    global using Kairos.Application.UseCases.Sugestao.GetUnRead;
+    global using Kairos.Application.UseCases.Sugestao.MarkAsRead;
 #endregion

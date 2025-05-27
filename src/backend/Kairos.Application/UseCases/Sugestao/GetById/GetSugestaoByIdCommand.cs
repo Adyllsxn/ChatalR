@@ -1,5 +1,6 @@
 namespace Kairos.Application.UseCases.Sugestao.GetById;
-public class GetSugestaoByIdCommand
+public record GetSugestaoByIdCommand
 {
-    
+    [Required(ErrorMessage = "ID é obrigatório")]
+    public int Id { get; set; }
 }

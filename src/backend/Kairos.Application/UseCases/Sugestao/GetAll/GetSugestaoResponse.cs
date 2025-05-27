@@ -1,5 +1,2 @@
 namespace Kairos.Application.UseCases.Sugestao.GetAll;
-public class GetSugestaoResponse
-{
-    
-}
+public record GetSugestaoResponse : SugestaoResponse;
