@@ -22,6 +22,23 @@ public static class JwtBearerExtensions
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:secretKey"] ?? throw new InvalidOperationException("JWT secret key is not configured."))),
                 ClockSkew = TimeSpan.Zero
             };
+            
+            options.Events = new JwtBearerEvents
+            {
+                OnChallenge = context =>
+                {
+                    context.HandleResponse(); // bloqueia resposta padrão
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    context.Response.ContentType = "application/json";
+                    var result = JsonSerializer.Serialize(new
+                    {
+                        status = 401,
+                        message = "Acesso não autorizado. Faça login para continuar."
+                    });
+
+                    return context.Response.WriteAsync(result);
+                }
+            };    
         });
     }
 }

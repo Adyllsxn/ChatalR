@@ -2,7 +2,7 @@ namespace Kairos.Presentation.Features.Evento.Controller;
 [ApiController]
 [Route("api/")]
 [Authorize]
-public class EventosController(IEventoService service) : ControllerBase
+public class EventosController(IEventoService service, IUsuarioService usuario) : ControllerBase
 {
     #region </GetAll>
         [HttpGet("Eventos"), EndpointSummary("Obter Eventos")]
@@ -17,6 +17,18 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpGet("EventosPendetes"), EndpointSummary("Obter Eventos Pendentes")]
         public async Task<ActionResult> GetPendente([FromQuery] GetEventosCommand command,CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+
             var response = await service.GePendentetHandler(command,token);
             return Ok(response);
         }
@@ -26,6 +38,18 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpGet("EventosAprovados"), EndpointSummary("Obter Eventos Aprovados")]
         public async Task<ActionResult> GetAprovado([FromQuery] GetEventosCommand command,CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+
             var response = await service.GetAprovadoHandler(command,token);
             return Ok(response);
         }
@@ -53,6 +77,18 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpGet("EventoImage"), EndpointSummary("Obter a imagem do Evento Pelo Id")]
         public async Task<ActionResult> GetFile([FromQuery] GetFileEventoCommand command, CancellationToken token)
         {
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                {
+                    return Unauthorized("Você não tem permissão para visualizar evento.");
+                }
+
                 var response = await service.GetFileHandler(command,token);
                 if(response.Data?.ImagemUrl == null)
                 {
@@ -76,6 +112,18 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpPost("CreateEvento"), EndpointSummary("Criar Evento")]
         public async Task<ActionResult> Create([FromForm] CreateEventoModel model, CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            {
+                return Unauthorized("Você não tem permissão para incluir um novo evento.");
+            }
+
             if (model.ImagemUrl == null || model.ImagemUrl.Length == 0)
             {
                 return BadRequest("Nenhuma imagem foi enviada.");
@@ -120,6 +168,19 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpDelete("DeleteEvento"), EndpointSummary("Excluir Evento")]
         public async Task<ActionResult> Delete([FromQuery] DeleteEventoCommand command, CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            {
+                return Unauthorized("Você não tem permissão para excluir evento.");
+            }
+
+
             var delete = new GetEventoByIdCommand{Id = command.Id};
             var result = await service.GetByIdHandler(delete, token);
             if (!string.IsNullOrEmpty(result.Data?.ImagemUrl) && System.IO.File.Exists(result.Data.ImagemUrl))
@@ -135,6 +196,19 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpPut("UpdateEvento"), EndpointSummary("Editar Evento")]
         public async Task<ActionResult> Update([FromForm] UpdateEventoModel model, CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            {
+                return Unauthorized("Você não tem permissão para atualizar o evento.");
+            }
+
+
             var getCommand = new GetEventoByIdCommand { Id = model.Id };
             var result = await service.GetByIdHandler(getCommand, token);
 
@@ -187,6 +261,18 @@ public class EventosController(IEventoService service) : ControllerBase
         [HttpPatch("UpdateStatusEvento"), EndpointSummary("Editar Status de AProvação de Evento")]
         public async Task<ActionResult> Update(UpdateEventoStatusCommand command, CancellationToken token)
         {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == 1))
+            {
+                return Unauthorized("Você não tem permissão para aprovar evento.");
+            }
+
             var response = await service.StatusHandler(command,token);
             return Ok(response);
         }
