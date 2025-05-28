@@ -1,6 +1,7 @@
 namespace Kairos.Application.UseCases.Sugestao.Create;
 public record CreateSugestaoCommand
 {
+    [JsonIgnore]
     [Required(ErrorMessage = "Usuário é obrigatório")]
     public int UsuarioID { get; set; }
 

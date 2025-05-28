@@ -10,6 +10,11 @@ public static class GetUsuariosExtensions
             SobreNome = entity.SobreNome,
             Email = entity.Email,
             PerfilID = entity.PerfilID,
+            Perfil = new PerfilResponse
+            {
+                Id = entity.Perfil.Id,
+                Nome = entity.Perfil.Nome
+            },
             DataCadastro = entity.DataCadastro
         };
     }

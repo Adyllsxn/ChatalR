@@ -93,7 +93,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
         {
             try
             {
-                var query = context.Usuarios.Where( x => x.IsActive == true).AsNoTracking().AsQueryable();
+                var query = context.Usuarios.Where( x => x.IsActive == true).Include(x => x.Perfil).AsNoTracking().AsQueryable();
 
                 var result = await query
                             .Skip((request.PageNumber - 1) * request.PageSize)
@@ -133,7 +133,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Usuarios.Where( x => x.IsActive == true).FirstOrDefaultAsync( x => x.Id == entityId, token);
+                var response = await context.Usuarios.Where( x => x.IsActive == true).Include(x => x.Perfil).FirstOrDefaultAsync( x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<UsuarioEntity?>(
@@ -186,7 +186,7 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                         "Parâmetros não podem estar vazio."
                         );
                 }
-                var response = await context.Usuarios.Where( x => x.IsActive == true).Where(expression).ToListAsync(token);
+                var response = await context.Usuarios.Where( x => x.IsActive == true).Include(x => x.Perfil).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new Result<List<UsuarioEntity>?>(

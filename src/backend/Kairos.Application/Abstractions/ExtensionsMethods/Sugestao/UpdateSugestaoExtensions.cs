@@ -9,7 +9,7 @@ public static class UpdateSugestaoExtensions
             command.UsuarioID,
             command.EventoID,
             command.Conteudo,
-            command.DataEnvio
+            command.DataEnvio = DateTime.UtcNow
         );
     }
     
