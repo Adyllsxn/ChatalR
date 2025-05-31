@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import '../styles/Header.css' 
-import '../hook/menu.js'
+import '../styles/Header.css'
 
 export default function Header() {
-    
+
+    const [menuActive, setMenuActive] = useState(false);
+    const toggleMenu = () => {
+        setMenuActive(!menuActive);
+    };
+
     return (
     <header>
         <div className='layout-container'>
@@ -13,7 +17,7 @@ export default function Header() {
                     <Link to="/" className='nav-link'>Kairos</Link>
                 </div>
 
-                <ul className='nav-menu'>
+                <ul className={`nav-menu ${menuActive ? 'active' : ''}`}>
                     <li className='nabar-item'>
                         <Link className='nav-link'>Início</Link>
                     </li>
@@ -28,10 +32,11 @@ export default function Header() {
                     </li>
                 </ul>
 
-                <div class="menu-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <div className={`menu-toggle ${menuActive ? 'active' : ''}`} 
+                        onClick={toggleMenu}>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
                 </div>
             </nav>
         </div>

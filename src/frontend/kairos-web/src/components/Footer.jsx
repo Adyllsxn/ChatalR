@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className='site-footer'>
             <div className='layout-container'>
                 <div className='footer-top'>
-                    <div class="footer-title">
+                    <div className="footer-title">
                         <h1>Unidos para servir melhor</h1>
                     </div>
                     <div className='footer-links'>
@@ -45,7 +45,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div class="footer-bottom">
+                <div className="footer-bottom">
                     <p> © 2025 Kairos | Todos os direitos reservados </p>
                     <p><a href="#">Política de Privacidade</a></p>
                 </div>
