@@ -76,13 +76,25 @@ header{
     height: 3px;
     border-radius: 2px;
     margin: 5px auto;
-    background-color: var(--color003);
+    background-color: var(--color004);
     transition: all 0.3s ease-in-out;
 }
 
 @media(max-width: 768px){
+    header{
+        background: var(--color002);
+    }
     .menu-toggle{
         display: block;
+    }
+    .menu-toggle.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
     }
     .nav-menu{
         position: fixed;
@@ -90,11 +102,18 @@ header{
         top: 70px;
         gap: 0;
         border-radius: 0 0 20px 20px;
-        background-color: #d9782c;
+        background-color: var(--color002);
         text-align: center;
         flex-direction: column;
         width: 100%;
+        height: 100vh;
         transition: 0.3s;
+    }
+    .nabar-item{
+        margin: 16px 0;
+    }
+    .nav-menu.active{
+        left: 0;
     }
 
 }
