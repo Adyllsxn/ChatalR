@@ -1,0 +1,206 @@
+/*  Config Global   */
+:root{
+    --color00: #000000d2;
+    --color000: #00000080;
+    --color01: #fff;
+    --col0r03: #d9782c;
+    --color030: #d4b37f;
+}
+/*  Config Global   */
+
+/*          hero-section            */
+.hero{
+    position: relative;
+}
+.hero-section{
+    position: relative;
+    height: 100vh;
+}
+#hero-background{
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+#hero-background video{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+#hero-background::after{
+    content: '';
+    width: inherit;
+    height: inherit;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(109deg, rgba(10, 12, 16, 0.99) 15%, rgba(10, 12, 16, 0.7) 50%, rgba(10, 12, 16, 0.99) 85%);
+}
+.hero-content{
+    height: 80vh;
+    display: flex;
+    justify-content:  center;
+    flex-direction: column;
+}
+.hero-content h1{
+    font-size: 3rem;
+    color: var(--color01);
+    text-shadow: 1px 2px 3px #000000d2;
+}
+.hero-content p{
+    color: var(--color01);
+    margin: 20px 0;
+    line-height: 1.3;
+    font-size: 17px;
+}
+.hero-content div{
+    display: flex;
+    column-gap: 32px;
+}
+.hero-content div .cta-button{
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    transform: skew(-10deg);
+    border: 1px solid var(--col0r03);
+    transition: all .5s ease-in-out;
+}
+.hero-content div .cta-button:hover{
+    background: var(--col0r03);
+}
+/*          hero-section            */
+
+
+
+
+/*          welcome-section         */
+.welcome-section {
+    position: relative;
+    width: 100%;
+    background-color: var(--color01);
+    padding: 30px 0;
+}
+.welcome-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0;
+}
+.welcome-section .welcome-text h1{
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
+    text-transform: capitalize;
+    text-shadow: 1px 2px 1px var(--color000);
+}
+.welcome-section .welcome-text p{
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 2;
+    text-align: center;
+}
+.welcome-buttons{
+    margin: 20px 0;
+}
+.welcome-buttons a{
+    color: var(--col0r03);
+    padding: 9px;
+    border: 1px solid var(--col0r03);
+    border-radius: 20px;
+    margin: 0 10px;
+    transition: all .2s;
+}
+.welcome-buttons a:hover{
+    background: var(--col0r03);
+    color: var(--color01);
+    transition: all 2s;
+}
+/*          welcome-section         */
+
+
+
+
+/*          cards-section           */
+.cards-section{
+    width: 100%;
+    background: var(--color030);
+}
+.cards-grid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+    padding: 60px 0;
+}
+.cards-grid .card{
+    width: 330px;
+    height: 340px;
+    border: 2px solid var(--color01);
+    border-radius: 10px;
+    padding: 20px;
+}
+.cards-grid .card h1{
+    text-align: left;
+    color: var(--color01);
+    margin-bottom: 20px;
+}
+.cards-grid .card p{
+    color: var(--color01);
+    font-size: 16px;
+    line-height: 1.5;
+}
+/*          cards-section           */
+
+
+
+
+
+@media(max-width: 768px){
+    /*  hero-section    */
+    .hero-content{
+        height: 100vh;
+    }
+    .hero-content h1{
+        font-size: 1.8rem;
+    }
+    /*  hero-section    */
+
+    
+    /*  welcome-section   */
+    .welcome-section .welcome-text h1{
+        font-size: 30px;
+    }
+    .welcome-section .welcome-text p{
+        margin: 20px 0;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.4;
+        text-align: center;
+    }
+    .welcome-buttons{
+        width: 100%;
+    }
+    .welcome-buttons a{
+        display: block;
+        margin: 13px 0;
+        padding: 10px 30px;
+        text-align: center;
+    }
+    /*  welcome-section   */
+
+
+    /*  cards-section   */
+    .cards-grid{
+        flex-direction: column;
+    }
+    .cards-grid .card{
+        width: 100%;
+    }
+    /*  cards-section   */
+}
