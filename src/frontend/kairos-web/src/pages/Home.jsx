@@ -1,10 +1,11 @@
 import React from 'react'
-import '../../styles/Home.css'
-import videoSrc from '../../assets/videos/background.mp4';
+import '../styles/Home.css'
+import videoSrc from '..//assets/videos/background.mp4';
 
 export default function Home() {
     return (
         <main>
+
             <section className='hero'>
                 <div className='hero-section'>
                     <div id="hero-background">
@@ -12,13 +13,14 @@ export default function Home() {
                             <source src={videoSrc} type="video/mp4" />
                         </video>
                     </div>
-
                     <div className='layout-container'>
                         <div className='hero-content'>
                             <h1>
                                 Onde experiências inesquecíveis com Deus são organizadas com excelência
                             </h1>
-                            <p>A plataforma Kairos une tecnologia, propósito e fé para transformar a gestão de cultos e eventos.</p>
+                            <p>
+                                A plataforma Kairos une tecnologia, propósito e fé para transformar a gestão de cultos e eventos.
+                            </p>
                             <div>
                                 <a href="#" className='cta-button'>Descubra o Kairos</a>
                             </div>

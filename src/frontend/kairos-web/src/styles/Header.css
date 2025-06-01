@@ -14,7 +14,6 @@ header{
     top: 0;
     z-index: 1;
 }
-
 .navbar{
     min-height: 70px;
     display: flex;
@@ -24,8 +23,9 @@ header{
 .navbar-logo .nav-link{
     font-size: 2rem !important;
     font-weight: bold;
-}
+    text-shadow: #000 1px 1px;
 
+}
 .navbar-logo .nav-link{
     color: #d9782c;
 }
@@ -44,6 +44,7 @@ header{
 .nav-menu .nav-link{
     transition: 0.5s ease;
     position: relative;
+    padding: 0 10px;
 }
 .nav-menu .nav-link:hover{
     color: var(--color004);
@@ -65,7 +66,35 @@ header{
     transform-origin: left;
     transition: transform .4s;
 }
-
+.drop-hover{
+    position: relative;
+}
+.drop-hover .nav-link-drop{
+    font-size: 18px;
+    display: block;
+}
+.drop {
+    position: absolute;
+    width: 110%;
+    height: 0;
+    overflow: hidden;
+    background: var(--color004);
+}
+.drop .nav-link-drop{
+    padding: 5px 6px;
+}
+.drop .nav-link-drop:hover{
+    color: #000;
+}
+.drop-hover:hover .drop{
+    height: 130px;
+}
+.drop:nth-child(2){
+    width: 165px;
+}
+.drop-hover:hover .drop:nth-child(2){
+    height: 136px;
+}
 .menu-toggle{
     display: none;
     cursor: pointer;
@@ -80,7 +109,12 @@ header{
     transition: all 0.3s ease-in-out;
 }
 
+
+
 @media(max-width: 768px){
+    .drop-hover{
+        display: none;
+    }
     header{
         background: var(--color002);
     }

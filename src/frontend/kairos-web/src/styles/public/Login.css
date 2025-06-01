@@ -1,0 +1,70 @@
+.login-wrap{
+    text-shadow: #000 1px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../../assets/images/login-img.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.login-conteiner{
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 60px 30px;
+    border-radius: 10px;
+    margin: 10px 20px;
+}
+.login-conteiner h1{
+    text-align: center;
+    font-size: 30px;
+    color: #d9782c;
+}
+.login-conteiner .input-field{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px auto;
+}
+.login-conteiner .input-field input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 25px;
+}
+.login-conteiner .input-field input::placeholder{
+    color: #fff;
+}
+.login-conteiner .input-field .icon{
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+}
+.login-conteiner button{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: none;
+    transition: all .3s ease-in-out;
+}
+.login-conteiner button:hover{
+    background-color: #d9782c;
+    transition: all .3s ease-in-out;
+}

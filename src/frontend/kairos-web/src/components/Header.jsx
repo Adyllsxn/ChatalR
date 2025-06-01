@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/Header.css'
 
-export default function Header() {
+export default function Header({ onLogout }) {
 
     const [menuActive, setMenuActive] = useState(false);
     const toggleMenu = () => {
@@ -21,14 +21,29 @@ export default function Header() {
                     <li className='nabar-item'>
                         <Link className='nav-link'>Início</Link>
                     </li>
-                    <li className='nabar-item'>
+                    <li className='nabar-item drop-hover'>
                         <Link className='nav-link'>Eventos</Link>
+                        <div className='drop'>
+                            <Link className='nav-link-drop'>Listar Eventos</Link>
+                            <Link className='nav-link-drop'>Criar Novo Evento</Link>
+                            <Link className='nav-link-drop'>Tipos de Evento</Link>
+                            <Link className='nav-link-drop'>Sugestões</Link>
+                        </div>
                     </li>
                     <li className='nabar-item'>
                         <Link className='nav-link'>Organização</Link>
                     </li>
                     <li className='nabar-item'>
                         <Link className='nav-link'>Administração</Link>
+                    </li>
+                    <li className='nabar-item drop-hover'>
+                        <Link className='nav-link'>Perfil</Link>
+                        <div className='drop'>
+                            <Link className='nav-link-drop'>Meu Perfil</Link>
+                            <Link className='nav-link-drop'>Editar Conta</Link>
+                            <Link className='nav-link-drop'>Alterar Senha</Link>
+                            <Link className='nav-link-drop' onClick={onLogout}>Logout</Link>
+                        </div>
                     </li>
                 </ul>
 
