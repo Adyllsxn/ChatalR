@@ -1,4 +1,4 @@
-namespace Kairos.Presentation.Features.Usuario.Model;
+namespace Kairos.Presentation.Features.Auth.Model;
 public record LoginModel
 {
     [Required( ErrorMessage = " Email é obrigatório")]
