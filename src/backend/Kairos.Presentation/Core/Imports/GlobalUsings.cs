@@ -19,7 +19,7 @@
     global using Kairos.Presentation.Core.Extensions;
     global using Kairos.Presentation.Core.Extensions.Architecture;
     global using Kairos.Presentation.Core.Configurations;
-    global using Kairos.Presentation.Features.Usuario.Model;
+    global using Kairos.Presentation.Features.Auth.Model;
     global using Kairos.Presentation.Features.Evento.Model;
 #endregion
 
