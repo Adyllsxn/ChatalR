@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import {FaUser, FaLock} from 'react-icons/fa';
-import {useNavigate} from 'react-router-dom';
 import apiservice from '../../service/ApiService';
 import '../../styles/public/Login.css'
 
 export default function Login({ onLogin }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const navigate = useNavigate();
 
     async function login(event){
         event.preventDefault();
