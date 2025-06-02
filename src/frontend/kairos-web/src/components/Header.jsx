@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/Header.css'
 
 export default function Header({ onLogout }) {
-
     const [menuActive, setMenuActive] = useState(false);
+    const [email, setEmail] = useState('');
+
     const toggleMenu = () => {
         setMenuActive(!menuActive);
     };
 
+    useEffect(() => {
+        // Pega o email salvo no localStorage quando o componente montar
+        const storedEmail = localStorage.getItem('email');
+        if (storedEmail) {
+            setEmail(storedEmail);
+        }
+    }, []);
+
     return (
     <header>
         <div className='layout-container'>
+            <div className='username'>
+                <p>Bem-vindo: <strong>{email || 'Usuário'}</strong></p>
+            </div>
             <nav className='navbar'>
                 <div className="navbar-logo">
                     <Link to="/" className='nav-link'>Kairos</Link>

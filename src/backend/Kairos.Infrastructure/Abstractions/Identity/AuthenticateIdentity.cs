@@ -6,7 +6,7 @@ public class AuthenticateIdentity(AppDbContext context, IConfiguration configura
         {
             try
             {
-                var usuario = await context.Usuarios.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+                var usuario = await context.Usuarios.AsNoTracking().Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
                 if(usuario == null)
                 {
                     return false;
@@ -64,33 +64,14 @@ public class AuthenticateIdentity(AppDbContext context, IConfiguration configura
     #region </GetByEmail>
         public async Task<UsuarioEntity?> GetUserByEmailAsync(string email)
         {
-            try
-            {
-                return await context.Usuarios.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
-            }
-            catch(Exception error)
-            {
-                throw new Exception(error.Message);
-            }
+            return await context.Usuarios.AsNoTracking().Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
     #endregion
 
     #region </Exist>
         public async Task<bool> UserExistAsync(string email)
         {
-            try
-                {
-                    var usuario = await context.Usuarios.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
-                    if(usuario == null)
-                    {
-                        return false;
-                    }
-                    return true;
-                }
-                catch(Exception error)
-                {
-                    throw new Exception(error.Message);
-                }
+            return await context.Usuarios.AsNoTracking().AnyAsync(x => x.Email.ToLower() == email.ToLower());
         }
     #endregion
 }

@@ -53,33 +53,32 @@ public class AuthsController(IUsuarioService service, IAuthenticateIdentity auth
         [HttpPost("Login"), EndpointSummary("Fazendo o login no sistema")]
         public async Task<ActionResult<TokenModel>> Login(LoginModel login)
         {
-            var emailExist = await authentication.UserExistAsync(login.Email);
-            if(!emailExist)
-            {
-                return Unauthorized("Usuário não existe");
-            }
-            
-            var result = authentication.AuthenticateAsync(login.Email, login.Password);
-            if(result == null)
-            {
-                return Unauthorized("Usuário ou Senha Inválida.");
-            }
-
+            // Verifica se o usuário existe
             var usuario = await authentication.GetUserByEmailAsync(login.Email);
             if (usuario == null)
             {
-                return Unauthorized("Usuário não encontrado.");
+                return Unauthorized("Usuário não existe.");
             }
 
-            var createToken = authentication.GenerateTokenAsync(usuario.Id, usuario.Email);
+            // Verifica a senha
+            var autenticado = await authentication.AuthenticateAsync(login.Email, login.Password);
+            if (!autenticado)
+            {
+                return Unauthorized("Usuário ou senha inválida.");
+            }
 
-            return new TokenModel{
-                Token = createToken,
+            // Gera o token
+            var token = authentication.GenerateTokenAsync(usuario.Id, usuario.Email);
+
+            return new TokenModel
+            {
+                Token = token,
                 Nome = usuario.Nome,
                 SobreNome = usuario.SobreNome,
                 Email = usuario.Email
             };
         }
+
     #endregion
 
 }
