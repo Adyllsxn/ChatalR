@@ -28,6 +28,7 @@ function App() {
       <Header onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Se quiser forçar a rota login a redirecionar para home quando já logado */}
         <Route path="/login" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />

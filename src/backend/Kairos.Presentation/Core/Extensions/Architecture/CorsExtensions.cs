@@ -3,13 +3,13 @@ public static class CorsExtensions
 {
     public static void AddCorsExtensions(this WebApplicationBuilder builder)
     {
-        builder.Services.AddCors( x => x.AddPolicy(
+        builder.Services.AddCors(x => x.AddPolicy(
             UrlConfiguartion.CorsPolicyNames,
-            policy => policy.
-                    WithOrigins(UrlConfiguartion.BackendUrl, UrlConfiguartion.FrontendUrl).
-                    WithHeaders().
-                    AllowAnyMethod().
-                    AllowCredentials()
+            policy => policy
+                .WithOrigins(UrlConfiguartion.FrontendUrl)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
         ));
     }
 
