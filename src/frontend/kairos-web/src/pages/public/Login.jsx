@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {FaUser, FaLock} from 'react-icons/fa';
+import {FaUser, FaLock } from 'react-icons/fa';
 import apiservice from '../../service/ApiService';
 import '../../styles/public/Login.css'
 
 export default function Login({ onLogin }) {
+    const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -22,7 +23,7 @@ export default function Login({ onLogin }) {
             onLogin();
 
         }catch(error){
-            console.log("Login falhou:");
+            alert(`Login falhou: ${error}`);
             if (error.response) {
             console.log("Dados da resposta:", error.response.data);
             console.log("Status:", error.response.status);
@@ -39,7 +40,7 @@ export default function Login({ onLogin }) {
         <main className='login-wrap'>
             <div className='login-conteiner'>
                 <form onSubmit={login}>
-                    <h1>Acesse o sistema</h1>
+                    <h1>Kairos</h1>
 
                     <div className='input-field'>
                         <input  type="email" 
@@ -51,13 +52,23 @@ export default function Login({ onLogin }) {
                     </div>
 
                     <div className='input-field'>
-                        <input  type="password" 
+                        <input  type={showPassword ? 'text' : 'password'}
                                 placeholder='Senha'
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}/>
-                        <FaLock className='icon'/> 
+                        <FaLock className='icon'/>
                     </div>
+
+                    <div className='toggle-password'>
+                        <input
+                            type="checkbox"
+                            id="showPassword"
+                            checked={showPassword}
+                            onChange={() => setShowPassword(!showPassword)} />
+                        <label htmlFor="showPassword">Mostrar a senha</label>
+                    </div>
+
 
                     <button type="submit">Entrar</button>
                 </form>
