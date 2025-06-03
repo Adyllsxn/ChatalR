@@ -1,5 +1,5 @@
-import React from 'react'
-import '../styles/Home.css'
+import React from 'react';
+import '../styles/Home.css';
 import videoSrc from '..//assets/videos/background.mp4';
 
 export default function Home() {

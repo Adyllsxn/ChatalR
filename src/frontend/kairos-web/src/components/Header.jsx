@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import '../styles/Header.css'
+import { Link } from 'react-router-dom';
+import '../styles/Header.css';
 
 export default function Header({ onLogout }) {
     const [menuActive, setMenuActive] = useState(false);
