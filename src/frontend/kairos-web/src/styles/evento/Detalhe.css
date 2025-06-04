@@ -1,0 +1,33 @@
+.evento-detalhe-content{
+    width: 100%;
+    padding: 50px 30px;
+}
+.evento-detalhe-content .evento-detalhes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.evento-detalhe-content .evento-detalhes .evento-detalhe-img{
+    width: 30%;
+    height: 30%;
+    padding: 10px 0;
+}
+.evento-detalhe-content .evento-detalhes .evento-detalhe-inf{
+    width: 80%;
+    padding: 30px 0;
+}
+.evento-detalhe-content .evento-detalhes .evento-detalhe-inf p{
+    white-space: wrap;
+    font-size: 16px;
+    margin: 10px 0;
+}
+.evento-detalhe-content .evento-detalhes .evento-detalhe-inf p strong{
+    font-size: 16px;
+    white-space: wrap;
+    margin: 10px 0;
+    text-shadow: #fff 1px 1px;
+}

@@ -108,7 +108,6 @@
     font-size: 16px;
     transition: all .4 ease-in-out;
 }
-
 .paginacao {
     margin-top: 20px;
     text-align: center;
@@ -119,6 +118,7 @@
     padding: 6px 12px;
     border: none;
     background: #ddd;
+    color: #d9782c;
     cursor: pointer;
     border-radius: 5px;
     font-size: 14px;

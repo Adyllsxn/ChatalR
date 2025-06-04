@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiservice from '../../service/ApiService';
 import '../../styles/evento/Listar.css';
-import Alert from '../../components/shared/Alert';  // Importa o Alert
+import Alert from '../../components/shared/Alert';
 
 export default function Listar() {
     const [eventos, setEventos] = useState([]);
     const [paginaAtual, setPaginaAtual] = useState(1);
     const [busca, setBusca] = useState('');
-    const [alert, setAlert] = useState({ message: '', type: '' }); // Estado do alerta
+    const [alert, setAlert] = useState({ message: '', type: '' });
     const eventosPorPagina = 8;
 
     const token = localStorage.getItem("token");
@@ -60,7 +60,6 @@ export default function Listar() {
         }
     };
 
-    // Paginação local
     const indiceInicial = (paginaAtual - 1) * eventosPorPagina;
     const eventosPagina = eventos.slice(indiceInicial, indiceInicial + eventosPorPagina);
     const totalPaginas = Math.ceil(eventos.length / eventosPorPagina);
@@ -112,14 +111,19 @@ export default function Listar() {
                                             : evento.titulo}
                                     </h5>
                                     <p>
-                                        <Link to="/detalhesEvento" className='evento-card-inf-link'>Ver Detalhes</Link>
+                                        <Link 
+                                            to="/detalhesEvento" 
+                                            state={{ evento }} 
+                                            className='evento-card-inf-link'
+                                        >
+                                            Ver Detalhes
+                                        </Link>
                                     </p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    {/* Paginação */}
                     <div className="paginacao">
                         <button disabled={paginaAtual === 1} onClick={() => mudarPagina(paginaAtual - 1)}>Anterior</button>
 
