@@ -19,7 +19,7 @@ export default function Detalhes() {
           <div className='evento-detalhes'>
 
             <div className='evento-detalhe-img'>
-              <img src={`http://localhost:5232/${evento.imagemUrl}`} width="100%" alt={evento.titulo} />
+              <img src={`http://localhost:5232/${evento.imagemUrl}`}  alt={evento.titulo} />
             </div>
 
             <div className='evento-detalhe-inf'>

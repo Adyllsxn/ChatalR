@@ -7,14 +7,19 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    width: 80%;
+    width: 50%;
     margin: auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px 0;
 }
 .evento-detalhe-content .evento-detalhes .evento-detalhe-img{
-    width: 30%;
-    height: 30%;
-    padding: 10px 0;
+    width: 100%;
+    max-width: 320px;
+    height: 400px;
+}
+.evento-detalhe-content .evento-detalhes .evento-detalhe-img img{
+    width: 100% !important;
+    height: 100% !important;
 }
 .evento-detalhe-content .evento-detalhes .evento-detalhe-inf{
     width: 80%;
@@ -30,4 +35,17 @@
     white-space: wrap;
     margin: 10px 0;
     text-shadow: #fff 1px 1px;
+}
+
+
+
+@media(max-width: 768px){
+    .evento-detalhe-content .evento-detalhes{
+        width: 100%;
+    }
+    .evento-detalhe-content .evento-detalhes .evento-detalhe-img{
+        width: 100%;
+        max-width: 320px;
+        height: 280px;
+    }
 }
