@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kairos.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CREATEMIGRATION : Migration
+    public partial class CREATEMIGRATIONS : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,10 @@ namespace Kairos.Infrastructure.Migrations
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Telefone = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    BI = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Foto = table.Column<string>(type: "VARCHAR", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kairos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250604082542_CREATEMIGRATION")]
-    partial class CREATEMIGRATION
+    [Migration("20250606124946_CREATEMIGRATIONS")]
+    partial class CREATEMIGRATIONS
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,12 +207,21 @@ namespace Kairos.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BI")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(250)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Foto")
+                        .IsRequired()
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("IsActive")
@@ -237,6 +246,11 @@ namespace Kairos.Infrastructure.Migrations
                     b.Property<string>("SobreNome")
                         .IsRequired()
                         .HasMaxLength(50)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");

@@ -10,7 +10,10 @@ public static class UpdateUsuarioExtensions
             command.SobreNome,
             command.Email,
             command.PerfilID ?? 3,
-            command.DataCadastro
+            command.DataCadastro ,
+            command.Telefone,
+            command.BI,
+            command.Foto
         );
     }
     
