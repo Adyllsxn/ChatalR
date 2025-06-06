@@ -252,4 +252,47 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
             }
         }
     #endregion
+
+    #region <UpdateFoto>
+        public async Task<Result<bool>> UpdateFotoAsync(int usuarioId, string novaFoto, CancellationToken token)
+        {
+            try
+            {
+                var usuario = await context.Usuarios.FindAsync(usuarioId);
+                if (usuario == null)
+                    return new Result<bool>(false, 404, "Usuário não encontrado.");
+
+                usuario.AlterarFoto(novaFoto);
+                context.Usuarios.Update(usuario);
+                await context.SaveChangesAsync(token);
+                return new Result<bool>(true, 200, "Foto atualizada com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return new Result<bool>(false, 500, $"Erro ao atualizar foto: {ex.Message}");
+            }
+        }
+    #endregion
+
+    #region <UpdatePassword>
+        public async Task<Result<bool>> UpdatePasswordAsync(int usuarioId, byte[] newHash, byte[] newSalt, CancellationToken token)
+        {
+            try
+            {
+                var usuario = await context.Usuarios.FindAsync(usuarioId);
+                if (usuario == null)
+                    return new Result<bool>(false, 404, "Usuário não encontrado.");
+
+                usuario.UpdatePassword(newHash, newSalt);
+                context.Usuarios.Update(usuario);
+                await context.SaveChangesAsync(token);
+                return new Result<bool>(true, 200, "Senha atualizada com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return new Result<bool>(false, 500, $"Erro ao atualizar senha: {ex.Message}");
+            }
+        }
+    #endregion
+
 }

@@ -204,12 +204,21 @@ namespace Kairos.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BI")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("VARCHAR");
+
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(250)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Foto")
+                        .IsRequired()
                         .HasColumnType("VARCHAR");
 
                     b.Property<bool>("IsActive")
@@ -234,6 +243,11 @@ namespace Kairos.Infrastructure.Migrations
                     b.Property<string>("SobreNome")
                         .IsRequired()
                         .HasMaxLength(50)
+                        .HasColumnType("VARCHAR");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("VARCHAR");
 
                     b.HasKey("Id");

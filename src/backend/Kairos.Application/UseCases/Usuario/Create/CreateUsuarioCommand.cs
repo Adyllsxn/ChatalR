@@ -35,4 +35,15 @@ public class CreateUsuarioCommand
     [DataType(DataType.Password)]
     [NotMapped]
     public string Password { get; set; } = null!;
+
+    [Required(ErrorMessage = "Telefone é obrigatório")]
+    [MaxLength(20)]
+    public string Telefone { get; set; } = null!;
+
+    [Required(ErrorMessage = "BI é obrigatório")]
+    [MaxLength(20)]
+    public string BI { get; set; } = null!;
+
+    [Required(ErrorMessage = "Foto é obrigatória")]
+    public string Foto { get; set; } = null!;
 }
