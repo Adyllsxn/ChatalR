@@ -108,24 +108,6 @@
     color: #333;
     text-align: center;
 }
-.welcome-buttons{
-    margin: 20px 0;
-}
-.welcome-buttons a{
-    color: var(--col0r03);
-    padding: 5px 15px;
-    border: 1px solid var(--col0r03);
-    border-radius: 20px;
-    margin: 0 10px;
-    transition: all .1s;
-    font-size: 15px;
-    font-weight: bold;
-}
-.welcome-buttons a:hover{
-    background: var(--col0r03);
-    color: var(--color01);
-    transition: all 1s ease-in-out;
-}
 /*          welcome-section         */
 
 
@@ -185,15 +167,6 @@
         font-size: 16px;
         font-weight: 300;
         line-height: 1.4;
-        text-align: center;
-    }
-    .welcome-buttons{
-        width: 100%;
-    }
-    .welcome-buttons a{
-        display: block;
-        margin: 13px 0;
-        padding: 10px 30px;
         text-align: center;
     }
     /*  welcome-section   */

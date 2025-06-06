@@ -42,9 +42,8 @@ export default function Header({ onLogout }) {
                     <li className='nabar-item drop-hover'>
                         <Link className='nav-link'>Perfil</Link>
                         <div className='drop'>
-                            <Link className='nav-link-drop'>Meu Perfil</Link>
-                            <Link className='nav-link-drop'>Editar Conta</Link>
-                            <Link className='nav-link-drop'>Alterar Senha</Link>
+                            <Link to="/verPerfil" className='nav-link-drop'>Ver Perfil</Link>
+                            <Link to="/alterarSenha" className='nav-link-drop'>Alterar Senha</Link>
                             <Link className='nav-link-drop' onClick={onLogout}>Logout</Link>
                         </div>
                     </li>

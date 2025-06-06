@@ -44,11 +44,6 @@ export default function Home() {
                                 Também poderá gerenciar seu perfil e receber notificações sobre novidades e mudanças na programação.
                             </p>
                         </div>
-                        <div className='welcome-buttons'>
-                            <a href="/eventos">Ver Eventos</a>
-                            <a href="/inscricoes">Minhas Inscrições</a>
-                            <a href="/perfil">Meu Perfil</a>
-                        </div>
                     </div>
                 </div>
             </section>
