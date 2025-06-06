@@ -1,3 +1,51 @@
-.verperfil-section{
+.verperfil-section {
     padding: 40px 0;
+}
+.perfil-dados {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.perfil-conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.perfil-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 250px;
+}
+.foto-legenda {
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+}
+.perfil-info {
+    flex: 2;
+    min-width: 250px;
+}
+.perfil-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+
+@media (max-width: 768px) {
+    .perfil-conteudo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .perfil-info {
+        width: 100%;
+    }
 }
