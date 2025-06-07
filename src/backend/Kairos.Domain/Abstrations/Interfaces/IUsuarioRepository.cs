@@ -9,5 +9,4 @@ public interface IUsuarioRepository
     Task<bool> GetIfUserExistAsync();
     Task<Result<UsuarioEntity>> UpdateAsync (UsuarioEntity entity, CancellationToken token);
     Task<Result<List<UsuarioEntity>?>> SearchAsync (Expression<Func<UsuarioEntity, bool>> expression, string entity, CancellationToken token);
-    Task<Result<bool>> UpdatePasswordAsync(int usuarioId, byte[] newHash, byte[] newSalt, CancellationToken token);
 }

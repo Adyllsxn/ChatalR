@@ -5,6 +5,7 @@ import '../styles/Header.css';
 export default function Header({ onLogout }) {
     const [menuActive, setMenuActive] = useState(false);
     const [email, setEmail] = useState('');
+    const [perfilID, setPerfilID] = useState(null);
     const navigate = useNavigate();
 
     const toggleMenu = () => {
@@ -13,14 +14,15 @@ export default function Header({ onLogout }) {
 
     useEffect(() => {
         const storedEmail = localStorage.getItem('email');
-        if (storedEmail) {
-        setEmail(storedEmail);
-        }
+        const storedPerfilID = parseInt(localStorage.getItem('perfilID'), 10);
+
+        if (storedEmail) setEmail(storedEmail);
+        if (!isNaN(storedPerfilID)) setPerfilID(storedPerfilID);
     }, []);
 
     function handleLogoutClick() {
-        onLogout();          // Remove do localStorage e muda o estado
-        navigate('/login');  // Redireciona para a página de login
+        onLogout();
+        navigate('/login');
     }
 
     return (
@@ -38,17 +40,22 @@ export default function Header({ onLogout }) {
                 <li className='nabar-item'>
                 <Link to="/" className='nav-link'>Início</Link>
                 </li>
+
                 <li className='nabar-item'>
                 <Link to="/listarEvento" className='nav-link'>Eventos</Link>
                 </li>
+
+                {/* Exibe Administrativa somente se perfilID === 1 ou 2 */}
+                {(perfilID === 1 || perfilID === 2) && (
                 <li className='nabar-item'>
-                <Link to="/administrativa" className='nav-link'>Administrativa</Link>
+                    <Link to="/administrativa" className='nav-link'>Administrativa</Link>
                 </li>
+                )}
+
                 <li className='nabar-item drop-hover'>
                 <Link className='nav-link'>Perfil</Link>
                 <div className='drop'>
                     <Link to="/verPerfil" className='nav-link-drop'>Ver Perfil</Link>
-                    <Link to="/alterarSenha" className='nav-link-drop'>Alterar Senha</Link>
                     <Link className='nav-link-drop' onClick={handleLogoutClick}>Logout</Link>
                 </div>
                 </li>

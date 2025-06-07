@@ -3,7 +3,7 @@ namespace Kairos.Presentation.Features.Auth.Controller;
 [Route("v1/")]
 public class AuthsController(IUsuarioService service, IAuthenticateIdentity authentication) : ControllerBase
 {
-        #region </Register>
+    #region </Register>
         [HttpPost("Register"), EndpointSummary("Registrar um novo usuário.")]
         public async Task<ActionResult<TokenModel>> Register(CreateUsuarioCommand command, CancellationToken token)
         {
@@ -75,7 +75,8 @@ public class AuthsController(IUsuarioService service, IAuthenticateIdentity auth
                 Token = token,
                 Nome = usuario.Nome,
                 SobreNome = usuario.SobreNome,
-                Email = usuario.Email
+                Email = usuario.Email,
+                PerfilID = usuario.PerfilID
             };
         }
 

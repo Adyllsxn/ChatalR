@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kairos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250606150142_CREATEMIGRATIONS")]
+    [Migration("20250606183602_CREATEMIGRATIONS")]
     partial class CREATEMIGRATIONS
     {
         /// <inheritdoc />

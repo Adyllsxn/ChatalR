@@ -18,13 +18,17 @@ public class UpdateUsuarioCommand
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;
 
+    [JsonIgnore]
     public int? PerfilID { get; set; }
 
+    [JsonIgnore]
     [DataType(DataType.DateTime)]
     public DateTime DataCadastro { get; set; } = DateTime.UtcNow;
 
+    [JsonIgnore]
     public bool IsActive { get; set; } = true;
 
+    [JsonIgnore]
     [Required(ErrorMessage = "Senha é obrigatória")]
     [MinLength(4, ErrorMessage = "A senha deve conter no mínimo 4 caracteres.")]
     [DataType(DataType.Password)]
