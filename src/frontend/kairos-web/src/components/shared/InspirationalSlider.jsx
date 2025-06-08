@@ -15,7 +15,7 @@ export default function InspirationalSlider() {
     useEffect(() => {
         const interval = setInterval(() => {
         setIndex((prev) => (prev + 1) % frases.length);
-        }, 3000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 

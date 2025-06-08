@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import apiservice from '../../service/ApiService';
 import '../../styles/auth/Login.css';
-import Alert from '../../components/shared/Alert';
+import Alert from '../../components/Alert';
 
 export default function Login({ onLogin }) {
     const [showPassword, setShowPassword] = useState(false);
