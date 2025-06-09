@@ -78,7 +78,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
         {
             try
             {
-                var query = context.Eventos.AsNoTracking().AsQueryable();
+                var query = context.Eventos.AsNoTracking().Include(x => x.Usuario).Include(x => x.TipoEvento).AsQueryable();
 
                 var result = await query
                             .Skip((request.PageNumber - 1) * request.PageSize)
@@ -118,7 +118,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Eventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
+                var response = await context.Eventos.Include(x => x.Usuario).Include(x => x.TipoEvento).FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<EventoEntity?>(
@@ -151,6 +151,8 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
             {
                 var query = context.Eventos
                     .AsNoTracking()
+                    .Include(x => x.Usuario)
+                    .Include(x => x.TipoEvento)
                     .Where(e => e.StatusAprovacao == EStatusAprovacao.Aprovado);
 
                 var result = await query
@@ -176,6 +178,8 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
             {
                 var query = context.Eventos
                     .AsNoTracking()
+                    .Include(x => x.Usuario)
+                    .Include(x => x.TipoEvento)
                     .Where(e => e.StatusAprovacao == EStatusAprovacao.Pendente);
 
                 var result = await query
@@ -201,6 +205,8 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
             {
                 var query = context.Eventos
                     .AsNoTracking()
+                    .Include(x => x.Usuario)
+                    .Include(x => x.TipoEvento)
                     .Where(e => e.StatusAprovacao == EStatusAprovacao.Rejeitado);
 
                 var result = await query
@@ -232,7 +238,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "ID deve ser maior que zero."
                         );
                 }
-                var response = await context.Eventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
+                var response = await context.Eventos.Include(x => x.Usuario).Include(x => x.TipoEvento).FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new Result<EventoEntity?>(
@@ -271,7 +277,7 @@ public class EventoRepository(AppDbContext context) : IEventoRepository
                         "Parâmetros não podem estar vazio."
                         );
                 }
-                var response = await context.Eventos.Where(expression).ToListAsync(token);
+                var response = await context.Eventos.Include(x => x.Usuario).Include(x => x.TipoEvento).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new Result<List<EventoEntity>?>(
