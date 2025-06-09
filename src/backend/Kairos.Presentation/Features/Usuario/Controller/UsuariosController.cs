@@ -101,7 +101,7 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
 
-    #region </Update>
+    /* #region </Update>
         [HttpPut("UpdateUsuario"), EndpointSummary("Editar o usuário.")]
         [Authorize]
         [Authorize]
@@ -132,6 +132,6 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
                 throw new Exception(ex.ToString());
             }
         }
-    #endregion
+    #endregion */
 
 }

@@ -7,5 +7,4 @@ public interface IUsuarioService
     Task<Result<GetUsuarioByIdResponse>> GetByIdHandler(GetUsuarioByIdCommand command, CancellationToken token);
     Task<bool> GetIfExistHandle();
     Task<Result<List<SearchUsuarioResponse>>> SearchHendler(SearchUsuarioCommand command, CancellationToken token);
-    Task<Result<UpdateUsuarioResponse>> UpdateHendler(UpdateUsuarioCommand command, CancellationToken token);
 }
