@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '../../styles/evento/Detalhe.css';
+import './Detalhes.css';
 
 export default function Detalhes() {
   const location = useLocation();

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import apiservice from '../../service/ApiService';
-import '../../styles/evento/Listar.css';
-import Alert from '../../components/shared/Alert';
+import apiservice from '../../../service/ApiService';
+import Alert from '../../shared/Alert';
+import './Listar.css';
+
 
 export default function Listar() {
     const [eventos, setEventos] = useState([]);

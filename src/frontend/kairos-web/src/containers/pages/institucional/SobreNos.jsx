@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/institucional/SobreNos.css';
+import './SobreNos.css';
 
 export default function SobreNos() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/shared/InspirationalSlider.css';
+import './InspirationalSlider.css';
 
 const frases = [
     "“Entrega o teu caminho ao Senhor; confia nele, e ele o fará.” – Salmos 37:5",

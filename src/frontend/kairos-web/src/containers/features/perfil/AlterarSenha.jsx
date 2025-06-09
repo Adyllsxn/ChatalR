@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/perfil/AlterarSenha.css';
+import './AlterarSenha.css';
 export default function AlterarSenha() {
     return (
         <main>

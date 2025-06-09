@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Header.css';
+import './Header.css';
 
 export default function Header({ onLogout }) {
     const [menuActive, setMenuActive] = useState(false);
@@ -48,6 +48,9 @@ export default function Header({ onLogout }) {
 
                 <li className='nabar-item'>
                 <Link to="/listarEvento" className='nav-link' onClick={closeMenu}>Eventos</Link>
+                </li>
+                <li className='nabar-item'>
+                <Link className='nav-link' onClick={closeMenu}>Blog</Link>
                 </li>
 
                 {(perfilID === 1 || perfilID === 2) && (

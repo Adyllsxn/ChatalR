@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/shared/Administrativa.css';
+import './Administrativa.css';
 
 export default function Administrativa() {
     const [perfilID, setPerfilID] = useState(null);

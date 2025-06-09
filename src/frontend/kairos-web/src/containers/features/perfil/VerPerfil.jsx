@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import apiservice from '../../service/ApiService';
-import Alert from '../../components/shared/Alert';
-import '../../styles/perfil/VerPerfil.css';
+import apiservice from '../../../service/ApiService';
+import Alert from '../../shared/Alert';
+import './VerPerfil.css';
 
 export default function VerPerfil() {
     const [meuPerfil, setMeuPerfil] = useState(null);

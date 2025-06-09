@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/institucional/FAQ.css';
+import './FAQ.css';
 
 export default function FAQ() {
   const perguntasERespostas = [

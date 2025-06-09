@@ -1,8 +1,10 @@
 import React from 'react';
-import '../styles/Home.css';
-import videoSrc from '../assets/videos/background.mp4';
-import InspirationalSlider from '../components/shared/InspirationalSlider';
-import ChurchMap from '../components/shared/ChurchMap';
+import InspirationalSlider from '../pages/home/InspirationalSlider';
+import ChurchMap from '../pages/home/ChurchMap';
+
+import './Home.css';
+import videoSrc from '../../assets/videos/background.mp4';
+
 
 export default function Home() {
     return (

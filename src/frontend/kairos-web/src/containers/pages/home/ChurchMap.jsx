@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/shared/ChurchMap.css';
+import './ChurChmap.css';
 
 export default function ChurchMap() {
     return (

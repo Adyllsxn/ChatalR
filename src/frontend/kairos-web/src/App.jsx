@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/Header';
-import Administrativa from './components/shared/Administrativa';
 import Footer from './components/Footer';
-import Ajuda from './pages/institucional/Ajuda';
-import FAQ from './pages/institucional/FAQ';
-import SobreNos from './pages/institucional/SobreNos';
-import PoliticaDePrivacidade from './pages/institucional/PoliticaDePrivacidade';
-import Home from './pages/Home';
-import Login from './features/auth/Login';
-import Listar from './features/evento/Listar';
-import Detalhes from './features/evento/Detalhes';
-import AlterarSenha from './features/perfil/AlterarSenha';
-import VerPerfil from './features/perfil/VerPerfil';
+import Administrativa from './containers/shared/Administrativa';
+import Ajuda from './containers/pages/institucional/Ajuda';
+import FAQ from './containers/pages/institucional/FAQ';
+import SobreNos from './containers/pages/institucional/SobreNos';
+import PoliticaDePrivacidade from './containers/pages/politica/PoliticaDePrivacidade';
+import Home from './containers/pages/Home';
+import Login from './containers/features/auth/Login';
+import Listar from './containers/features/evento/Listar';
+import Detalhes from './containers/features/evento/Detalhes';
+import AlterarSenha from './containers/features/perfil/AlterarSenha';
+import VerPerfil from './containers/features/perfil/VerPerfil';
 
-import './styles/App.css';
+import './App.css';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
