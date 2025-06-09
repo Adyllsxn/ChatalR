@@ -1,3 +1,6 @@
+using Kairos.Application.UseCases.Usuario.Status;
+using Kairos.Application.UseCases.Usuario.Update;
+
 namespace Kairos.Presentation.Features.Usuario.Controller;
 [ApiController]
 [Route("v1/")]
@@ -133,5 +136,32 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
             }
         }
     #endregion */
+    #region </Update>
+        [HttpPut("UpdateUsuario"), EndpointSummary("Atualizar Usuário")]
+        public async Task<ActionResult> Update(UpdateUsuarioCommand command, CancellationToken token)
+        {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var response = await service.UpdateHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+    
+    #region </Status>
+        [HttpPatch("UpdatePerfilUsuario"), EndpointSummary("Atualizar o Perfil do Usuário")]
+        public async Task<ActionResult> Update(UsuarioStatusCommand command, CancellationToken token)
+        {
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+
+            var response = await service.StatusHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
 
 }

@@ -1,5 +1,5 @@
 namespace Kairos.Application.Services;
-public class UsuarioService( CreateUsuarioHandler create, DeleteUsuarioHandler delete, GetUsuariosHandler get, GetUsuarioByIdHandler getById, SearchUsuarioHandler search, ExistUsuarioHandler exist) : IUsuarioService
+public class UsuarioService( CreateUsuarioHandler create, DeleteUsuarioHandler delete, GetUsuariosHandler get, GetUsuarioByIdHandler getById, SearchUsuarioHandler search, ExistUsuarioHandler exist, UsuarioStatusHandler statusHandler, UpdateUsuarioHandler update) : IUsuarioService
 {
     public async Task<Result<CreateUsuarioResponse>> CreateHandler(CreateUsuarioCommand command, CancellationToken token)
     {
@@ -31,4 +31,13 @@ public class UsuarioService( CreateUsuarioHandler create, DeleteUsuarioHandler d
         return await search.SearchHendler(command, token);
     }
 
+    public async Task<Result<UsuarioStatusResponse>> StatusHandler(UsuarioStatusCommand command, CancellationToken token)
+    {
+        return await statusHandler.StatusHandler(command, token);
+    }
+
+    public async Task<Result<UpdateUsuarioResponse>> UpdateHandler(UpdateUsuarioCommand command, CancellationToken token)
+    {
+        return await update.UpdateHandler(command, token);
+    }
 }

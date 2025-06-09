@@ -46,8 +46,10 @@ public sealed class UsuarioEntity : EntityBase, IAgragateRoot
     }
 
     // Atualizar dados do usuário (sem senha ou perfil)
-    public void UpdateInfo(string nome, string sobrenome, string email, DateTime dataCadastro, string telefone, string bi)
+    public void UpdateInfo(int id, string nome, string sobrenome, string email, DateTime dataCadastro, string telefone, string bi)
     {
+        DomainValidationException.When(id <= 0, "ID deve ser maior que zero.");
+        Id = id;
         ValidarDados(nome, sobrenome, email, PerfilID, dataCadastro, telefone, bi);
     }
 

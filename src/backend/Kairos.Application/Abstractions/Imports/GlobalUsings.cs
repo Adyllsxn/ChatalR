@@ -51,6 +51,8 @@
     global using Kairos.Application.UseCases.Usuario.Search;
     global using Kairos.Application.UseCases.Usuario.Delete;
     global using Kairos.Application.UseCases.Usuario.Exist;
+    global using Kairos.Application.UseCases.Usuario.Status;
+    global using Kairos.Application.UseCases.Usuario.Update;
 
     global using Kairos.Application.UseCases.Evento.Create;
     global using Kairos.Application.UseCases.Evento.GetFile;
