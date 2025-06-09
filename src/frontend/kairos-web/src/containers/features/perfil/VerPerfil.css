@@ -1,152 +1,164 @@
+/* TipoEvento.css */
+
 .tipo-evento-section {
-    padding: 40px 0;
-  }
-  
-  .layout-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-  
+  background-color: #fff; /* fundo branco */
+  color: #000; /* texto preto */
+  min-height: 100vh;
+  padding: 20px 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.layout-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tipo-evento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tipo-evento-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.btn-cadastrar {
+  background-color: #d9782c;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cadastrar:hover {
+  background-color: #b26322;
+}
+
+.busca-container {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 8px;
+}
+
+.busca-container input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #d9782c;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #000;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.busca-container input[type="text"]:focus {
+  border-color: #b26322;
+}
+
+.btn-buscar {
+  background-color: #d9782c;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-buscar:hover {
+  background-color: #b26322;
+}
+
+.tipo-evento-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+
+.tipo-evento-tabela th,
+.tipo-evento-tabela td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #000;
+}
+
+.tipo-evento-tabela th {
+  background-color: #d9782c;
+  color: #222;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tipo-evento-tabela tbody tr:hover {
+  background-color: #f9f1e9;
+}
+
+.acoes button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  color: #d9782c;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.acoes button:hover {
+  color: #b26322;
+}
+
+.vazio {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
   .tipo-evento-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 15px;
   }
-  
+
   .btn-cadastrar {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 600;
-  }
-  
-  .btn-cadastrar:hover {
-    background-color: #218838;
-  }
-  
-  .busca-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .busca-container input {
-    padding: 0.5rem;
-    flex: 1;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  
-  .btn-buscar {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-weight: 600;
-  }
-  
-  .btn-buscar:hover {
-    background-color: #0069d9;
-  }
-  
-  .tipo-evento-tabela {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
+    justify-content: center;
   }
-  
+
+  .busca-container {
+    flex-direction: column;
+  }
+
+  .busca-container input[type="text"],
+  .btn-buscar {
+    width: 100%;
+  }
+
+  .acoes button {
+    font-size: 1.3rem;
+    margin-right: 6px;
+  }
+
   .tipo-evento-tabela th,
   .tipo-evento-tabela td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-    font-size: 16px;
+    padding: 10px 8px;
   }
-  
-  .tipo-evento-tabela th {
-    background-color: #f2f2f2;
-    font-weight: 700;
-  }
-  
-  .acoes button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 8px;
-    font-size: 18px;
-    color: #333;
-    transition: color 0.2s ease;
-  }
-  
-  .acoes button:hover {
-    color: #007bff;
-  }
-  
-  .vazio {
-    font-size: 18px;
-    color: #666;
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  /* RESPONSIVO - telas até 768px */
-  @media (max-width: 768px) {
-    .tipo-evento-section {
-      padding: 20px 0;
-    }
-  
-    .tipo-evento-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .btn-cadastrar {
-      width: 100%;
-      justify-content: center;
-      font-size: 16px;
-    }
-  
-    .busca-container {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .busca-container input,
-    .btn-buscar {
-      width: 100%;
-      font-size: 16px;
-    }
-  
-    .btn-buscar {
-      margin-top: 8px;
-    }
-  
-    .tipo-evento-tabela th,
-    .tipo-evento-tabela td {
-      font-size: 14px;
-      padding: 8px 6px;
-    }
-  
-    .acoes button {
-      font-size: 16px;
-      margin-right: 6px;
-    }
-  }
-  
+}

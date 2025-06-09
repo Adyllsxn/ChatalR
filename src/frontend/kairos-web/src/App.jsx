@@ -15,7 +15,9 @@ import Detalhes from './containers/features/evento/Detalhes';
 import AlterarSenha from './containers/features/perfil/AlterarSenha';
 import VerPerfil from './containers/features/perfil/VerPerfil';
 import TipoEvento from './containers/features/tipoevento/TipoEvento';
-
+import TipoEventoDetalhe from './containers/features/tipoevento/TipoEventoDetalhe';
+import TipoEventoEditar from './containers/features/tipoevento/TipoEventoEditar';
+import TipoEventoCriar from './containers/features/tipoevento/TipoEventoCriar';
 import './App.css';
 
 export default function App() {
@@ -53,7 +55,10 @@ export default function App() {
         <Route path="/detalhesEvento" element={<Detalhes />} />
         <Route path="/verPerfil" element={<VerPerfil />} />
         <Route path="/alterarSenha" element={<AlterarSenha />} />
-        <Route path="/tipos-evento" element={<TipoEvento />} />
+        <Route path="/tipo-evento" element={<TipoEvento />} />
+        <Route path="//tipo-evento/novo" element={<TipoEventoCriar />} />
+        <Route path="/tipo-evento/detalhes/:id" element={<TipoEventoDetalhe />} />
+        <Route path="/tipo-evento/editar/:id" element={<TipoEventoEditar />} />
       </Routes>
       <Footer />
     </>
