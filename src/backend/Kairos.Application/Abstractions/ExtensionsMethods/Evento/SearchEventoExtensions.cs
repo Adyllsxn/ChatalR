@@ -12,6 +12,18 @@ public static class SearchEventoExtensions
             DataHoraFim = entity.DataHoraFim,
             Local = entity.Local,
             TipoEventoID = entity.TipoEventoID,
+            TipoEvento = new TipoEventoResponse
+            {
+                Id = entity.TipoEvento.Id,
+                Nome = entity.TipoEvento.Nome
+            },
+            Usuario = new UsuarioResponse
+            {
+                Id = entity.Usuario.Id,
+                Nome = entity.Usuario.Nome,
+                SobreNome = entity.Usuario.SobreNome,
+                Email = entity.Usuario.Email
+            },
             UsuarioID = entity.UsuarioID,
             ImagemUrl = entity.ImagemUrl
         };

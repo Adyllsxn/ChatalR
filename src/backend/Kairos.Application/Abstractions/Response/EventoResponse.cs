@@ -8,6 +8,8 @@ public record EventoResponse
     public DateTime DataHoraFim { get; set; }
     public string Local { get; set; } = null!;
     public int TipoEventoID { get; set; }
+    public TipoEventoResponse TipoEvento { get; set; } = null!;
     public int UsuarioID { get; set; }
+    public UsuarioResponse Usuario { get; set; } = null!;
     public string ImagemUrl { get; set; } = null!;
 }
