@@ -40,7 +40,7 @@ export default function Administrativa() {
                                 )}
 
                                 {acessoTiposEvento && (
-                                    <Link to="/tipos-evento" className='card-link'>
+                                    <Link to="/tipo-evento" className='card-link'>
                                         <div className="adm-card">
                                             <h2>Tipos de Evento</h2>
                                             <p>Gerencie os tipos de eventos disponíveis na plataforma.</p>

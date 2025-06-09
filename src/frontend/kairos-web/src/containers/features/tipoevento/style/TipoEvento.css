@@ -1,0 +1,150 @@
+.tipo-evento-section {
+    padding: 40px 0;
+    background-color: #fff;
+    color: #222;
+  }
+  
+  .tipo-evento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tipo-evento-btn-cadastrar {
+    background-color: #d9782c;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tipo-evento-btn-cadastrar:hover {
+    background-color: #c56a26;
+  }
+  
+  .tipo-evento-busca-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .tipo-evento-busca-container input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .tipo-evento-btn-buscar {
+    background-color: #d9782c;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tipo-evento-btn-buscar:hover {
+    background-color: #c56a26;
+  }
+  
+  .tipo-evento-tipo-evento-tabela {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tipo-evento-tipo-evento-tabela th,
+  .tipo-evento-tipo-evento-tabela td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .tipo-evento-tipo-evento-tabela th {
+    background-color: #d9782c;
+    color: #fff;
+  }
+  
+  .tipo-evento-tipo-evento-tabela tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .acoes button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 8px;
+    color: #222;
+    font-size: 1rem;
+  }
+  
+  .acoes button:hover {
+    color: #d9782c;
+  }
+  
+  .vazio {
+    margin-top: 20px;
+    color: #d9782c;
+    font-weight: bold;
+  }
+  
+  /* Responsividade para telas pequenas */
+  @media (max-width: 768px) {
+    .tipo-evento-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .tipo-evento-busca-container {
+      flex-direction: column;
+    }
+  
+    .tipo-evento-btn-buscar {
+      width: 100%;
+    }
+  
+    .tipo-evento-tipo-evento-tabela,
+    .tipo-evento-tipo-evento-tabela thead,
+    .tipo-evento-tipo-evento-tabela tbody,
+    .tipo-evento-tipo-evento-tabela th,
+    .tipo-evento-tipo-evento-tabela td,
+    .tipo-evento-tipo-evento-tabela tr {
+      display: block;
+      width: 100%;
+    }
+  
+    .tipo-evento-tipo-evento-tabela thead {
+      display: none;
+    }
+  
+    .tipo-evento-tipo-evento-tabela tr {
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+    }
+  
+    .tipo-evento-tipo-evento-tabela td {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+  
+    .tipo-evento-tipo-evento-tabela td:last-child {
+      border-bottom: none;
+    }
+  
+    .acoes {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+  }
+  

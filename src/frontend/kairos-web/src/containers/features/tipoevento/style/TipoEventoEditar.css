@@ -1,0 +1,84 @@
+.tipo-evento-editar-section {
+    padding: 40px 0;
+    background-color: #fff;
+    color: #222;
+  }
+  
+  .tipo-evento-editar-section h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .tipo-evento-editar-form {
+    max-width: 500px;
+    background-color: #f8f8f8;
+    padding: 24px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .tipo-evento-editar-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #d9782c;
+  }
+  
+  .tipo-evento-editar-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .tipo-evento-editar-botoes {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .tipo-evento-editar-btn-salvar,
+  .tipo-evento-editar-btn-cancelar {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tipo-evento-editar-btn-salvar {
+    background-color: #d9782c;
+    color: #fff;
+  }
+  
+  .tipo-evento-editar-btn-salvar:hover {
+    background-color: #c56a26;
+  }
+  
+  .tipo-evento-editar-btn-cancelar {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .tipo-evento-editar-btn-cancelar:hover {
+    background-color: #111;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .tipo-evento-editar-form {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .tipo-evento-editar-botoes {
+      flex-direction: column;
+    }
+  
+    .tipo-evento-editar-btn-salvar,
+    .tipo-evento-editar-btn-cancelar {
+      width: 100%;
+    }
+  }
+  
