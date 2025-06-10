@@ -1,2 +1,2 @@
 namespace Kairos.Domain.Abstrations.Base;
-public interface IAgragateRoot;
+public interface IAggragateRoot;

@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Entities;
-public sealed class EventoEntity : EntityBase, IAgragateRoot
+public sealed class EventoEntity : EntityBase, IAggragateRoot
 {
     public string Titulo { get; private set; } = null!;
     public string Descricao { get; private set; } = null!;
@@ -20,8 +20,6 @@ public sealed class EventoEntity : EntityBase, IAgragateRoot
     [JsonIgnore]
     public ICollection<PresencaEntity> Presencas { get; private set; } = null!;
 
-    [JsonIgnore]
-    public ICollection<SugestaoEntity> Sugestoes { get; private set; } = null!;
 
     [JsonConstructor]
     public EventoEntity(){}

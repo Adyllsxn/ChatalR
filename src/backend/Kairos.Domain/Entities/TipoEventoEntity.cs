@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Entities;
-public sealed class TipoEventoEntity: EntityBase, IAgragateRoot
+public sealed class TipoEventoEntity: EntityBase, IAggragateRoot
 {
     public string Nome { get; private set; } = null!;
 

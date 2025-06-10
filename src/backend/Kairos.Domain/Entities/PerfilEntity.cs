@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Entities;
-public sealed class PerfilEntity: EntityBase, IAgragateRoot
+public sealed class PerfilEntity: EntityBase, IAggragateRoot
 {
     public string Nome { get; private set; } = null!;
 

@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Entities;
-public sealed class UsuarioEntity : EntityBase, IAgragateRoot
+public sealed class UsuarioEntity : EntityBase, IAggragateRoot
 {
     public string Nome { get; private set; } = null!;
     public string SobreNome { get; private set; } = null!;
@@ -19,12 +19,11 @@ public sealed class UsuarioEntity : EntityBase, IAgragateRoot
     [JsonIgnore]
     public ICollection<PresencaEntity> Presencas { get; private set; } = null!;
     [JsonIgnore]
-    public ICollection<SugestaoEntity> Sugestoes { get; private set; } = null!;
+    public ICollection<BlogEntity> Sugestoes { get; private set; } = null!;
 
     [JsonConstructor]
     public UsuarioEntity() { }
 
-    // Construtor com ID
     public UsuarioEntity(int id, string nome, string sobrenome, string email, int perfilID, DateTime dataCadastro, string telefone, string bi)
     {
         DomainValidationException.When(id <= 0, "ID deve ser maior que zero.");
@@ -32,20 +31,17 @@ public sealed class UsuarioEntity : EntityBase, IAgragateRoot
         ValidarDados(nome, sobrenome, email, perfilID, dataCadastro, telefone, bi);
     }
 
-    // Construtor sem ID
     public UsuarioEntity(string nome, string sobrenome, string email, int perfilID, DateTime dataCadastro, string telefone, string bi)
     {
         ValidarDados(nome, sobrenome, email, perfilID, dataCadastro, telefone, bi);
     }
 
-    // Atualizar apenas a senha
     public void UpdatePassword(byte[] passwordHash, byte[] passwordSalt)
     {
         PasswordHash = passwordHash;
         PasswordSalt = passwordSalt;
     }
 
-    // Atualizar dados do usuário (sem senha ou perfil)
     public void UpdateInfo(int id, string nome, string sobrenome, string email, DateTime dataCadastro, string telefone, string bi)
     {
         DomainValidationException.When(id <= 0, "ID deve ser maior que zero.");
@@ -53,7 +49,6 @@ public sealed class UsuarioEntity : EntityBase, IAgragateRoot
         ValidarDados(nome, sobrenome, email, PerfilID, dataCadastro, telefone, bi);
     }
 
-    // Atualizar apenas o perfil
     public void UpdatePerfil(int perfilId)
     {
         DomainValidationException.When(perfilId <= 0, "Perfil inválido.");

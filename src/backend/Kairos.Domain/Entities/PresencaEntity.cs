@@ -1,5 +1,5 @@
 namespace Kairos.Domain.Entities;
-public sealed class PresencaEntity: EntityBase, IAgragateRoot
+public sealed class PresencaEntity: EntityBase, IAggragateRoot
 {
     public int UsuarioID { get; private set; }
     public int EventoID { get; private set; }
