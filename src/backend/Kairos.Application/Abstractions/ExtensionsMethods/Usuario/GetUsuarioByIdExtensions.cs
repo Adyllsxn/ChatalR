@@ -9,6 +9,7 @@ public static class GetUsuarioByIdExtensions
             Nome = entity.Nome,
             SobreNome = entity.SobreNome,
             Email = entity.Email,
+            FotoUrl = entity.FotoUrl,
             PerfilID = entity.PerfilID,
             Perfil = new PerfilResponse
             {

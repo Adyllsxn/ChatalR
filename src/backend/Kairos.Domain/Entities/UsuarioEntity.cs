@@ -76,7 +76,8 @@ public sealed class UsuarioEntity : EntityBase, IAggragateRoot
         DomainValidationException.When(string.IsNullOrWhiteSpace(email), "Email é obrigatório.");
         DomainValidationException.When(email.Length > 250, "Email deve ter no máximo 250 caracteres.");
 
-        DomainValidationException.When(string.IsNullOrWhiteSpace(fotoUrl), "Foto é obrigatório.");
+        DomainValidationException.When(string.IsNullOrWhiteSpace(fotoUrl), "Foto é obrigatória.");
+        DomainValidationException.When(fotoUrl.Length < 1, "Foto deve ter no mínimo 1 caractere.");
 
         DomainValidationException.When(perfilID <= 0, "PerfilID deve ser maior que zero.");
 
