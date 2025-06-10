@@ -26,9 +26,8 @@ namespace Kairos.Infrastructure.Context.Mappings
             builder.HasIndex(x => x.Email)
                 .IsUnique();
 
-            builder.Property(x => x.FotoUrl) // ⬅️ Adicionado mapeamento da foto
-                .IsRequired()
-                .HasColumnType("VARCHAR");
+            builder.Property(x => x.FotoUrl)
+                .IsRequired();
 
             builder.Property(x => x.PerfilID)
                 .IsRequired();

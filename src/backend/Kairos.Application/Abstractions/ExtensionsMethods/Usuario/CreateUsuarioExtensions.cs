@@ -25,6 +25,7 @@ public static class CreateUsuarioExtensions
             Nome = entity.Nome,
             SobreNome = entity.SobreNome,
             Email = entity.Email,
+            FotoUrl = entity.FotoUrl,
             PerfilID = entity.PerfilID,
             DataCadastro = entity.DataCadastro,
             Telefone = entity.Telefone,

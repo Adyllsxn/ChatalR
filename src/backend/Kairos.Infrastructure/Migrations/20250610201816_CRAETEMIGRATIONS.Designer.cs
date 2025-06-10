@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kairos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250610161726_CRAETEMIGRATIONS")]
+    [Migration("20250610201816_CRAETEMIGRATIONS")]
     partial class CRAETEMIGRATIONS
     {
         /// <inheritdoc />
@@ -229,7 +229,7 @@ namespace Kairos.Infrastructure.Migrations
 
                     b.Property<string>("FotoUrl")
                         .IsRequired()
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

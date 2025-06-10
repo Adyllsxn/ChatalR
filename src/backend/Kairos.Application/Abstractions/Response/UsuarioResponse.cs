@@ -5,6 +5,7 @@ public record UsuarioResponse
     public string Nome { get;  set; } = null!;
     public string SobreNome { get;  set; } = null!;
     public string Email { get;  set; } = null!;
+    public string FotoUrl { get; set; } = null!;
     public int PerfilID { get;  set; }
     public PerfilResponse Perfil { get;  set; } = null!;
     public DateTime DataCadastro { get; set; } = DateTime.UtcNow;

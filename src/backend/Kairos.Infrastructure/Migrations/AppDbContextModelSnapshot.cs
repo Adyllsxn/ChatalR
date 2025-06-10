@@ -226,7 +226,7 @@ namespace Kairos.Infrastructure.Migrations
 
                     b.Property<string>("FotoUrl")
                         .IsRequired()
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

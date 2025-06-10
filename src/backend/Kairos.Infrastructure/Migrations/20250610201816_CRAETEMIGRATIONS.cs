@@ -48,7 +48,7 @@ namespace Kairos.Infrastructure.Migrations
                     Nome = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     SobreNome = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(250)", maxLength: 250, nullable: false),
-                    FotoUrl = table.Column<string>(type: "VARCHAR", nullable: false),
+                    FotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PerfilID = table.Column<int>(type: "int", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
