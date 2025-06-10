@@ -20,7 +20,7 @@ public sealed class UsuarioEntity : EntityBase, IAggragateRoot
     [JsonIgnore]
     public ICollection<PresencaEntity> Presencas { get; private set; } = null!;
     [JsonIgnore]
-    public ICollection<BlogEntity> Sugestoes { get; private set; } = null!;
+    public ICollection<BlogEntity> Blogs { get; private set; } = null!;
 
     [JsonConstructor]
     public UsuarioEntity() { }
