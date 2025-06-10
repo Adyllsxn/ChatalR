@@ -2,7 +2,7 @@ namespace Kairos.Domain.Entities;
 
 public class BlogEntity : EntityBase, IAggragateRoot
 {
-    public int AutorID { get; private set; }
+    public int UsuarioID { get; private set; }
     public string Titulo { get; private set; } = null!;
     public string Conteudo { get; private set; } = null!;
     public string ImagemCapaUrl { get; private set; } = null!;
@@ -10,33 +10,33 @@ public class BlogEntity : EntityBase, IAggragateRoot
     public EStatusPostagem Status { get; private set; } = EStatusPostagem.Rascunho;
 
     [JsonIgnore]
-    public UsuarioEntity Autor { get; private set; } = null!;
+    public UsuarioEntity Usuario { get; private set; } = null!;
 
     [JsonConstructor]
     public BlogEntity() {}
 
-    public BlogEntity(int id, int autorID, string titulo, string conteudo, string imagemCapaUrl, DateTime dataPublicacao)
+    public BlogEntity(int id, int usuarioID, string titulo, string conteudo, string imagemCapaUrl, DateTime dataPublicacao)
     {
         DomainValidationException.When(id <= 0, "ID deve ser maior que zero.");
         Id = id;
-        Validar(autorID, titulo, conteudo, imagemCapaUrl, dataPublicacao);
+        Validar(usuarioID, titulo, conteudo, imagemCapaUrl, dataPublicacao);
     }
 
-    public BlogEntity(int autorID, string titulo, string conteudo, string imagemCapaUrl,DateTime dataPublicacao)
+    public BlogEntity(int usuarioID, string titulo, string conteudo, string imagemCapaUrl,DateTime dataPublicacao)
     {
-        Validar(autorID, titulo, conteudo, imagemCapaUrl, dataPublicacao);
+        Validar(usuarioID, titulo, conteudo, imagemCapaUrl, dataPublicacao);
     }
 
-    private void Validar(int autorID, string titulo, string conteudo, string imagemCapaUrl,DateTime dataPublicacao)
+    private void Validar(int usuarioID, string titulo, string conteudo, string imagemCapaUrl,DateTime dataPublicacao)
     {
         DomainValidationException.When(string.IsNullOrWhiteSpace(titulo), "Título é obrigatório.");
         DomainValidationException.When(titulo.Length < 3, "Título deve ter no mínimo 3 caracteres.");
         DomainValidationException.When(string.IsNullOrWhiteSpace(conteudo), "Conteúdo é obrigatório.");
         DomainValidationException.When(conteudo.Length < 10, "Conteúdo deve ter no mínimo 10 caracteres.");
         DomainValidationException.When(string.IsNullOrWhiteSpace(imagemCapaUrl), "Imagem é obrigatório.");
-        DomainValidationException.When(autorID <= 0, "ID do autor deve ser maior que zero.");
+        DomainValidationException.When(usuarioID <= 0, "ID do autor deve ser maior que zero.");
 
-        AutorID = autorID;
+        UsuarioID = usuarioID;
         Titulo = titulo;
         Conteudo = conteudo;
         ImagemCapaUrl = imagemCapaUrl;

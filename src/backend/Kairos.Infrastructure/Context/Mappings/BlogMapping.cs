@@ -8,6 +8,9 @@ namespace Kairos.Infrastructure.Context.Mappings
 
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.UsuarioID)
+                .IsRequired();
+
             builder.Property(x => x.Titulo)
                 .IsRequired()
                 .HasMaxLength(150)
@@ -25,14 +28,13 @@ namespace Kairos.Infrastructure.Context.Mappings
             builder.Property(x => x.Status)
                 .IsRequired();
 
-            builder.Property(x => x.AutorID)
-                .IsRequired();
-
-            builder.HasOne(x => x.Autor)
+            builder.HasOne(x => x.Usuario)
                 .WithMany()
-                .HasForeignKey(x => x.AutorID)
+                .HasForeignKey(x => x.UsuarioID)
                 .HasConstraintName("FK_Usuario_Blog")
                 .OnDelete(DeleteBehavior.Cascade);
+                
+            builder.HasOne(x => x.Usuario).WithMany(x => x.Blogs).HasForeignKey(x => x.UsuarioID).HasConstraintName("FK_Usuario_Blog").OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
