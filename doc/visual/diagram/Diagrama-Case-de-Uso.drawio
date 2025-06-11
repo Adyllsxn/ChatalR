@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Página-1" id="G1KwGGqPa4-vDrwzv6ZR">
-        <mxGraphModel dx="3573" dy="1610" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1393" dy="1208" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,13 +10,13 @@
                 <mxCell id="10" value="Verificar Login" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="560" y="40" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Fazer Cadastro" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="13" value="Pedir Cadastro" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="560" y="160" width="140" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" style="html=1;strokeWidth=2;dashed=1;endArrow=none;endFill=0;edgeStyle=orthogonalEdgeStyle;" parent="2" source="18" target="13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="Usuário opta por fazer cadastro caso não esteja no sistema" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="18" value="Usuário opta por fazer pedido de cadastro caso não esteja no &lt;b&gt;sistema&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="768" y="160" width="150" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" value="Visualizar todos Eventos e Cultos" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
@@ -66,14 +66,8 @@
                 <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=-0.023;entryY=0.357;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;dashed=1;endArrow=none;endFill=0;" parent="2" source="34" target="39" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="Enviar Comentário privado" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
-                    <mxGeometry x="202" y="390" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="43" value="Receber Notificação" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
-                    <mxGeometry x="205" y="477" width="140" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="44" value="Acessar históricos de eventos" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
-                    <mxGeometry x="160" y="568" width="140" height="70" as="geometry"/>
+                <mxCell id="41" value="Visualizar Post no Blog" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
+                    <mxGeometry x="190" y="410" width="140" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="67" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;dashed=1;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="2" source="60" target="66" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -83,7 +77,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="49" value="Manter os Tipos de Eventos" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="49" value="Exibir os Perfis" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="270" y="962" width="140" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="54" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.321;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;dashed=1;endArrow=open;endFill=0;entryPerimeter=0;" parent="2" source="50" target="53" edge="1">
@@ -117,7 +111,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="56" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Organizador Consegue:&amp;nbsp;&lt;/span&gt;&lt;b&gt;Adicionar, Excluir, Editar e Obter&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;os Tipos de Eventos&lt;/span&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="56" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Organizador Consegue:&amp;nbsp;&lt;/span&gt;&lt;b&gt;Obter&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;os Perfis&lt;/span&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="790" y="1052" width="148" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="58" value="Organizador Consegue: &lt;b&gt;Adicionar, Excluir, Editar e Obter &lt;/b&gt;os Eventos" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
@@ -143,11 +137,11 @@
                 <mxCell id="64" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Organizador opta por exibir tipos de evento com: &lt;b&gt;Culto, Ensaios&lt;/b&gt;&lt;/span&gt;&lt;b&gt;&amp;nbsp;etc.&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="788" y="932" width="150" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="Exibir Tipos de Usuário" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="66" value="Exibir Perfil de Usuário" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="435" y="595" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Organizador opta por exibir tipos de Usuario com: &lt;b&gt;Adm, Comun&lt;/b&gt;&lt;/span&gt;&lt;b&gt;&amp;nbsp;etc.&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
-                    <mxGeometry x="670" y="595" width="150" height="80" as="geometry"/>
+                <mxCell id="70" value="O sistema automaticamente seta o &lt;b&gt;Usuario&lt;/b&gt; como Perfil &lt;b&gt;Comun&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
+                    <mxGeometry x="670" y="595" width="160" height="85" as="geometry"/>
                 </mxCell>
                 <mxCell id="71" style="html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;dashed=1;strokeWidth=2;endArrow=none;endFill=0;edgeStyle=orthogonalEdgeStyle;" parent="2" source="70" target="66" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -155,7 +149,7 @@
                 <mxCell id="74" value="Manter os Organizadores" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="194" y="1169" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="75" value="Gerar perfil e permissões" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="75" value="Dar e permissões" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="194" y="1479" width="140" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="76" value="Gerar relatório" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
@@ -175,7 +169,7 @@
                 <mxCell id="78" value="Exportar dados" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="554" y="1260" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="Gerar relatório: &lt;b&gt;Mensal, Anual&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
+                <mxCell id="85" value="O Administrador Gera relatórios" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
                     <mxGeometry x="434" y="1139" width="150" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="86" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.785;entryY=0.088;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;endArrow=none;endFill=0;dashed=1;" parent="2" source="85" target="76" edge="1">
@@ -185,15 +179,27 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="87" value="Os dados são exportados no formato: &lt;b&gt;PDF&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" parent="2" vertex="1">
-                    <mxGeometry x="644" y="1389" width="150" height="80" as="geometry"/>
+                    <mxGeometry x="650" y="1350" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="O Administrador dá as permissões aos Usuários como: &lt;b&gt;Adm, Organizador ou Membro (Comun)&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" vertex="1" parent="2">
+                    <mxGeometry x="530" y="1458" width="170" height="91" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.002;entryY=0.167;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;dashed=1;endArrow=none;endFill=0;" edge="1" parent="2" source="75" target="89">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" value="Manter Posts" style="ellipse;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;spacingLeft=0;spacingRight=0;strokeWidth=2;" vertex="1" parent="2">
+                    <mxGeometry x="270" y="525" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="Organizador Consegue: &lt;b&gt;Criar, Excluir, Editar, Arquivar, e Obter&lt;/b&gt;&amp;nbsp;os Posts para&amp;nbsp;&lt;b&gt;Blog&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;strokeWidth=2;" vertex="1" parent="2">
+                    <mxGeometry x="670" y="440" width="170" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" style="html=1;entryX=0.025;entryY=0.218;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;endArrow=none;endFill=0;strokeWidth=2;dashed=1;" edge="1" parent="2" source="92" target="93">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" style="html=1;entryX=0.008;entryY=0.42;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;strokeWidth=2;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="3" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=2;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="3" target="41" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="45" style="edgeStyle=none;html=1;strokeWidth=2;endArrow=none;endFill=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="3" target="43" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="Membros" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeWidth=2;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
@@ -226,7 +232,7 @@
                 <mxCell id="7" value="extension points" style="text;html=1;align=center;verticalAlign=middle;rotatable=0;fillColor=none;strokeColor=none;whiteSpace=wrap;movable=0;resizable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="4" vertex="1">
                     <mxGeometry x="34" y="47" width="117" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="Fazer Cadastro" style="text;html=1;align=left;verticalAlign=middle;rotatable=0;spacingLeft=25;fillColor=none;strokeColor=none;whiteSpace=wrap;movable=0;resizable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="4" vertex="1">
+                <mxCell id="8" value="Pedir Cadastro" style="text;html=1;align=left;verticalAlign=middle;rotatable=1;spacingLeft=25;fillColor=none;strokeColor=none;whiteSpace=wrap;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="4" vertex="1">
                     <mxGeometry x="26" y="78" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.908;entryY=0.794;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;strokeWidth=2;entryPerimeter=0;" parent="1" source="13" target="4" edge="1">
@@ -251,9 +257,6 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="33" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;endArrow=none;endFill=0;" parent="1" source="3" target="32" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="46" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;endArrow=none;endFill=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="3" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" style="edgeStyle=none;html=1;strokeWidth=2;endArrow=block;endFill=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" edge="1">
@@ -296,6 +299,9 @@
                 </mxCell>
                 <mxCell id="72" value="Administador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeWidth=2;" parent="1" vertex="1">
                     <mxGeometry x="27" y="1241" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" style="edgeStyle=none;html=1;entryX=-0.002;entryY=0.388;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;endArrow=none;endFill=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="47" target="92">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
