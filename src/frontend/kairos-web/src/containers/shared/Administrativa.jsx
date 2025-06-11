@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaCalendarAlt, FaTags, FaUsersCog, FaBlog } from 'react-icons/fa';
+import {
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
+
 import './Administrativa.css';
 
 export default function Administrativa() {
@@ -13,6 +18,16 @@ export default function Administrativa() {
     const acessoEventos = perfilID === 1 || perfilID === 2;
     const acessoTiposEvento = perfilID === 1 || perfilID === 2;
     const acessoUsuarios = perfilID === 1;
+
+    const data = [
+        { name: 'Dom', eventos: 4 },
+        { name: 'Seg', eventos: 6 },
+        { name: 'Ter', eventos: 2 },
+        { name: 'Qua', eventos: 5 },
+        { name: 'Qui', eventos: 3 },
+        { name: 'Sex', eventos: 7 },
+        { name: 'Sab', eventos: 1 },
+    ];
 
     return (
         <main>
@@ -28,35 +43,56 @@ export default function Administrativa() {
                         </div>
 
                         {(acessoEventos || acessoTiposEvento || acessoUsuarios) ? (
-                            <div className='administrativa-grid'>
+                            <>
+                                <div className='administrativa-cards'>
+                                    {acessoEventos && (
+                                        <Link to="/gestao-eventos" className='card-link'>
+                                            <div className="adm-card eventos">
+                                                <FaCalendarAlt size={24} />
+                                                <p>Eventos</p>
+                                            </div>
+                                        </Link>
+                                    )}
 
-                                {acessoEventos && (
-                                    <Link to="/gestao-eventos" className='card-link'>
-                                        <div className="adm-card">
-                                            <h2>Gestão de Eventos</h2>
-                                            <p>Cadastrar, atualizar, deletar e aprovar eventos.</p>
+                                    {acessoTiposEvento && (
+                                        <Link to="/tipo-evento" className='card-link'>
+                                            <div className="adm-card tipos">
+                                                <FaTags size={24} />
+                                                <p>Tipos</p>
+                                            </div>
+                                        </Link>
+                                    )}
+
+                                    {acessoUsuarios && (
+                                        <Link to="/usuarios" className='card-link'>
+                                            <div className="adm-card usuarios">
+                                                <FaUsersCog size={24} />
+                                                <p>Usuários</p>
+                                            </div>
+                                        </Link>
+                                    )}
+
+                                    <Link to="/blog" className='card-link'>
+                                        <div className="adm-card blog">
+                                            <FaBlog size={24} />
+                                            <p>Blog</p>
                                         </div>
                                     </Link>
-                                )}
+                                </div>
 
-                                {acessoTiposEvento && (
-                                    <Link to="/tipo-evento" className='card-link'>
-                                        <div className="adm-card">
-                                            <h2>Tipos de Evento</h2>
-                                            <p>Gerencie os tipos de eventos disponíveis na plataforma.</p>
-                                        </div>
-                                    </Link>
-                                )}
-
-                                {acessoUsuarios && (
-                                    <Link to="/usuarios" className='card-link'>
-                                        <div className="adm-card">
-                                            <h2>Usuários e Perfis</h2>
-                                            <p>Cadastrar, alterar, excluir usuários e atribuir perfis.</p>
-                                        </div>
-                                    </Link>
-                                )}
-                            </div>
+                                <div className='grafico-container'>
+                                    <h3>Eventos da Semana</h3>
+                                    <ResponsiveContainer width="100%" height={250}>
+                                        <LineChart data={data}>
+                                            <CartesianGrid stroke="#ccc" />
+                                            <XAxis dataKey="name" />
+                                            <YAxis />
+                                            <Tooltip />
+                                            <Line type="monotone" dataKey="eventos" stroke="#f57c00" strokeWidth={2} />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </>
                         ) : (
                             <div className="sem-acesso">
                                 <p>Você não possui permissões administrativas para acessar esta área.</p>

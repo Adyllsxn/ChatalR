@@ -10,7 +10,7 @@ import SobreNos from './containers/pages/institucional/SobreNos';
 import PoliticaDePrivacidade from './containers/pages/politica/PoliticaDePrivacidade';
 import Home from './containers/pages/Home';
 import Login from './containers/features/auth/Login';
-import Listar from './containers/features/evento/Listar';
+import EventoListar from './containers/features/evento/EventoListar';
 import Detalhes from './containers/features/evento/Detalhes';
 import AlterarSenha from './containers/features/perfil/AlterarSenha';
 import VerPerfil from './containers/features/perfil/VerPerfil';
@@ -51,7 +51,7 @@ export default function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/sobreNos" element={<SobreNos />} />
         <Route path="/politicaDePrivacidade" element={<PoliticaDePrivacidade />} />
-        <Route path="/listarEvento" element={<Listar />} />
+        <Route path="/listarEvento" element={<EventoListar />} />
         <Route path="/detalhesEvento" element={<Detalhes />} />
         <Route path="/verPerfil" element={<VerPerfil />} />
         <Route path="/alterarSenha" element={<AlterarSenha />} />
