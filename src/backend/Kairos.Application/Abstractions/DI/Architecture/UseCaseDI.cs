@@ -56,5 +56,18 @@ public static class UseCaseDI
             services.AddScoped<SearchTipoEventoHandler>();
             services.AddScoped<UpdateTipoEventoHandler>();
         #endregion
+
+        #region </Blog>
+            services.AddScoped<CreateBlogHandler>();
+            services.AddScoped<DeleteBlogHandler>();
+            services.AddScoped<GetBlogsHandler>();
+            services.AddScoped<GetBlogByIdHandler>();
+            services.AddScoped<SearchBlogHandler>();
+            services.AddScoped<UpdateBlogHandler>();
+            services.AddScoped<ArchiveBlogHandler>();
+            services.AddScoped<GetFileBlogHandler>();
+            services.AddScoped<GetPublishBlogHandler>();
+            services.AddScoped<PublishBlogHandler>();
+        #endregion
     }
 }

@@ -1,9 +1,9 @@
 namespace Kairos.Application.Abstractions.ExtensionsMethods.Blog;
-public static class PublishBlogExtensions
+public static class ArchiveBlogExtensions
 {
-    public static PublishBlogResponse MapToPublishPostagem(this BlogEntity entity)
+    public static ArchiveBlogResponse MapToArchivePostagem(this BlogEntity entity)
     {
-        return new PublishBlogResponse
+        return new ArchiveBlogResponse
         {
             Id = entity.Id,
             StatusPostagem = entity.Status

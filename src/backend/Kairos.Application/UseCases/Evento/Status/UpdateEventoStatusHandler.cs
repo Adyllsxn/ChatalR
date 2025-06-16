@@ -20,11 +20,6 @@ public class UpdateEventoStatusHandler(IEventoRepository repository, IUnitOfWork
 
             return new Result<UpdateEventoStatusResponse>(response, 200, "Status atualizado com sucesso.");
         }
-        catch (DomainValidationException ex)
-        {
-            // captura erro de domínio e devolve como resultado
-            return new Result<UpdateEventoStatusResponse>(null, 400, ex.Message);
-        }
         catch (Exception ex)
         {
             return new Result<UpdateEventoStatusResponse>(null, 500, $"Erro ao atualizar status: {ex.Message}");

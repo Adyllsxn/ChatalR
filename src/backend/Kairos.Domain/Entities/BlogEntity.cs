@@ -60,4 +60,11 @@ public class BlogEntity : EntityBase, IAggragateRoot
             "Apenas posts em rascunho podem ser publicados.");
         Status = EStatusPostagem.Publicado;
     }
+
+    public void Arquivar()
+    {
+        DomainValidationException.When(Status != EStatusPostagem.Publicado,
+            "Apenas posts em publicados podem ser aqruivados.");
+        Status = EStatusPostagem.Publicado;
+    }
 }
