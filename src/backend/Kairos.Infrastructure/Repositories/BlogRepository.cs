@@ -104,6 +104,42 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
         }
     #endregion
 
+    #region </GetPublish>
+        public async Task<PagedList<List<BlogEntity>?>> GetAllPublishAsync(PagedRequest request, CancellationToken token)
+        {
+            try
+            {
+                var query = context.Blogs
+                                    .AsNoTracking()
+                                    .Where(x => x.Status == EStatusPostagem.Publicado)
+                                    .Include(x => x.Usuario)
+                                    .AsQueryable();
+
+                var result = await query
+                            .Skip((request.PageNumber - 1) * request.PageSize)
+                            .Take(request.PageSize)
+                            .ToListAsync();
+                
+                var count = await query.CountAsync();
+
+                return new PagedList<List<BlogEntity>?>(
+                    result,
+                    count,
+                    request.PageNumber,
+                    request.PageSize
+                );
+            }
+            catch (Exception ex)
+            {
+                return new PagedList<List<BlogEntity>?>(
+                    null, 
+                    500, 
+                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    );
+            }
+        }
+    #endregion
+
     #region </GetById>
         public async Task<Result<BlogEntity?>> GetByIdAsync(int entityId, CancellationToken token)
         {

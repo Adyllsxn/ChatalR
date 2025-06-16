@@ -9,5 +9,6 @@ public static class ServiceDI
         services.AddScoped<IUsuarioService, UsuarioService>();
         services.AddScoped<IEventoService, EventoService>();
         services.AddScoped<IPresencaService, PresencaService>();
+        services.AddScoped<IBlogService, BlogService>();
     }
 }
