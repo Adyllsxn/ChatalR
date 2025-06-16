@@ -12,6 +12,7 @@ public static class InfrastructureDI
             services.AddScoped<IPresencaRepository, PresencaRepository>();
             services.AddScoped<ITipoEventoRepository, TipoEventoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
         #endregion
 
         #region </DbConnection>
