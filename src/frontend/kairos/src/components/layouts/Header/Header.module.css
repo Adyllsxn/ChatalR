@@ -1,12 +1,11 @@
-/*  Config Global   */
 :root{
     --color001: #d4b37f36;
     --color002: #000000e5;
     --color003: #fff;
     --color004: #d9782c;
 }
-/*  Config Global   */
 
+/* header */
 .header{
     background-color: var(--color001);
     box-shadow: 1px 1px 1px var(--color002);
@@ -125,7 +124,8 @@
 
 
 @media(max-width: 768px){
-    header{
+    
+    .header{
         background: var(--color002);
     }
     .userName{

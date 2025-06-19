@@ -20,12 +20,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: src/frontend/kairos-web
+        working-directory: src/frontend/kairos
 
       - name: Run Linter
         run: npm run lint
-        working-directory: src/frontend/kairos-web
+        working-directory: src/frontend/kairos
 
       - name: Build project
         run: npm run build
-        working-directory: src/frontend/kairos-web
+        working-directory: src/frontend/kairos
