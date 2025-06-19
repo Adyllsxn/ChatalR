@@ -1,8 +1,7 @@
+import styles from './Home.module.css';
 
 const Home = () => {
-    return (
-        <div>Home</div>
-    )
-}
+    return <div className={styles.colore}>Home</div>;
+};
 
-export default Home
+export default Home;
