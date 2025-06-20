@@ -1,0 +1,17 @@
+.sobreNosSection {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+.sobreNosContent {
+    color: #333;
+    line-height: 1.6;
+}
+.sobreNosContent h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #222;
+}
+.sobreNosContent p {
+    margin-bottom: 16px;
+    font-size: 16px;
+}

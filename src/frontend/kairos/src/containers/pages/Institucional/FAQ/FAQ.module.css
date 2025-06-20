@@ -1,0 +1,23 @@
+.faqSection {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+.faqList {
+    margin-top: 20px;
+}
+.faqItem {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.faqItem h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: #333;
+}
+.faqItem p {
+    margin: 0;
+    color: #555;
+}
