@@ -55,6 +55,9 @@ const Header = ({ onLogout }: HeaderProps) => {
                             <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Eventos</Link>
                         </li>
                         <li className={styles.navBarItem}>
+                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Notificações</Link>
+                        </li>
+                        <li className={styles.navBarItem}>
                             <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Blog</Link>
                         </li>
                         <li className={styles.navBarItem}>
@@ -62,9 +65,13 @@ const Header = ({ onLogout }: HeaderProps) => {
                         </li>
                         <li className={`${styles.navBarItem} ${styles.dropHover}`}>
                             <span className={styles.navLink}>Perfil</span>
-                            <div className={styles.drop}>
-                                <Link to="/verPerfil" className={styles.navLinkDrop} onClick={closeMenu}>Ver Perfil</Link>
-                                <span className={styles.navLinkDrop} onClick={handleLogoutClick}>Logout</span>
+                            <div className={styles.dropBox}>
+                                <div className={styles.drop}>
+                                    <div className={styles.dropItem}>
+                                        <Link to="/verPerfil" className={styles.navLinkDrop} onClick={closeMenu}>Ver Perfil</Link>
+                                        <span className={`${styles.navLinkDrop} ${styles.dropLogout}`} onClick={handleLogoutClick}>Logout</span>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>

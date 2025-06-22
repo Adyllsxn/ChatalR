@@ -1,15 +1,11 @@
-
-
 .dashboard-header {
   margin-bottom: 30px;
 }
-
 .dashboard-header h1 {
   font-size: 1.8rem;
   margin-bottom: 8px;
   color: #333;
 }
-
 .dashboard-header p {
   font-size: 1rem;
   color: #666;
@@ -34,7 +30,6 @@
   transition: all 0.2s ease-in-out;
   border-left: 5px solid transparent;
 }
-
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -52,7 +47,6 @@
   font-size: 1.6rem;
   color: #333;
 }
-
 .card-info p {
   margin: 2px 0 0;
   font-size: 0.9rem;

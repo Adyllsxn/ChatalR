@@ -2,18 +2,14 @@ import './Dashboard.css';
 import {
   FaCalendarAlt,
   FaUsers,
-  FaBoxOpen,
-  FaBlog,
-  FaCheckCircle
+  FaBlog
 } from 'react-icons/fa';
 
 export default function Dashboard() {
   const cards = [
     { title: 'Eventos', value: 14, icon: <FaCalendarAlt />, color: '#4e73df' },
     { title: 'Usuários', value: 8, icon: <FaUsers />, color: '#1cc88a' },
-    { title: 'Tipos', value: 5, icon: <FaBoxOpen />, color: '#36b9cc' },
-    { title: 'Blog', value: 5, icon: <FaBlog />, color: '#333333' },
-    { title: 'Presença', value: 5, icon: <FaCheckCircle />, color: '#D9782C' }
+    { title: 'Blog', value: 5, icon: <FaBlog />, color: '#36b9cc' },
   ];
 
   return (
