@@ -1,5 +1,11 @@
 import './Dashboard.css';
-import { FaCalendarAlt, FaUsers, FaBoxOpen, FaBlog, FaCheckCircle } from 'react-icons/fa';
+import {
+  FaCalendarAlt,
+  FaUsers,
+  FaBoxOpen,
+  FaBlog,
+  FaCheckCircle
+} from 'react-icons/fa';
 
 export default function Dashboard() {
   const cards = [
@@ -9,14 +15,22 @@ export default function Dashboard() {
     { title: 'Blog', value: 5, icon: <FaBlog />, color: '#333333' },
     { title: 'Presença', value: 5, icon: <FaCheckCircle />, color: '#D9782C' }
   ];
-  
 
   return (
     <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1>Área Administrativa</h1>
+        <p>Visão geral do sistema</p>
+      </div>
+
       <div className="card-row">
         {cards.map((card, index) => (
-          <div className="card" key={index} style={{ borderLeft: `5px solid ${card.color}` }}>
-            <div className="card-icon" style={{ color: card.color }}>
+          <div
+            className="card"
+            key={index}
+            style={{ borderLeft: `5px solid ${card.color}` }}
+          >
+            <div className="card-icon" style={{ color: card.color }} title={card.title}>
               {card.icon}
             </div>
             <div className="card-info">
