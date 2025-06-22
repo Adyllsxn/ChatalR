@@ -1,12 +1,11 @@
 .sidebar {
     min-width: 250px;
 }
-
 .sidebar nav{
     background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     padding: 30px 6px;
-    min-height: 50vh;
+    min-height: 60vh;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
@@ -28,9 +27,11 @@
     color: black;
 }
 
+
 @media(max-width: 768px){
     .sidebar {
         width: vw;
+        padding: 0 3px;
     }
     .sidebar nav{
         display: flex;
