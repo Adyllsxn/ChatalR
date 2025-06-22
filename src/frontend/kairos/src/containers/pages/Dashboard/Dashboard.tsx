@@ -18,10 +18,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-header">
-        <h1>Área Administrativa</h1>
-        <p>Visão geral do sistema</p>
-      </div>
+
 
       <div className="card-row">
         {cards.map((card, index) => (

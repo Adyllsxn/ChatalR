@@ -1,13 +1,14 @@
 .sidebar {
-    width: 230px;
-    min-height: 50vh;
+    min-width: 250px;
 }
 
 .sidebar nav{
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 10px 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    padding: 30px 6px;
+    min-height: 50vh;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 .nav-link {
     display: flex;
@@ -17,13 +18,26 @@
     color: #d9782c;
     margin-bottom: 12px;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bolder;
     font-size: 16px;
 }
-
 .nav-link.active,
 .nav-link:hover {
     background-color: #d4b37f36;
     color: black;
+}
+
+@media(max-width: 768px){
+    .sidebar {
+        width: vw;
+    }
+    .sidebar nav{
+        display: flex;
+        overflow: scroll;
+        width: 100%;
+        padding: 10px;
+        min-height: auto;
+        gap: 20px;
+    }
 }

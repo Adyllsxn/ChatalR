@@ -10,6 +10,14 @@ const Header = ({ onLogout }: HeaderProps) => {
     const [email, setEmail] = useState('');
     const [/*perfilID*/, setPerfilID] = useState<number | null>(null);
     const navigate = useNavigate();
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
 
     useEffect(() => {
         const storedEmail = localStorage.getItem('email');
@@ -18,7 +26,7 @@ const Header = ({ onLogout }: HeaderProps) => {
 
         if (storedEmail) setEmail(storedEmail);
         if (storedPerfilID !== null && !isNaN(storedPerfilID)) {
-        setPerfilID(storedPerfilID);
+            setPerfilID(storedPerfilID);
         }
     }, []);
 
@@ -29,45 +37,45 @@ const Header = ({ onLogout }: HeaderProps) => {
 
     return (
         <header className={styles.header}>
-        <div className="layoutContainer">
-            <div className={styles.userName}>
-            <p>Bem-vindo: <strong>{email || 'Usuário'}</strong></p>
-            </div>
-
-            <nav className={styles.navBar}>
-            <div className={styles.navBarLogo}>
-                <Link to="/" className={styles.navLink}>Kairos</Link>
-            </div>
-
-            <ul className={styles.navMenu}>
-                <li className={styles.navBarItem}>
-                <Link to="/" className={styles.navLink}>Início</Link>
-                </li>
-                <li className={styles.navBarItem}>
-                <Link to="/listarEvento" className={styles.navLink}>Eventos</Link>
-                </li>
-                <li className={styles.navBarItem}>
-                <Link to="/listarEvento" className={styles.navLink}>Blog</Link>
-                </li>
-                <li className={styles.navBarItem}>
-                <Link to="/administrativa" className={styles.navLink}>Administrativa</Link>
-                </li>
-                <li className={`${styles.navBarItem} ${styles.dropHover}`}>
-                <span className={styles.navLink}>Perfil</span>
-                <div className={styles.drop}>
-                    <Link to="/verPerfil" className={styles.navLinkDrop}>Ver Perfil</Link>
-                    <span className={styles.navLinkDrop} onClick={handleLogoutClick}>Logout</span>
+            <div className="layoutContainer">
+                <div className={styles.userName}>
+                    <p>Bem-vindo: <strong>{email || 'Usuário'}</strong></p>
                 </div>
-                </li>
-            </ul>
 
-            <div className={styles.menuToggle}>
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
+                <nav className={styles.navBar}>
+                    <div className={styles.navBarLogo}>
+                        <Link to="/" className={styles.navLink}>Kairos</Link>
+                    </div>
+
+                    <ul className={`${styles.navMenu} ${menuOpen ? styles.active : ''}`}>
+                        <li className={styles.navBarItem}>
+                            <Link to="/" className={styles.navLink} onClick={closeMenu}>Início</Link>
+                        </li>
+                        <li className={styles.navBarItem}>
+                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Eventos</Link>
+                        </li>
+                        <li className={styles.navBarItem}>
+                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Blog</Link>
+                        </li>
+                        <li className={styles.navBarItem}>
+                            <Link to="/administrativa" className={styles.navLink} onClick={closeMenu}>Administrativa</Link>
+                        </li>
+                        <li className={`${styles.navBarItem} ${styles.dropHover}`}>
+                            <span className={styles.navLink}>Perfil</span>
+                            <div className={styles.drop}>
+                                <Link to="/verPerfil" className={styles.navLinkDrop} onClick={closeMenu}>Ver Perfil</Link>
+                                <span className={styles.navLinkDrop} onClick={handleLogoutClick}>Logout</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div className={`${styles.menuToggle} ${menuOpen ? styles.active : ''}`} onClick={toggleMenu}>
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                    </div>
+                </nav>
             </div>
-            </nav>
-        </div>
         </header>
     );
 };

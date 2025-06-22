@@ -7,11 +7,11 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <nav>
-        <NavLink to="/administrativa/dashboard" className="nav-link"><FaChartPie /> Dashboard</NavLink>
-        <NavLink to="/administrativa/eventos" className="nav-link"><FaCalendarAlt /> Eventos</NavLink>
-        <NavLink to="/administrativa/tipos" className="nav-link"><FaTags /> Tipos</NavLink>
-        <NavLink to="/administrativa/usuarios" className="nav-link"><FaUsersCog /> Usuários</NavLink>
-        <NavLink to="/administrativa/blog" className="nav-link"><FaBlog /> Blog</NavLink>
+        <NavLink to="/administrativa/dashboard" className="nav-link"><FaChartPie />Dashboard</NavLink>
+        <NavLink to="/administrativa/eventos" className="nav-link"><FaCalendarAlt />Eventos</NavLink>
+        <NavLink to="/administrativa/tipos" className="nav-link"><FaTags />Tipos</NavLink>
+        <NavLink to="/administrativa/usuarios" className="nav-link"><FaUsersCog />Usuários</NavLink>
+        <NavLink to="/administrativa/blog" className="nav-link"><FaBlog />Blog</NavLink>
       </nav>
     </aside>
   );
