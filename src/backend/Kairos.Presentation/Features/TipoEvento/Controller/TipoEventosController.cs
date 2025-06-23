@@ -4,26 +4,29 @@ namespace Kairos.Presentation.Features.TipoEvento.Controller;
 [Authorize]
 public class TipoEventosController(ITipoEventoService service, IUsuarioService usuario) : ControllerBase
 {
-    #region </GetAll>
-        [HttpGet("TipoEventos"), EndpointSummary("Obter Tipo de Eventos")]
-        public async Task<ActionResult> Get([FromQuery] GetTipoEventosCommand command,CancellationToken token)
+    #region ListTipoEvento
+        [HttpGet("ListTipoEvento")]
+        [EndpointSummary("Listar todos os tipos de evento.")]
+        public async Task<ActionResult> ListTipoEvento([FromQuery] GetTipoEventosCommand command,CancellationToken token)
         {
             var response = await service.GetHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetById>
-        [HttpGet("TipoEventoById"), EndpointSummary("Obter Tipo de Evento Pelo Id")]
-        public async Task<ActionResult> GetById([FromQuery] GetTipoEventoByIdCommand command, CancellationToken token)
+    #region GetByIdTipoEvento
+        [HttpGet("GetByIdTipoEvento")]
+        [EndpointSummary("Obter tipo de evento pelo ID.")]
+        public async Task<ActionResult> GetByIdTipoEvento([FromQuery] GetTipoEventoByIdCommand command, CancellationToken token)
         {
             var response = await service.GetByIdHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Search>
-        [HttpGet("SearchTipoEvento"), EndpointSummary("Pesquisar Tipo de Eventos")]
+    #region SearchTipoEvento
+        [HttpGet("SearchTipoEvento")]
+        [EndpointSummary("Pesquisar tipos de evento.")]
         public async Task<ActionResult> Search([FromQuery] SearchTipoEventoCommand command, CancellationToken token)
         {
             var response = await service.SearchHendler(command,token);
@@ -31,9 +34,10 @@ public class TipoEventosController(ITipoEventoService service, IUsuarioService u
         }
     #endregion
 
-    #region </Create>
-        [HttpPost("CreateTipoEvento"), EndpointSummary("Adicionar Tipo de Evento")]
-        public async Task<IActionResult> Create(CreateTipoEventoCommand command, CancellationToken token)
+    #region CreateTipoEvento
+        [HttpPost("CreateTipoEvento")]
+        [EndpointSummary("Criar um novo tipo de evento.")]
+        public async Task<IActionResult> CreateTipoEvento(CreateTipoEventoCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -52,9 +56,10 @@ public class TipoEventosController(ITipoEventoService service, IUsuarioService u
         }
     #endregion
 
-    #region </Update>
-        [HttpPut("UpdateTipoEvento"), EndpointSummary("Editar Tipo de Evento")]
-        public async Task<ActionResult> Update(UpdateTipoEventoCommand command, CancellationToken token)
+    #region UpdateTipoEvento
+        [HttpPut("UpdateTipoEvento")]
+        [EndpointSummary("Atualizar um tipo de evento.")]
+        public async Task<ActionResult> UpdateTipoEvento(UpdateTipoEventoCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -73,9 +78,10 @@ public class TipoEventosController(ITipoEventoService service, IUsuarioService u
         }
     #endregion
 
-    #region </Delete>
-        [HttpDelete("DeleteTipoEvento"), EndpointSummary("Excluir Tipo de Evento")]
-        public async Task<ActionResult> DeleteAsync([FromQuery] DeleteTipoEventoCommand command, CancellationToken token)
+    #region DeleteTipoEvento
+        [HttpDelete("DeleteTipoEvento")]
+        [EndpointSummary("Excluir um tipo de evento.")]
+        public async Task<ActionResult> DeleteTipoEvento([FromQuery] DeleteTipoEventoCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {

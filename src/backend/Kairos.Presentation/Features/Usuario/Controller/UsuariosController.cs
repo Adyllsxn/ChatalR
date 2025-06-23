@@ -1,19 +1,14 @@
-using Kairos.Application.UseCases.Usuario.GetFoto;
-using Kairos.Application.UseCases.Usuario.Status;
-using Kairos.Application.UseCases.Usuario.Update;
-using Kairos.Application.UseCases.Usuario.UpdateFoto;
-using Kairos.Presentation.Features.Usuario.Model;
-
 namespace Kairos.Presentation.Features.Usuario.Controller;
 [ApiController]
 [Route("v1/")]
 public class UsuariosController(IUsuarioService service)  : ControllerBase
 {
 
-    #region </GetAll>
-        [HttpGet("Usuarios"), EndpointSummary("Obter Usuarios")]
+    #region ListUsuario
+        [HttpGet("ListUsuario")]
+        [EndpointSummary("Listar todos os usuários.")]
         [Authorize]
-        public async Task<ActionResult> Get([FromQuery] GetUsuariosCommand command,CancellationToken token)
+        public async Task<ActionResult> ListUsuario([FromQuery] GetUsuariosCommand command,CancellationToken token)
         {
             var userId = User.GetId();
             var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
@@ -27,8 +22,9 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
 
-    #region </GetById>
-        [HttpGet("UsuarioById"), EndpointSummary("Obter Usuario Pelo Id")]
+    #region GetByIdUsuario
+        [HttpGet("GetByIdUsuario")]
+        [EndpointSummary("Obter usuário pelo ID.")]
         [Authorize]
         public async Task<ActionResult> GetById([FromQuery] GetUsuarioByIdCommand command, CancellationToken token)
         {
@@ -50,10 +46,11 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
     
-    #region </GetNotId>
-        [HttpGet("UsuarioGetNotId"), EndpointSummary("Obter Usuario Sem o  Id")]
+    #region GetCurrentUsuario
+        [HttpGet("GetCurrentUsuario")]
+        [EndpointSummary("Obter dados do usuário autenticado.")]
         [Authorize]
-        public async Task<ActionResult> GetGetNotId()
+        public async Task<ActionResult> GetCurrentUsuario()
         {
             var command = new GetUsuarioByIdCommand();
             var token = new CancellationToken();
@@ -80,9 +77,10 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
 
-    #region </GetFoto>
-        [HttpGet("UsuarioFoto"), EndpointSummary("Obter a Foto do Usuario Pelo Id")]
-        public async Task<ActionResult> GetFoto([FromQuery] GetUsuarioFotoCommand command, CancellationToken token)
+    #region GetFotoUsuario
+        [HttpGet("GetFotoUsuario")]
+        [EndpointSummary("Obter a foto do usuário pelo ID.")]
+        public async Task<ActionResult> GetFotoUsuario([FromQuery] GetUsuarioFotoCommand command, CancellationToken token)
         {
                 if(User.FindFirst("id") == null)
                 {
@@ -101,36 +99,21 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
 
-    #region </Search>
-        [HttpGet("SearchUsuario"), EndpointSummary("Pesquisar Usuarios")]
+    #region SearchUsuario
+        [HttpGet("SearchUsuario")]
+        [EndpointSummary("Pesquisar usuários.")]
         [Authorize]
-        public async Task<ActionResult> Search([FromQuery] SearchUsuarioCommand command, CancellationToken token)
+        public async Task<ActionResult> SearchUsuario([FromQuery] SearchUsuarioCommand command, CancellationToken token)
         {
             var response = await service.SearchHendler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Delete>
-        [HttpDelete("DeleteUsuario"), EndpointSummary("Excluir Usuario")]
-        [Authorize]
-        public async Task<ActionResult> DeleteAsync([FromQuery] DeleteUsuarioCommand command, CancellationToken token)
-        {
-            var userId = User.GetId();
-            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if (!(user.Data?.PerfilID == 1))
-            {
-                return Unauthorized("Você não tem permissão para deletar os usuários do sistema");
-            }
-
-            var response = await service.DeleteHandler(command,token);
-            return Ok(response);
-        }
-    #endregion
-
-    #region </Update>
-        [HttpPut("UpdateUsuario"), EndpointSummary("Atualizar Usuário")]
-        public async Task<ActionResult> Update(UpdateUsuarioCommand command, CancellationToken token)
+    #region UpdateUsuario
+        [HttpPut("UpdateUsuario")]
+        [EndpointSummary("Atualizar usuário.")]
+        public async Task<ActionResult> UpdateUsuario(UpdateUsuarioCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -142,9 +125,10 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
     
-    #region </Status>
-        [HttpPatch("UpdatePerfilUsuario"), EndpointSummary("Atualizar o Perfil do Usuário")]
-        public async Task<ActionResult> Update(UsuarioStatusCommand command, CancellationToken token)
+    #region UpdatePerfilUsuario
+        [HttpPatch("UpdatePerfilUsuario")]
+        [EndpointSummary("Atualizar o perfil do usuário.")]
+        public async Task<ActionResult> UpdatePerfilUsuario(UsuarioStatusCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -156,9 +140,10 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
         }
     #endregion
 
-    #region </UpdateFoto>
-        [HttpPatch("UpdateUsuarioFoto"), EndpointSummary("Atualizar a Foto do Usuário")]
-        public async Task<ActionResult> UpdateFoto([FromForm] UpdateUsuarioFotoModel model, CancellationToken token)
+    #region UpdateFotoUsuario
+        [HttpPatch("UpdateFotoUsuario")]
+        [EndpointSummary("Atualizar a foto do usuário.")]
+        public async Task<ActionResult> UpdateFotoUsuario([FromForm] UpdateUsuarioFotoModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -204,4 +189,23 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
             return Ok(response);
         }
     #endregion
+
+    #region DeleteUsuario
+        [HttpDelete("DeleteUsuario")]
+        [EndpointSummary("Excluir usuário.")]
+        [Authorize]
+        public async Task<ActionResult> DeleteAsync([FromQuery] DeleteUsuarioCommand command, CancellationToken token)
+        {
+            var userId = User.GetId();
+            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if (!(user.Data?.PerfilID == 1))
+            {
+                return Unauthorized("Você não tem permissão para deletar os usuários do sistema");
+            }
+
+            var response = await service.DeleteHandler(command,token);
+            return Ok(response);
+        }
+    #endregion
+
 }

@@ -3,36 +3,40 @@ namespace Kairos.Presentation.Features.Presenca.Controller;
 [Route("v1/")]
 public class PresencasController(IPresencaService service) : ControllerBase
 {
-    #region </GetAll>
-        [HttpGet("Presencas"), EndpointSummary("Obter Presencas")]
-        public async Task<ActionResult> Get([FromQuery] GetPresencaCommand command,CancellationToken token)
+    #region ListPresenca
+        [HttpGet("ListPresenca")]
+        [EndpointSummary("Listar todas as presenças.")]
+        public async Task<ActionResult> ListPresenca([FromQuery] GetPresencaCommand command,CancellationToken token)
         {
             var response = await service.GetHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetById>
-        [HttpGet("PresencaById"), EndpointSummary("Obter Presenca Pelo Id")]
-        public async Task<ActionResult> GetById([FromQuery] GetPresencaByIdCommand command, CancellationToken token)
+    #region GetByIdPresenca
+        [HttpGet("GetByIdPresenca")]
+        [EndpointSummary("Obter presença pelo ID.")]
+        public async Task<ActionResult> GetByIdPresenca([FromQuery] GetPresencaByIdCommand command, CancellationToken token)
         {
             var response = await service.GetByIdHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Create>
-        [HttpPost("CreatePresenca"), EndpointSummary("Adicionar Presenca")]
-        public async Task<IActionResult> Create(CreatePresencaCommand command, CancellationToken token)
+    #region CreatePresenca
+        [HttpPost("CreatePresenca")]
+        [EndpointSummary("Registrar uma nova presença.")]
+        public async Task<IActionResult> CreatePresenca(CreatePresencaCommand command, CancellationToken token)
         {
             var response = await service.CreateHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Delete>
-        [HttpDelete("DeletePresnca"), EndpointSummary("Excluir Presenca")]
-        public async Task<ActionResult> DeleteAsync([FromQuery] DeletePresencaCommand command, CancellationToken token)
+    #region DeletePresenca
+        [HttpDelete("DeletePresenca")]
+        [EndpointSummary("Excluir presença pelo ID.")]
+        public async Task<ActionResult> DeletePresenca([FromQuery] DeletePresencaCommand command, CancellationToken token)
         {
             var response = await service.DeleteHandler(command,token);
             return Ok(response);
