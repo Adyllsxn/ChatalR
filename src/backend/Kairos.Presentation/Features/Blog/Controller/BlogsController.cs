@@ -11,7 +11,7 @@ using Kairos.Application.UseCases.Blog.Update;
 
 namespace Kairos.Presentation.Features.Blog.Controller;
 [ApiController]
-[Route("api/")]
+[Route("v1/")]
 public class BlogsController(IBlogService service) : ControllerBase
 {
     #region List

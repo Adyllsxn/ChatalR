@@ -4,9 +4,10 @@ namespace Kairos.Presentation.Features.Dashboard;
 [Authorize]
 public class DashboardsController(IDashboardService service, IUsuarioService usuario) : ControllerBase
 {
-    #region </Dashboard>
-        [HttpGet("Dashboard"), EndpointSummary("Painel de todas entidades.")]
-        public async Task<ActionResult> Dashboard(CancellationToken token)
+    #region Dashboard
+        [HttpGet("GetDashboard")]
+        [EndpointSummary("Retorna dados agregados do sistema para o painel do administrador.")]
+        public async Task<ActionResult> GetDashboard(CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {

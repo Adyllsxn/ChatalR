@@ -4,9 +4,10 @@ namespace Kairos.Presentation.Features.Perfil.Controller;
 [Authorize]
 public class PerfilsController(IPerfilService service, IUsuarioService usuario) : ControllerBase
 {
-    #region </GetAll>
-        [HttpGet("Perfils"), EndpointSummary("Obter Perfis")]
-        public async Task<ActionResult> Get(CancellationToken token)
+    #region ListPerfil
+        [HttpGet("ListPerfil")]
+        [EndpointSummary("Listar todos os perfis.")]
+        public async Task<ActionResult> ListPerfil(CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -25,9 +26,10 @@ public class PerfilsController(IPerfilService service, IUsuarioService usuario) 
         }
     #endregion
 
-    #region </GetById>
-        [HttpGet("TPerfilById"), EndpointSummary("Obter Perfil Pelo Id")]
-        public async Task<ActionResult> GetById([FromQuery] GetPerfilByIdCommand command, CancellationToken token)
+    #region GetByIdPerfil
+        [HttpGet("GetByIdPerfil")]
+        [EndpointSummary("Obter perfil pelo ID.")]
+        public async Task<ActionResult> GetByIdPerfil([FromQuery] GetPerfilByIdCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -46,8 +48,9 @@ public class PerfilsController(IPerfilService service, IUsuarioService usuario) 
         }
     #endregion
 
-    #region </Search>
-        [HttpGet("SearchPerfil"), EndpointSummary("Pesquisar Perfil")]
+    #region SearchPerfil
+        [HttpGet("SearchPerfil")]
+        [EndpointSummary("Pesquisar perfil por filtros.")]
         public async Task<ActionResult> Search([FromQuery] SearchPerfilCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)

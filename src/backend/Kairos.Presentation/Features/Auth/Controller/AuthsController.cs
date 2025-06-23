@@ -3,8 +3,9 @@ namespace Kairos.Presentation.Features.Auth.Controller;
 [Route("v1/")]
 public class AuthsController(IUsuarioService service, IAuthenticateIdentity authentication) : ControllerBase
 {
-    #region </Register>
-        [HttpPost("Register"), EndpointSummary("Registrar um novo usuário.")]
+    #region Register
+        [HttpPost("Register")]
+        [EndpointSummary("Registrar um novo usuário no sistema.")]
         public async Task<ActionResult<TokenModel>> Register(CreateUsuarioCommand command, CancellationToken token)
         {
             var emailExist = await authentication.UserExistAsync(command.Email);
@@ -50,7 +51,8 @@ public class AuthsController(IUsuarioService service, IAuthenticateIdentity auth
     #endregion
 
     #region </Login>
-        [HttpPost("Login"), EndpointSummary("Fazendo o login no sistema")]
+        [HttpPost("Login")]
+        [EndpointSummary("Fazer login no sistema e gerar token JWT.")]
         public async Task<ActionResult<TokenModel>> Login(LoginModel login)
         {
             // Verifica se o usuário existe

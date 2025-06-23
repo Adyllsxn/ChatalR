@@ -4,18 +4,20 @@ namespace Kairos.Presentation.Features.Evento.Controller;
 [Authorize]
 public class EventosController(IEventoService service, IUsuarioService usuario) : ControllerBase
 {
-    #region </GetAll>
-        [HttpGet("Eventos"), EndpointSummary("Obter Eventos")]
-        public async Task<ActionResult> GetAllAsync([FromQuery] GetEventosCommand command,CancellationToken token)
+    #region ListEvento
+        [HttpGet("ListEvento")]
+        [EndpointSummary("Listar todos os eventos.")]
+        public async Task<ActionResult> ListEvento([FromQuery] GetEventosCommand command,CancellationToken token)
         {
             var response = await service.GetHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetPendente>
-        [HttpGet("EventosPendetes"), EndpointSummary("Obter Eventos Pendentes")]
-        public async Task<ActionResult> GetPendente([FromQuery] GetEventosCommand command,CancellationToken token)
+    #region GetPendentesEvento
+        [HttpGet("GetPendentesEvento")]
+        [EndpointSummary("Obter eventos pendentes.")]
+        public async Task<ActionResult> GetPendentesEvento([FromQuery] GetEventosCommand command,CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -34,36 +36,40 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
         }
     #endregion
 
-    #region </GetAprovado>
-        [HttpGet("EventosAprovados"), EndpointSummary("Obter Eventos Aprovados")]
-        public async Task<ActionResult> GetAprovado([FromQuery] GetEventosCommand command,CancellationToken token)
+    #region GetAprovadosEvento
+        [HttpGet("GetAprovadosEvento")]
+        [EndpointSummary("Obter eventos aprovados.")]
+        public async Task<ActionResult> GetAprovadosEvento([FromQuery] GetEventosCommand command,CancellationToken token)
         {
             var response = await service.GetAprovadoHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetAll>
-        [HttpGet("EventosReijetados"), EndpointSummary("Obter Eventos Reijetados")]
-        public async Task<ActionResult> GetReijetado([FromQuery] GetEventosCommand command,CancellationToken token)
+    #region GetRejeitadosEvento
+        [HttpGet("GetRejeitadosEvento")]
+        [EndpointSummary("Obter eventos rejeitados.")]
+        public async Task<ActionResult> GetRejeitadosEvento([FromQuery] GetEventosCommand command,CancellationToken token)
         {
             var response = await service.GetReijetadoHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetById>
-        [HttpGet("EventoById"), EndpointSummary("Obter Evento Pelo Id")]
-        public async Task<ActionResult> GetById([FromQuery] GetEventoByIdCommand command, CancellationToken token)
+    #region GetByIdEvento
+        [HttpGet("GetByIdEvento")]
+        [EndpointSummary("Obter evento pelo ID.")]
+        public async Task<ActionResult> GetByIdEvento([FromQuery] GetEventoByIdCommand command, CancellationToken token)
         {
             var response = await service.GetByIdHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </GetFile>
-        [HttpGet("EventoImage"), EndpointSummary("Obter a imagem do Evento Pelo Id")]
-        public async Task<ActionResult> GetFile([FromQuery] GetFileEventoCommand command, CancellationToken token)
+    #region GetImagemEvento
+        [HttpGet("GetImagemEvento")]
+        [EndpointSummary("Obter imagem do evento.")]
+        public async Task<ActionResult> GetImagemEvento([FromQuery] GetFileEventoCommand command, CancellationToken token)
         {
                 if(User.FindFirst("id") == null)
                 {
@@ -87,18 +93,20 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
         }
     #endregion
 
-    #region </Search>
-        [HttpGet("SearchEvento"), EndpointSummary("Pesquisar Evento")]
-        public async Task<ActionResult> Search([FromQuery] SearchEventoCommand command, CancellationToken token)
+    #region SearchEvento
+        [HttpGet("SearchEvento")]
+        [EndpointSummary("Pesquisar eventos por filtros.")]
+        public async Task<ActionResult> SearchEvento([FromQuery] SearchEventoCommand command, CancellationToken token)
         {
             var response = await service.SearchHendler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Create>
-        [HttpPost("CreateEvento"), EndpointSummary("Criar Evento")]
-        public async Task<ActionResult> Create([FromForm] CreateEventoModel model, CancellationToken token)
+    #region CreateEvento
+        [HttpPost("CreateEvento")]
+        [EndpointSummary("Criar um novo evento.")]
+        public async Task<ActionResult> CreateEvento([FromForm] CreateEventoModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -152,9 +160,10 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
         }
     #endregion
 
-    #region </Delete>
-        [HttpDelete("DeleteEvento"), EndpointSummary("Excluir Evento")]
-        public async Task<ActionResult> Delete([FromQuery] DeleteEventoCommand command, CancellationToken token)
+    #region UpdateStatusEvento
+        [HttpPatch("UpdateStatusEvento")]
+        [EndpointSummary("Atualizar status de aprovação do evento.")]
+        public async Task<ActionResult> UpdateStatusEvento(UpdateEventoStatusCommand command, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -163,26 +172,20 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
 
             var userId = User.GetId();
             var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+            if(!(user.Data?.PerfilID == 1))
             {
-                return Unauthorized("Você não tem permissão para excluir evento.");
+                return Unauthorized("Você não tem permissão para aprovar evento.");
             }
 
-
-            var delete = new GetEventoByIdCommand{Id = command.Id};
-            var result = await service.GetByIdHandler(delete, token);
-            if (!string.IsNullOrEmpty(result.Data?.ImagemUrl) && System.IO.File.Exists(result.Data.ImagemUrl))
-            {
-                System.IO.File.Delete(result.Data.ImagemUrl);
-            }
-            var response = await service.DeleteHandler(command,token);
+            var response = await service.StatusHandler(command,token);
             return Ok(response);
         }
     #endregion
 
-    #region </Update>
-        [HttpPut("UpdateEvento"), EndpointSummary("Editar Evento")]
-        public async Task<ActionResult> Update([FromForm] UpdateEventoModel model, CancellationToken token)
+    #region DeleteEvento
+        [HttpDelete("DeleteEvento")]
+        [EndpointSummary("Excluir evento pelo ID.")]
+        public async Task<ActionResult> DeleteEvento([FromForm] UpdateEventoModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -243,27 +246,6 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
             return Ok(response);
         }
 
-    #endregion
-
-    #region </Status>
-        [HttpPatch("UpdateStatusEvento"), EndpointSummary("Editar Status de AProvação de Evento")]
-        public async Task<ActionResult> Update(UpdateEventoStatusCommand command, CancellationToken token)
-        {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
-
-            var userId = User.GetId();
-            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1))
-            {
-                return Unauthorized("Você não tem permissão para aprovar evento.");
-            }
-
-            var response = await service.StatusHandler(command,token);
-            return Ok(response);
-        }
     #endregion
 
 }
