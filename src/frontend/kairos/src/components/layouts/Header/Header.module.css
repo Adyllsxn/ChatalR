@@ -182,13 +182,14 @@
         left: 0;
     }
     .dropBox{
-        margin: auto;
-        width: 90vw;
+        margin-left: -20px;
+        width: 100vw;
     }
     .dropItem{
-        background: transparent;
         box-shadow: none;
         backdrop-filter: none;
+        background: transparent;
+        margin-top: 6px;
     }
     .drop .navLinkDrop{
         font-size: 20px;
