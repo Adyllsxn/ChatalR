@@ -1,5 +1,3 @@
-using Kairos.Presentation.Source.Core.Logs;
-
 namespace Kairos.Presentation.Source.Features.Dashboard;
 [ApiController]
 [Route("v1/")]
