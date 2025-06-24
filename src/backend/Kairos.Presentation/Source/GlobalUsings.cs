@@ -80,5 +80,5 @@
     global using Kairos.Presentation.Source.Setup.Extensions;
     global using Kairos.Presentation.Source.Setup.Pipeline; 
     global using Kairos.Presentation.Source.Setup.Configurations;
-    global using Kairos.Presentation.Source.Core.Log;
+    global using Kairos.Presentation.Source.Core.FileLogger;
 #endregion
