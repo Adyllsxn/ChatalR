@@ -1,4 +1,4 @@
-namespace Kairos.Presentation.Features.Auth.Model;
+namespace Kairos.Presentation.Source.Features.Auth;
 public class TokenModel
 {
     public string Token { get; set; } = null!;

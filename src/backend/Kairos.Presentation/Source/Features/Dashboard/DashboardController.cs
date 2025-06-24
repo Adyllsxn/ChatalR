@@ -1,8 +1,8 @@
-namespace Kairos.Presentation.Features.Dashboard;
+namespace Kairos.Presentation.Source.Features.Dashboard;
 [ApiController]
-[Route("api/")]
+[Route("v1/")]
 [Authorize]
-public class DashboardsController(IDashboardService service, IUsuarioService usuario) : ControllerBase
+public class DashboardController(IDashboardService service, IUsuarioService usuario) : ControllerBase
 {
     #region Dashboard
         [HttpGet("GetDashboard")]
@@ -16,7 +16,7 @@ public class DashboardsController(IDashboardService service, IUsuarioService usu
 
             var userId = User.GetId();
             var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1))
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm))
             {
                 return Unauthorized("Reservado apenas para adm.");
             }
@@ -28,3 +28,4 @@ public class DashboardsController(IDashboardService service, IUsuarioService usu
         }
     #endregion
 }
+

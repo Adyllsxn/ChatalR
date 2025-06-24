@@ -1,5 +1,5 @@
-namespace Kairos.Presentation.Features.Auth.Model;
-public record LoginModel
+namespace Kairos.Presentation.Source.Features.Auth;
+public class AuthModel
 {
     [Required( ErrorMessage = " Email é obrigatório")]
     [MaxLength(250, ErrorMessage = "Email não pode ultrapassar de 200 caracteres")]

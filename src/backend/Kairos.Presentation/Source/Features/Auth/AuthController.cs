@@ -1,7 +1,7 @@
-namespace Kairos.Presentation.Features.Auth.Controller;
+namespace Kairos.Presentation.Source.Features.Auth;
 [ApiController]
 [Route("v1/")]
-public class AuthsController(IUsuarioService service, IAuthenticateIdentity authentication) : ControllerBase
+public class AuthController(IUsuarioService service, IAuthenticateIdentity authentication) : ControllerBase
 {
     #region Register
         [HttpPost("Register")]
@@ -53,7 +53,7 @@ public class AuthsController(IUsuarioService service, IAuthenticateIdentity auth
     #region </Login>
         [HttpPost("Login")]
         [EndpointSummary("Fazer login no sistema e gerar token JWT.")]
-        public async Task<ActionResult<TokenModel>> Login(LoginModel login)
+        public async Task<ActionResult<TokenModel>> Login(AuthModel login)
         {
             // Verifica se o usuário existe
             var usuario = await authentication.GetUserByEmailAsync(login.Email);
@@ -85,3 +85,4 @@ public class AuthsController(IUsuarioService service, IAuthenticateIdentity auth
     #endregion
 
 }
+
