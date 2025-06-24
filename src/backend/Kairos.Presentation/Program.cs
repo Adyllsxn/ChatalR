@@ -1,5 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
-    builder.AddBuildExtensions();
+    builder.AddBuildPipelines();
 
 var app = builder.Build();
 
@@ -7,5 +7,5 @@ var app = builder.Build();
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
-    app.UseAppExtensions();
+    app.UseAppPipelines();
     app.Run();

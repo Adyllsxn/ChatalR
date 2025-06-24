@@ -78,7 +78,7 @@
 
 #region Presentation
     global using Kairos.Presentation.Source.Core.Constants;
-    global using Kairos.Presentation.Core.Extensions;
-    global using Kairos.Presentation.Core.Extensions.Architecture;
-    global using Kairos.Presentation.Core.Configurations;
+    global using Kairos.Presentation.Source.Setup.Extensions;
+    global using Kairos.Presentation.Source.Setup.Pipeline; 
+    global using Kairos.Presentation.Source.Setup.Configurations;
 #endregion
