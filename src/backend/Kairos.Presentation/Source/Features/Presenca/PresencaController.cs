@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Source.Features.Presenca;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class PresencaController(IPresencaService service) : ControllerBase
 {
     #region ListPresenca

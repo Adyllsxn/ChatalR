@@ -1,9 +1,9 @@
 namespace Kairos.Presentation.Source.Features.Usuario;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class UsuarioController(IUsuarioService service)  : ControllerBase
 {
-
     #region ListUsuario
         [HttpGet("ListUsuario")]
         [EndpointSummary("Listar todos os usuários.")]
@@ -207,5 +207,4 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
             return Ok(response);
         }
     #endregion
-
 }

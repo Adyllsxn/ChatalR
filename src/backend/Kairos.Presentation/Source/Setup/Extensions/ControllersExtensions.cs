@@ -10,6 +10,5 @@ public static class ControllersExtensions
         });
 
         builder.Services.AddEndpointsApiExplorer();
-        
     }
 }

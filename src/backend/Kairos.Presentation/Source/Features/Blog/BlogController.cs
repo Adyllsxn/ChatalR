@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Source.Features.Blog;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class BlogController(IBlogService service) : ControllerBase
 {
     #region List
@@ -101,6 +102,5 @@ public class BlogController(IBlogService service) : ControllerBase
             return Ok(response);
         }
     #endregion
-
 }
 

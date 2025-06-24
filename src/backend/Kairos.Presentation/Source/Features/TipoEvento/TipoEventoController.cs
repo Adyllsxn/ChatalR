@@ -98,5 +98,4 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
             return Ok(response);
         }
     #endregion
-
 }

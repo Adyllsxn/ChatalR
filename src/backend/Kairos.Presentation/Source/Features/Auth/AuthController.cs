@@ -83,6 +83,5 @@ public class AuthController(IUsuarioService service, IAuthenticateIdentity authe
         }
 
     #endregion
-
 }
 

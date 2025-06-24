@@ -27,6 +27,5 @@ public class DashboardController(IDashboardService service, IUsuarioService usua
             );
         }
     #endregion
-
 }
 

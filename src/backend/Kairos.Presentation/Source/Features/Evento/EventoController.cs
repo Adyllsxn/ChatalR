@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Source.Features.Evento;
 [ApiController]
 [Route("v1/")]
+[Authorize]
 public class EventoController(IEventoService service, IUsuarioService usuario) : ControllerBase
 {
     #region ListEvento
@@ -246,6 +247,5 @@ public class EventoController(IEventoService service, IUsuarioService usuario) :
         }
 
     #endregion
-
 }
 
