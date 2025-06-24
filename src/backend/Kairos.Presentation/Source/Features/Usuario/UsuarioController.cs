@@ -1,7 +1,7 @@
-namespace Kairos.Presentation.Features.Usuario.Controller;
+namespace Kairos.Presentation.Source.Features.Usuario;
 [ApiController]
 [Route("v1/")]
-public class UsuariosController(IUsuarioService service)  : ControllerBase
+public class UsuarioController(IUsuarioService service)  : ControllerBase
 {
 
     #region ListUsuario
@@ -143,7 +143,7 @@ public class UsuariosController(IUsuarioService service)  : ControllerBase
     #region UpdateFotoUsuario
         [HttpPatch("UpdateFotoUsuario")]
         [EndpointSummary("Atualizar a foto do usuário.")]
-        public async Task<ActionResult> UpdateFotoUsuario([FromForm] UpdateUsuarioFotoModel model, CancellationToken token)
+        public async Task<ActionResult> UpdateFotoUsuario([FromForm] UsuarioUpdateFotoModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {

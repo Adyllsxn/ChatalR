@@ -1,8 +1,7 @@
-namespace Kairos.Presentation.Features.Evento.Controller;
+namespace Kairos.Presentation.Source.Features.Evento;
 [ApiController]
 [Route("v1/")]
-[Authorize]
-public class EventosController(IEventoService service, IUsuarioService usuario) : ControllerBase
+public class EventoController(IEventoService service, IUsuarioService usuario) : ControllerBase
 {
     #region ListEvento
         [HttpGet("ListEvento")]
@@ -106,7 +105,7 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
     #region CreateEvento
         [HttpPost("CreateEvento")]
         [EndpointSummary("Criar um novo evento.")]
-        public async Task<ActionResult> CreateEvento([FromForm] CreateEventoModel model, CancellationToken token)
+        public async Task<ActionResult> CreateEvento([FromForm] EventoCreateModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -185,7 +184,7 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
     #region DeleteEvento
         [HttpDelete("DeleteEvento")]
         [EndpointSummary("Excluir evento pelo ID.")]
-        public async Task<ActionResult> DeleteEvento([FromForm] UpdateEventoModel model, CancellationToken token)
+        public async Task<ActionResult> DeleteEvento([FromForm] EventoUpdateModel model, CancellationToken token)
         {
             if(User.FindFirst("id") == null)
             {
@@ -249,3 +248,4 @@ public class EventosController(IEventoService service, IUsuarioService usuario) 
     #endregion
 
 }
+

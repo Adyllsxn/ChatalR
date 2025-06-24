@@ -1,7 +1,6 @@
-namespace Kairos.Presentation.Features.Evento.Model;
-public class UpdateEventoModel
+namespace Kairos.Presentation.Source.Features.Evento;
+public class EventoCreateModel
 {
-    public int Id { get; set; }
     [Required(ErrorMessage = "Titulo é obrigatório")]
     [MaxLength(100, ErrorMessage = "Título deve ter no máximo 100 caracteres.")]
     [DataType(DataType.Text)]

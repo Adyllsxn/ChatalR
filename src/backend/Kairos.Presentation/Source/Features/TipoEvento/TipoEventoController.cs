@@ -1,8 +1,8 @@
-namespace Kairos.Presentation.Features.TipoEvento.Controller;
+namespace Kairos.Presentation.Source.Features.TipoEvento;
 [ApiController]
 [Route("v1/")]
 [Authorize]
-public class TipoEventosController(ITipoEventoService service, IUsuarioService usuario) : ControllerBase
+public class TipoEventoController(ITipoEventoService service, IUsuarioService usuario) : ControllerBase
 {
     #region ListTipoEvento
         [HttpGet("ListTipoEvento")]

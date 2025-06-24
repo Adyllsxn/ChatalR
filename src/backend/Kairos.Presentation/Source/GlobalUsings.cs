@@ -29,7 +29,6 @@
     global using Kairos.Application.UseCases.Usuario.Status;
     global using Kairos.Application.UseCases.Usuario.Update;
     global using Kairos.Application.UseCases.Usuario.UpdateFoto;
-    global using Kairos.Presentation.Features.Usuario.Model;
 
     global using Kairos.Application.UseCases.Blog.Archive;
     global using Kairos.Application.UseCases.Blog.Create;
@@ -82,5 +81,4 @@
     global using Kairos.Presentation.Core.Extensions;
     global using Kairos.Presentation.Core.Extensions.Architecture;
     global using Kairos.Presentation.Core.Configurations;
-    global using Kairos.Presentation.Features.Evento.Model;
 #endregion

@@ -1,8 +1,8 @@
-namespace Kairos.Presentation.Features.Perfil.Controller;
+namespace Kairos.Presentation.Source.Features.Perfil;
 [ApiController]
 [Route("v1/")]
 [Authorize]
-public class PerfilsController(IPerfilService service, IUsuarioService usuario) : ControllerBase
+public class PerfilController(IPerfilService service, IUsuarioService usuario) : ControllerBase
 {
     #region ListPerfil
         [HttpGet("ListPerfil")]
@@ -70,3 +70,4 @@ public class PerfilsController(IPerfilService service, IUsuarioService usuario) 
         }
     #endregion
 }
+

@@ -1,7 +1,7 @@
-namespace Kairos.Presentation.Features.Presenca.Controller;
+namespace Kairos.Presentation.Source.Features.Presenca;
 [ApiController]
 [Route("v1/")]
-public class PresencasController(IPresencaService service) : ControllerBase
+public class PresencaController(IPresencaService service) : ControllerBase
 {
     #region ListPresenca
         [HttpGet("ListPresenca")]
@@ -43,3 +43,4 @@ public class PresencasController(IPresencaService service) : ControllerBase
         }
     #endregion
 }
+

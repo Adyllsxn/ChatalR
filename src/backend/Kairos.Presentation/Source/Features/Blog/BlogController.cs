@@ -1,7 +1,7 @@
-namespace Kairos.Presentation.Features.Blog.Controller;
+namespace Kairos.Presentation.Source.Features.Blog;
 [ApiController]
 [Route("v1/")]
-public class BlogsController(IBlogService service) : ControllerBase
+public class BlogController(IBlogService service) : ControllerBase
 {
     #region List
         [HttpGet("ListBlog")]
@@ -24,9 +24,9 @@ public class BlogsController(IBlogService service) : ControllerBase
     #endregion
 
     #region GetImage
-        [HttpGet("GetImagelog")]
+        [HttpGet("GetImageBlog")]
         [EndpointSummary("Retorna imagem específico pelo ID")]
-        public async Task<ActionResult> GetImagelog([FromQuery] GetFileBlogCommand command, CancellationToken token) 
+        public async Task<ActionResult> GetImageBlog([FromQuery] GetFileBlogCommand command, CancellationToken token) 
         { 
             var response = await service.GetFileHandler(command, token);
             return Ok(response);
@@ -103,3 +103,4 @@ public class BlogsController(IBlogService service) : ControllerBase
     #endregion
 
 }
+
