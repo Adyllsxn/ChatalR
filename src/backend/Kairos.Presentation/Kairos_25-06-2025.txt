@@ -4,3 +4,9 @@ Título da Mensagem: Register - BadRequest
 Mensagem: Este email já possui um cadastro.
 -------------------------------------------------------------
 
+Log:
+Wednesday, June 25, 2025
+Título da Mensagem: GetByIdBlog - Success
+Mensagem: Post com ID 23 retornado com sucesso.
+-------------------------------------------------------------
+

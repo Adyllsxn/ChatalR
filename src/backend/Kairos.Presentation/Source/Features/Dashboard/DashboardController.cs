@@ -32,9 +32,8 @@ public class DashboardController(IDashboardService service, IUsuarioService usua
             }
             catch(Exception error)
             {
-                Problem($"Error: {error.Message}");
                 Logger.LogToFile("GetDashboard - Success", $"Error {error.Message}");
-                return null!;
+                return Problem($"Error: {error.Message}");
             }
         }
     #endregion
