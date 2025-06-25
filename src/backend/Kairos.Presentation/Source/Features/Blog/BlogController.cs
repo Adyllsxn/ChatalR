@@ -9,8 +9,17 @@ public class BlogController(IBlogService service) : ControllerBase
         [EndpointSummary("Listando todos os posts do blog")]
         public async Task<ActionResult> ListBlog([FromQuery] GetBlogsCommand command, CancellationToken token) 
         { 
-            var response = await service.GetHandler(command, token);
-            return Ok(response);
+            try
+            {
+                var response = await service.GetHandler(command, token);
+                Logger.LogToFile("ListBlog - Success", "Listando todos os posts do blog.");
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                Logger.LogToFile("ListBlog - Error", $"Error {error.Message}");
+                return Problem($"Error: {error.Message}");
+            }
         }
     #endregion
 
@@ -19,8 +28,17 @@ public class BlogController(IBlogService service) : ControllerBase
         [EndpointSummary("Retorna um post específico pelo ID")]
         public async Task<ActionResult> GetByIdBlog([FromQuery] GetBlogByIdCommand command, CancellationToken token) 
         { 
-            var response = await service.GetByIdHandler(command, token);
-            return Ok(response);
+            try
+            {
+                var response = await service.GetByIdHandler(command, token);
+                Logger.LogToFile("GetByIdBlog - Success", "Retorna um post específico pelo ID");
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                Logger.LogToFile("GetByIdBlog, - Error", $"Error: {error.Message}");
+                return Problem($"Error: {error.Message}");
+            }
         }
     #endregion
 
@@ -29,8 +47,17 @@ public class BlogController(IBlogService service) : ControllerBase
         [EndpointSummary("Retorna imagem específico pelo ID")]
         public async Task<ActionResult> GetImageBlog([FromQuery] GetFileBlogCommand command, CancellationToken token) 
         { 
-            var response = await service.GetFileHandler(command, token);
-            return Ok(response);
+            try
+            {
+                var response = await service.GetFileHandler(command, token);
+                Logger.LogToFile("GetImageBlog - Success", "Retorna imagem específico pelo ID");
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                Logger.LogToFile("GetImageBlog - Error", $"Error: {error.Message}");
+                return Problem($"Error: {error.Message}");
+            }
         }
     #endregion
     
