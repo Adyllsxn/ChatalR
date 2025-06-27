@@ -1,1 +1,0 @@
-namespace Kairos.Tests.UnitTests.Repositories.Sugestao;

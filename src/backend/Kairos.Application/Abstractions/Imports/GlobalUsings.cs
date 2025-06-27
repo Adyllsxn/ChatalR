@@ -17,6 +17,7 @@
     global using Kairos.Domain.Foundations.Enums;
     global using Kairos.Domain.Abstrations.Exceptions;
     global using Kairos.Domain.Entities;
+    global using Kairos.Domain.Abstrations.Shared;
 #endregion
 
 #region </Application>

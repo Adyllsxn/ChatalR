@@ -4,7 +4,7 @@ public class CommandResult<TData>
     public bool IsSuccess { get; private set; }
     public string? Message { get; private set; }
     public int Code { get; private set; }
-    public TData? Value { get; private set; }
+    protected TData? Value { get; private set; }
 
     private CommandResult(bool isSuccess, TData? value, string? message, int code)
     {

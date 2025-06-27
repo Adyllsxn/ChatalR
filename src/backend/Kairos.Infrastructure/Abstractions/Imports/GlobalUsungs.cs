@@ -21,6 +21,7 @@
     global using Kairos.Domain.Abstrations.Pagination;
     global using Kairos.Domain.Foundations.Result;
     global using Kairos.Domain.Foundations.Enums;
+    global using Kairos.Domain.Abstrations.Shared;
 #endregion
 
 #region </Infrastructure>

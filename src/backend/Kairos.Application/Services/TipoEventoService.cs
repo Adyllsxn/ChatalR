@@ -1,7 +1,7 @@
 namespace Kairos.Application.Services;
 public class TipoEventoService(CreateTipoEventoHandler create,DeleteTipoEventoHandler delete, GetTipoEventosHandler get, GetTipoEventoByIdHandler getById, SearchTipoEventoHandler search, UpdateTipoEventoHandler update) : ITipoEventoService
 {
-    public async Task<QueryResult<CreateTipoEventoResponse>> CreateHandler(CreateTipoEventoCommand command, CancellationToken token)
+    public async Task<CommandResult<bool>> CreateHandler(CreateTipoEventoCommand command, CancellationToken token)
     {
         return await create.CreateHandler(command, token);
     }
