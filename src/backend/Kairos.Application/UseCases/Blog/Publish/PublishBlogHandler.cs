@@ -1,29 +1,38 @@
 namespace Kairos.Application.UseCases.Blog.Publish;
 public class PublishBlogHandler(IBlogRepository repository, IUnitOfWork unitOfWork)
 {
-    public async Task<QueryResult<PublishBlogResponse>> PublishHandler(PublishBlogCommand command, CancellationToken token)
+    public async Task<CommandResult<bool>> PublishHandler(PublishBlogCommand command, CancellationToken token)
     {
         try
         {
             var resultEntity = await repository.GetByIdAsync(command.Id, token);
-
             if (resultEntity == null || resultEntity.Data == null)
-                return new QueryResult<PublishBlogResponse>(null, 404, "Evento não encontrado.");
+            {
+                return CommandResult<bool>.Failure(
+                    value: false,
+                    message: $"Evento não encontrado.",
+                    code: StatusCode.NotFound
+                    );
+            }
 
             var entity = resultEntity.Data;
-
             entity.Publicar();
 
             await unitOfWork.CommitAsync(token);
-
-            var response = entity.MapToPublishPostagem(); 
-
-            return new QueryResult<PublishBlogResponse>(response, 200, "Status atualizado com sucesso.");
+            return CommandResult<bool>.Success(
+                value: true,
+                message: "Post publicado com sucesso",
+                code: StatusCode.NoContent
+                );
         }
 
         catch (Exception ex)
         {
-            return new QueryResult<PublishBlogResponse>(null, 500, $"Erro ao atualizar status: {ex.Message}");
+            return CommandResult<bool>.Failure(
+                value: false,
+                message: $"Erro ao manipular a operação (PUBLICAR). Erro {ex.Message}.",
+                code: StatusCode.InternalServerError
+                );
         }
     }
 }
