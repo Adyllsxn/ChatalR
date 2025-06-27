@@ -6,6 +6,7 @@ public record DeleteTipoEventoHandler(ITipoEventoRepository repository, IUnitOfW
         try
         {
             var response = await repository.DeleteAsync(command.Id, token);
+
             await unitOfWork.CommitAsync(token);
             return CommandResult<bool>.Success(
                 value: true,
@@ -17,7 +18,7 @@ public record DeleteTipoEventoHandler(ITipoEventoRepository repository, IUnitOfW
         {
             return CommandResult<bool>.Failure(
                 value: false,
-                message: $"Erro ao manipular a operação (DELETAR). Erro {ex.Message}.",
+                message: $"Erro ao manipular a operação (EXCLUIR). Erro {ex.Message}.",
                 code: StatusCode.InternalServerError
                 );
         }

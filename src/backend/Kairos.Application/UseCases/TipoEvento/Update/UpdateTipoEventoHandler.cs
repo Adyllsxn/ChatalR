@@ -7,6 +7,7 @@ public class UpdateTipoEventoHandler(ITipoEventoRepository repository, IUnitOfWo
         {
             var entity = command.MapToTipoEventoEntity();
             var response = await repository.UpdateAsync(entity, token);
+            
             await unitOfWork.CommitAsync(token);
             return CommandResult<bool>.Success(
                 value: true,
@@ -18,7 +19,7 @@ public class UpdateTipoEventoHandler(ITipoEventoRepository repository, IUnitOfWo
         {
             return CommandResult<bool>.Failure(
                 value: false,
-                message: $"Erro ao manipular a operação (UPDATE). Erro {ex.Message}.",
+                message: $"Erro ao manipular a operação (EDITAR). Erro {ex.Message}.",
                 code: StatusCode.InternalServerError
                 );
         }
