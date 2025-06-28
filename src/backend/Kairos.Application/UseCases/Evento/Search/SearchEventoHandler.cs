@@ -5,38 +5,30 @@ public class SearchEventoHandler(IEventoRepository repository)
     {
         try
         {
-            if(command.Titulo == null)
-            {
-                return new QueryResult<List<SearchEventoResponse>>(
-                    null, 
-                    400, 
-                    "Parâmetro não deve estar vazio."
-                    );
-            }
             var response = await repository.SearchAsync(x => x.Titulo.Contains(command.Titulo),string.Empty,token);
 
             if (response.Data == null || !response.Data.Any())
             {
                 return new QueryResult<List<SearchEventoResponse>>(
-                    null, 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: null, 
+                    message: response.Message,
+                    code: response.Code
                     );
             }
+
             var result = response.Data.MapToSearchEvento().ToList();
-            
             return new QueryResult<List<SearchEventoResponse>>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: response.Message,
+                code: response.Code
                 );
         }
         catch (Exception ex)
         {
             return new QueryResult<List<SearchEventoResponse>>(
-                null, 
-                500, 
-                $"Erro ao manipular a operação (SEARCH). Erro: {ex.Message}"
+                data: null, 
+                message: $"Erro ao manipular a operação (SEARCH). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }

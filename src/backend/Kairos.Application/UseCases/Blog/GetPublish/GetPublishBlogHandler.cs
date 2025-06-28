@@ -6,29 +6,28 @@ public class GetPublishBlogHandler(IBlogRepository repository)
         try
         {
             var response = await repository.GetAllPublishAsync(command,token);
-
             if (response.Data == null || !response.Data.Any())
             {
                 return new PagedList<List<GetBlogsResponse>?>(
-                    null, 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: null,
+                    message: response.Message,
+                    code: response.Code
                     );
             }
+
             var result = response.Data.MapToGetBlogs().ToList();
-            
             return new PagedList<List<GetBlogsResponse>?>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: response.Message,
+                code: response.Code
                 );
         }
         catch (Exception ex)
         {
             return new PagedList<List<GetBlogsResponse>?>(
-                null, 
-                500, 
-                $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}"
+                data: null, 
+                message: $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }

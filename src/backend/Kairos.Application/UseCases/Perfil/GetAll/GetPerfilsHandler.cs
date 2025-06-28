@@ -6,29 +6,28 @@ public class GetPerfilsHandler(IPerfilRepository repository)
         try
         {
             var response = await repository.GetAllAsync(token);
-
             if (response.Data == null || !response.Data.Any())
             {
                 return new QueryResult<List<GetPerfilsResponse>>(
-                    null, 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: null, 
+                    response.Message,
+                    code: response.Code
                     );
             }
+
             var result = response.Data.MapToGetPerfils().ToList();
-            
             return new QueryResult<List<GetPerfilsResponse>>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: response.Message,
+                code: response.Code
                 );
         }
         catch (Exception ex)
         {
             return new QueryResult<List<GetPerfilsResponse>>(
-                null, 
-                500, 
-                $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}"
+                data: null, 
+                message: $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }
