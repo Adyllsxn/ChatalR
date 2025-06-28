@@ -1,5 +1,5 @@
-namespace Kairos.Domain.Abstrations.Authentication;
-public interface IAuthenticateIdentity
+namespace Kairos.Domain.Abstrations.Auth;
+public interface IAuthIdentity
 {
     Task<bool> AuthenticateAsync(string email, string senha);
     Task<bool> UserExistAsync(string email);

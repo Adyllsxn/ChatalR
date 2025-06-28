@@ -17,7 +17,7 @@
 #endregion
 
 #region Domain
-    global using Kairos.Domain.Abstrations.Authentication;
+    global using Kairos.Domain.Abstrations.Auth;
 #endregion
 
 #region Infrastructure

@@ -1,4 +1,4 @@
-#region </System>
+#region System
     global using System.Linq.Expressions;
     global using System.Text;
     global using System.IdentityModel.Tokens.Jwt;
@@ -6,7 +6,7 @@
     global using System.Security.Claims;
 #endregion
 
-#region </Microsoft>
+#region Microsoft
     global using Microsoft.EntityFrameworkCore;
     global using Microsoft.Extensions.Configuration;
     global using Microsoft.Extensions.DependencyInjection;
@@ -14,17 +14,17 @@
     global using Microsoft.IdentityModel.Tokens;
 #endregion
 
-#region </Domain>
+#region Domain
     global using Kairos.Domain.Entities;
     global using Kairos.Domain.Abstrations.Interfaces;
-    global using Kairos.Domain.Abstrations.Authentication;
+    global using Kairos.Domain.Abstrations.Auth;
     global using Kairos.Domain.Abstrations.Pagination;
     global using Kairos.Domain.Foundations.Result;
     global using Kairos.Domain.Foundations.Enums;
     global using Kairos.Domain.Abstrations.Shared;
 #endregion
 
-#region </Infrastructure>
+#region Infrastructure
     global using Kairos.Infrastructure.Abstractions.DI;
     global using Kairos.Infrastructure.Abstractions.Identity;
     global using Kairos.Infrastructure.Abstractions.UoW;
