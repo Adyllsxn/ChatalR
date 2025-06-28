@@ -25,9 +25,9 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
             catch (Exception ex)
             {
                 return new PagedList<List<BlogEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET ALL). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -41,32 +41,34 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<BlogEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null, 
+                        message: $"ID {entityId} deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
+
                 var response = await context.Blogs.Include(x => x.Usuario).FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<BlogEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null, 
+                        message: "Post não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
+
                 return new QueryResult<BlogEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data:response, 
+                    message: "Post encontrado com sucesso.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<BlogEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data: null,
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -80,32 +82,32 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<BlogEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null, 
+                        message: "ID deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Blogs.Include(x => x.Usuario).FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<BlogEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null, 
+                        message: "ID não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
                 return new QueryResult<BlogEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response, 
+                    message:"Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<BlogEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data:null, 
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -139,9 +141,9 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
             catch (Exception ex)
             {
                 return new PagedList<List<BlogEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    data: null,
+                    message: $"Erro ao executar a operação (GET ALL). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -155,33 +157,33 @@ public class BlogRepository(AppDbContext context) : IBlogRepository
                 if(entity == null)
                 {
                     return new QueryResult<List<BlogEntity>?>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
+                        data: null, 
+                        message: "Parâmetros não podem estar vazio.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Blogs.Include(x => x.Usuario).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new QueryResult<List<BlogEntity>?>(
-                        null, 
-                        404, 
-                        "Nenhum dado encontrado."
+                        data: null, 
+                        message: "Nenhum dado encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
 
                 return new QueryResult<List<BlogEntity>?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response,  
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<List<BlogEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (SEARCH). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (SEARCH). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
