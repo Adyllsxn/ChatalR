@@ -25,9 +25,9 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
             catch (Exception ex)
             {
                 return new PagedList<List<UsuarioEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET ALL). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -41,32 +41,32 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<UsuarioEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null, 
+                        message: "ID deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<UsuarioEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null, 
+                        message: "ID não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
                 return new QueryResult<UsuarioEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response, 
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<UsuarioEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -80,32 +80,32 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<UsuarioEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null, 
+                        message: "ID deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Usuarios.Where( x => x.IsActive == true).Include(x => x.Perfil).FirstOrDefaultAsync( x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<UsuarioEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null, 
+                        message: "ID não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
                 return new QueryResult<UsuarioEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response, 
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<UsuarioEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data: null,  
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -148,33 +148,33 @@ public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
                 if(entity == null)
                 {
                     return new QueryResult<List<UsuarioEntity>?>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
+                        data: null,
+                        message: "Parâmetros não podem estar vazio.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Usuarios.Where( x => x.IsActive == true).Include(x => x.Perfil).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new QueryResult<List<UsuarioEntity>?>(
-                        null, 
-                        404, 
-                        "Nenhum dado encontrado."
+                        data: null, 
+                        message: "Nenhum dado encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
 
                 return new QueryResult<List<UsuarioEntity>?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response,
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<List<UsuarioEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (SEARCH). Erro {ex.Message}."
+                    data: null,  
+                    message: $"Erro ao executar a operação (SEARCH). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }

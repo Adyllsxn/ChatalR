@@ -25,9 +25,9 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
             catch (Exception ex)
             {
                 return new PagedList<List<PresencaEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET ALL). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -41,32 +41,32 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<PresencaEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null, 
+                        message: "ID deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<PresencaEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null, 
+                        message: "ID não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
                 return new QueryResult<PresencaEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response, 
+                    message: "Dados encontrado.",
+                    code: StatusCode.InternalServerError
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<PresencaEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }

@@ -1,7 +1,7 @@
 namespace Kairos.Infrastructure.Abstractions.Identity;
-public class AuthenticateIdentity(AppDbContext context, IConfiguration configuration) : IAuthenticateIdentity
+public class AuthIdentity(AppDbContext context, IConfiguration configuration) : IAuthIdentity
 {
-    #region </Authentication>
+    #region Authentication
         public async Task<bool> AuthenticateAsync(string email, string senha)
         {
             try
@@ -29,7 +29,7 @@ public class AuthenticateIdentity(AppDbContext context, IConfiguration configura
         }
     #endregion
     
-    #region </GenerateToken>
+    #region GenerateToken
         public string GenerateTokenAsync(int id, string email)
         {
             try
@@ -61,14 +61,14 @@ public class AuthenticateIdentity(AppDbContext context, IConfiguration configura
         }
     #endregion
 
-    #region </GetByEmail>
+    #region GetByEmail
         public async Task<UsuarioEntity?> GetUserByEmailAsync(string email)
         {
             return await context.Usuarios.AsNoTracking().Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
     #endregion
 
-    #region </Exist>
+    #region Exist
         public async Task<bool> UserExistAsync(string email)
         {
             return await context.Usuarios.AsNoTracking().AnyAsync(x => x.Email.ToLower() == email.ToLower());

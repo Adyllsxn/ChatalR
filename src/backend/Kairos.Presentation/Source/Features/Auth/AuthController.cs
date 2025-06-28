@@ -1,7 +1,7 @@
 namespace Kairos.Presentation.Source.Features.Auth;
 [ApiController]
 [Route("v1/")]
-public class AuthController(IUsuarioService service, IAuthenticateIdentity authentication) : ControllerBase
+public class AuthController(IUsuarioService service, IAuthIdentity authentication) : ControllerBase
 {
     #region Register
         [HttpPost("Register")]

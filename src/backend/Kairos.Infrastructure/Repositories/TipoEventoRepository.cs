@@ -26,9 +26,9 @@ public class TipoEventoRepository(AppDbContext context) : ITipoEventoRepository
             catch (Exception ex)
             {
                 return new PagedList<List<TipoEventoEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET ALL). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET ALL). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -42,32 +42,32 @@ public class TipoEventoRepository(AppDbContext context) : ITipoEventoRepository
                 if(entityId <= 0)
                 {
                     return new QueryResult<TipoEventoEntity?>(
-                        null, 
-                        400, 
-                        "ID deve ser maior que zero."
+                        data: null,  
+                        message: "ID deve ser maior que zero.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.TipoEventos.FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if(response == null)
                 {
                     return new QueryResult<TipoEventoEntity?>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
+                        data: null,
+                        message: "ID não encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
                 return new QueryResult<TipoEventoEntity?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response,
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<TipoEventoEntity?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (GET BY ID). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
@@ -81,33 +81,33 @@ public class TipoEventoRepository(AppDbContext context) : ITipoEventoRepository
                 if(entity == null)
                 {
                     return new QueryResult<List<TipoEventoEntity>?>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
+                        data: null,  
+                        message: "Parâmetros não podem estar vazio.",
+                        code: StatusCode.BadRequest
                         );
                 }
                 var response = await context.TipoEventos.Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new QueryResult<List<TipoEventoEntity>?>(
-                        null, 
-                        404, 
-                        "Nenhum dado encontrado."
+                        data: null, 
+                        message: "Nenhum dado encontrado.",
+                        code: StatusCode.NotFound
                         );
                 }
 
                 return new QueryResult<List<TipoEventoEntity>?>(
-                    response, 
-                    200, 
-                    "Dados encontrado."
+                    data: response, 
+                    message:"Dados encontrado.",
+                    code: StatusCode.OK
                     );
             }
             catch (Exception ex)
             {
                 return new QueryResult<List<TipoEventoEntity>?>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (SEARCH). Erro {ex.Message}."
+                    data: null, 
+                    message: $"Erro ao executar a operação (SEARCH). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }

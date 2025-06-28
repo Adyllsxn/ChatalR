@@ -14,5 +14,5 @@ public class PagedList<TData> : QueryResult<TData>
         CurrentPage = currentPage;
         PageSize = pageSize;
     }
-    public PagedList(TData? data, int code, string? message = null) : base(data, code, message){}
+    public PagedList(TData? data, int code, string? message = null) : base(data, message,code){}
 }

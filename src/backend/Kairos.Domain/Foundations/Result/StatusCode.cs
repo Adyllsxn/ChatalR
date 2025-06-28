@@ -1,7 +1,7 @@
 namespace Kairos.Domain.Abstrations.Shared;
 public static class StatusCode
 {
-    public const int DefaultStatusCode = 200;
+    public const int OK = 200;
     public const int Created = 201;
     public const int NoContent = 204;
     public const int BadRequest = 400;

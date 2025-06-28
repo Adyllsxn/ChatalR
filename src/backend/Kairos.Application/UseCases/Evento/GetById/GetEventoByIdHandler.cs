@@ -5,37 +5,29 @@ public class GetEventoByIdHandler(IEventoRepository repository)
     {
         try
         {
-            if(command.Id <= 0)
-            {
-                return new QueryResult<GetEventoByIdResponse>(
-                    null,
-                    400,
-                    "ID deve ser maior que zero."
-                );
-            }
             var response = await repository.GetByIdAsync(command.Id, token);
             if (response.Data == null)
             {
                 return new QueryResult<GetEventoByIdResponse>(
-                    null, 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: null, 
+                    message: response.Message,
+                    code: response.Code
                     );
             }
+
             var result = response.Data.MapToGetEventoById();
-            
             return new QueryResult<GetEventoByIdResponse>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: response.Message,
+                code: response.Code
                 );
         }
         catch(Exception ex)
         {
             return new QueryResult<GetEventoByIdResponse>(
-                null, 
-                500, 
-                $"Erro ao manipular a operação (GET BY ID). Erro: {ex.Message}"
+                data: null,  
+                message: $"Erro ao manipular a operação (GET BY ID). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }
