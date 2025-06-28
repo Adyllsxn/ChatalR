@@ -1,32 +1,40 @@
 namespace Kairos.Application.UseCases.Usuario.Update;
 public class UpdateUsuarioHandler(IUsuarioRepository repository, IUnitOfWork unitOfWork)
 {
-    public async Task<QueryResult<UpdateUsuarioResponse>> UpdateHandler(UpdateUsuarioCommand command, CancellationToken token)
+    public async Task<CommandResult<bool>> UpdateHandler(UpdateUsuarioCommand command, CancellationToken token)
     {
         try
         {
             var resultEntity = await repository.GetByIdAsync(command.Id, token);
 
             if (resultEntity == null || resultEntity.Data == null)
-                return new QueryResult<UpdateUsuarioResponse>(null, 404, "Evento não encontrado.");
+            {
+                return CommandResult<bool>.Failure(
+                    value: false,
+                    message: $"Evento não encontrado.",
+                    code: StatusCode.NotFound
+                    );
+            }
 
             var entity = resultEntity.Data;
 
             entity.UpdateInfo(command.Id,command.Nome, command.SobreNome,command.Email,command.DataCadastro,command.Telefone,command.BI);
 
             await unitOfWork.CommitAsync(token);
-
-            var response = entity.MapToUpdateUsuarioResponse(); 
-
-            return new QueryResult<UpdateUsuarioResponse>(response, 200, "Status atualizado com sucesso.");
-        }
-        catch (DomainValidationException ex)
-        {
-            return new QueryResult<UpdateUsuarioResponse>(null, 400, ex.Message);
+            //var response = entity.MapToUpdateUsuarioResponse(); 
+            return CommandResult<bool>.Success(
+                value: true,
+                message: "Operação executada com sucesso",
+                code: StatusCode.NoContent
+                );
         }
         catch (Exception ex)
         {
-            return new QueryResult<UpdateUsuarioResponse>(null, 500, $"Erro ao atualizar status: {ex.Message}");
+            return CommandResult<bool>.Failure(
+                value: false,
+                message: $"Erro ao manipular a operação (EDITAR). Erro {ex.Message}.",
+                code: StatusCode.InternalServerError
+                );
         }
     }
 }

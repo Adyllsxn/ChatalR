@@ -1,30 +1,38 @@
 namespace Kairos.Application.UseCases.Usuario.UpdateFoto;
 public class UpdateUsuarioFotoHandler(IUsuarioRepository repository, IUnitOfWork unitOfWork)
 {
-    public async Task<QueryResult<bool>> UpdateFotoHandler(UpdateUsuarioFotoCommand command, CancellationToken token)
+    public async Task<CommandResult<bool>> UpdateFotoHandler(UpdateUsuarioFotoCommand command, CancellationToken token)
     {
         try
         {
             var resultEntity = await repository.GetByIdAsync(command.Id, token);
 
             if (resultEntity == null || resultEntity.Data == null)
-                return new QueryResult<bool>(false, 404, "Usuario não encontrado.");
+            {
+                return CommandResult<bool>.Failure(
+                    value: false,
+                    message: $"Usuario {command.Id} não encontrado.",
+                    code: StatusCode.NoContent
+                    );
+            }
 
             var entity = resultEntity.Data;
-
             entity.UpdateFoto(command.Id,command.FotoUrl);
 
             await unitOfWork.CommitAsync(token);
-
-            return new QueryResult<bool>(true, 200, "Foto atualizado com sucesso.");
-        }
-        catch (DomainValidationException ex)
-        {
-            return new QueryResult<bool>(false, 400, ex.Message);
+            return CommandResult<bool>.Success(
+                value: true,
+                message: "Foto atualizado com sucesso.",
+                code: StatusCode.NoContent
+                );
         }
         catch (Exception ex)
         {
-            return new QueryResult<bool>(false, 500, $"Erro ao atualizar status: {ex.Message}");
+            return CommandResult<bool>.Failure(
+                value: false,
+                message: $"Erro ao manipular a operação (EDITAR FOTO). Erro {ex.Message}.",
+                code: StatusCode.InternalServerError
+                );
         }
     }
 }

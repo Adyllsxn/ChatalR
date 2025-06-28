@@ -1,77 +1,6 @@
 namespace Kairos.Infrastructure.Repositories;
 public class PerfilRepository(AppDbContext context) : IPerfilRepository
 {
-    #region Create
-        public async Task<QueryResult<PerfilEntity>> CreateAsync(PerfilEntity entity, CancellationToken token)
-        {
-            try
-            {
-                if(entity == null)
-                {
-                    return new QueryResult<PerfilEntity>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
-                        );
-                }
-                await context.Perfils.AddAsync(entity, token);
-                return new QueryResult<PerfilEntity>(
-                    entity, 
-                    201, 
-                    "Operação executada com sucesso."
-                    );
-            }
-            catch (Exception ex)
-            {
-                return new QueryResult<PerfilEntity>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (CRIAR). Erro {ex.Message}."
-                    );
-            }
-        }
-    #endregion
-
-    #region Delete
-        public async Task<QueryResult<bool>> DeleteAsync(int entityId, CancellationToken token)
-        {
-            try
-            {
-                if (entityId <= 0)
-                {
-                    return new QueryResult<bool>(
-                        false, 
-                        400, 
-                        "ID deve ser maior que zero."
-                        );
-                }
-                var response = await context.Perfils.FirstOrDefaultAsync(x => x.Id == entityId, token);
-                if (response == null)
-                {
-                    return new QueryResult<bool>(
-                        false, 
-                        404, 
-                        "ID não encontrado."
-                        );
-                }
-                context.Perfils.Remove(response);
-                return new QueryResult<bool>(
-                    true, 
-                    200, 
-                    "Operação executada com sucesso."
-                    );
-            }
-            catch (Exception ex)
-            {
-                return new QueryResult<bool>(
-                    false, 
-                    500, 
-                    $"Erro ao executar a operação (DELETAR). Erro {ex.Message}."
-                    );
-            }
-        }
-    #endregion
-
     #region GetAll
         public async Task<QueryResult<List<PerfilEntity>?>> GetAllAsync(CancellationToken token)
         {
@@ -182,44 +111,5 @@ public class PerfilRepository(AppDbContext context) : IPerfilRepository
             }
         }
     #endregion
-
-    #region Update
-        public async Task<QueryResult<PerfilEntity>> UpdateAsync(PerfilEntity entity, CancellationToken token)
-        {
-            try
-            {
-                if(entity == null)
-                {
-                    return new QueryResult<PerfilEntity>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
-                        );
-                }
-                var response = await context.Perfils.FindAsync(entity.Id);
-                if(response == null)
-                {
-                    return new QueryResult<PerfilEntity>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
-                        );
-                }
-                context.Entry(response).CurrentValues.SetValues(entity);
-                return new QueryResult<PerfilEntity>(
-                    response, 
-                    200, 
-                    "Operação executada com sucesso."
-                    );
-            }
-            catch (Exception ex)
-            {
-                return new QueryResult<PerfilEntity>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (UPDATE). Erro {ex.Message}."
-                    );
-            }
-        }
-    #endregion
+    
 }

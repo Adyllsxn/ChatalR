@@ -1,7 +1,7 @@
 namespace Kairos.Application.UseCases.Usuario.Create;
 public class CreateUsuarioHandler(IUsuarioRepository repository, IUnitOfWork unitOfWork)
 {
-    public async Task<QueryResult<CreateUsuarioResponse>> CreateHandler(CreateUsuarioCommand command, CancellationToken token)
+    public async Task<CommandResult<bool>> CreateHandler(CreateUsuarioCommand command, CancellationToken token)
     {
         try
         {
@@ -18,19 +18,18 @@ public class CreateUsuarioHandler(IUsuarioRepository repository, IUnitOfWork uni
 
             var response = await repository.CreateAsync(entity, token);
             await unitOfWork.CommitAsync(token);
-
-            return new QueryResult<CreateUsuarioResponse>(
-                response.Data?.MapToCreateUsuario(), 
-                response.Code, 
-                response.Message
-            );
+            return CommandResult<bool>.Success(
+                value: true,
+                message: response.Message,
+                code: response.Code
+                );
         }
         catch(Exception ex)
         {
-            return new QueryResult<CreateUsuarioResponse>(
-                null, 
-                500, 
-                $"Erro ao manipular a operação (CRIAR). Erro: {ex.Message}"
+            return CommandResult<bool>.Failure(
+                value: false,
+                message: $"Erro ao manipular a operação (CRIAR). Erro {ex.Message}.",
+                code: StatusCode.InternalServerError
                 );
         }
     }

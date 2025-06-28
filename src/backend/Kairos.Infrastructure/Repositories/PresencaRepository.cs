@@ -1,77 +1,6 @@
 namespace Kairos.Infrastructure.Repositories;
 public class PresencaRepository(AppDbContext context) : IPresencaRepository
 {
-    #region Create
-        public async Task<QueryResult<PresencaEntity>> CreateAsync(PresencaEntity entity, CancellationToken token)
-        {
-            try
-            {
-                if(entity == null)
-                {
-                    return new QueryResult<PresencaEntity>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
-                        );
-                }
-                await context.Presencas.AddAsync(entity, token);
-                return new QueryResult<PresencaEntity>(
-                    entity, 
-                    201, 
-                    "Operação executada com sucesso."
-                    );
-            }
-            catch (Exception ex)
-            {
-                return new QueryResult<PresencaEntity>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (CRIAR). Erro {ex.Message}."
-                    );
-            }
-        }
-    #endregion
-
-    #region Delete
-        public async Task<QueryResult<bool>> DeleteAsync(int entityId, CancellationToken token)
-        {
-            try
-            {
-                if (entityId <= 0)
-                {
-                    return new QueryResult<bool>(
-                        false, 
-                        400, 
-                        "ID deve ser maior que zero."
-                        );
-                }
-                var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
-                if (response == null)
-                {
-                    return new QueryResult<bool>(
-                        false, 
-                        404, 
-                        "ID não encontrado."
-                        );
-                }
-                context.Presencas.Remove(response);
-                return new QueryResult<bool>(
-                    true, 
-                    200, 
-                    "Operação executada com sucesso."
-                    );
-            }
-            catch (Exception ex)
-            {
-                return new QueryResult<bool>(
-                    false, 
-                    500, 
-                    $"Erro ao executar a operação (DELETAR). Erro {ex.Message}."
-                    );
-            }
-        }
-    #endregion
-
     #region GetAll
         public async Task<PagedList<List<PresencaEntity>?>> GetAllAsync(PagedRequest request, CancellationToken token)
         {
@@ -142,44 +71,78 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
             }
         }
     #endregion
-
-    #region Update
-        public async Task<QueryResult<PresencaEntity>> UpdateAsync(PresencaEntity entity, CancellationToken token)
+    
+    #region Create
+        public async Task<CommandResult<bool>> CreateAsync(PresencaEntity entity, CancellationToken token)
         {
             try
             {
                 if(entity == null)
                 {
-                    return new QueryResult<PresencaEntity>(
-                        null, 
-                        400, 
-                        "Parâmetros não podem estar vazio."
+                    return CommandResult<bool>.Failure(
+                        value: false,
+                        message: "Parâmetros não podem estar vazio.",
+                        code: StatusCode.BadRequest
                         );
                 }
-                var response = await context.Presencas.FindAsync(entity.Id);
-                if(response == null)
-                {
-                    return new QueryResult<PresencaEntity>(
-                        null, 
-                        404, 
-                        "ID não encontrado."
-                        );
-                }
-                context.Entry(response).CurrentValues.SetValues(entity);
-                return new QueryResult<PresencaEntity>(
-                    response, 
-                    200, 
-                    "Operação executada com sucesso."
+
+                await context.Presencas.AddAsync(entity, token);
+                return CommandResult<bool>.Success(
+                    value: true,
+                    message: "Operação executada com sucesso.",
+                    code: StatusCode.Created
                     );
             }
             catch (Exception ex)
             {
-                return new QueryResult<PresencaEntity>(
-                    null, 
-                    500, 
-                    $"Erro ao executar a operação (UPDATE). Erro {ex.Message}."
+                return CommandResult<bool>.Failure(
+                    value: false,
+                    message: $"Erro ao executar a operação (CRIAR). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
                     );
             }
         }
     #endregion
+
+    #region Delete
+        public async Task<CommandResult<bool>> DeleteAsync(int entityId, CancellationToken token)
+        {
+            try
+            {
+                if (entityId <= 0)
+                {
+                    return CommandResult<bool>.Failure(
+                        value: false,
+                        message: $"ID {entityId} deve ser maior que zero.",
+                        code: StatusCode.BadRequest
+                        );
+                }
+                var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
+                if (response == null)
+                {
+                    return CommandResult<bool>.Failure(
+                        value: false,
+                        message: $"ID {entityId} não encontrado.",
+                        code: StatusCode.NotFound
+                        );
+                }
+
+                context.Presencas.Remove(response);
+                return CommandResult<bool>.Success(
+                    value: true,
+                    message: "Operação executada com sucesso.",
+                    code: StatusCode.NoContent
+                    );
+            }
+            catch (Exception ex)
+            {
+                return CommandResult<bool>.Failure(
+                    value: false,
+                    message: $"Erro ao executar a operação (EXCLUIR). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
+                    );
+            }
+        }
+    #endregion
+
 }
