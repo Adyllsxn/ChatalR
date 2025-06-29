@@ -55,9 +55,6 @@ const Header = ({ onLogout }: HeaderProps) => {
                             <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Eventos</Link>
                         </li>
                         <li className={styles.navBarItem}>
-                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>KairosChat </Link>
-                        </li>
-                        <li className={styles.navBarItem}>
                             <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Blog</Link>
                         </li>
                         <li className={styles.navBarItem}>
