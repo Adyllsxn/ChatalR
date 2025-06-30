@@ -1,20 +1,14 @@
-# 📘 Regras de Negócio (RN) – Sistema Kairos
+# 📘 Regras de Negócio (RN) – MVP do Sistema Kairos
 
-| ID     | Nome                                                      | Descrição                                                                                                                                             |
-|--------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **RN01** | Validação de dados no cadastro de usuário                 | O cadastro de usuário deve validar campos obrigatórios como nome, email, senha, perfil, telefone e BI.                                               |
-| **RN02** | Senha segura com hash e salt                             | A senha do usuário deve ser armazenada de forma segura utilizando `passwordHash` e `passwordSalt`.                                                  |
-| **RN03** | Perfis determinam permissões no sistema                  | O sistema deve limitar ações de acordo com o `perfilId`: Administrador, Organizador ou Membro.                                                       |
-| **RN04** | Apenas administradores podem cadastrar perfis            | O cadastro e a edição de perfis de usuários são exclusivos de usuários com perfil de Administrador.                                                  |
-| **RN05** | Tipos de evento gerenciados apenas por organizadores     | Apenas organizadores têm permissão para criar e editar tipos de evento.                                                                              |
-| **RN06** | Eventos exigem preenchimento completo                    | Ao criar ou editar eventos, todos os campos obrigatórios (título, tipo, local, data etc.) devem ser preenchidos.                                    |
-| **RN07** | Apenas eventos aprovados são visíveis                    | Eventos só devem ser exibidos aos usuários após aprovação pelo responsável (ex: pastor ou administrador).                                           |
-| **RN08** | Somente o criador pode editar ou excluir seu evento      | Um organizador só pode editar ou excluir os eventos que ele mesmo criou.                                                                             |
-| **RN09** | Check-in permitido apenas em eventos aprovados e ativos  | Os usuários só poderão registrar presença em eventos cuja data esteja vigente e cujo status esteja aprovado.                                         |
-| **RN10** | Cada usuário pode registrar apenas um check-in por evento| O sistema deve impedir múltiplos registros de presença para o mesmo evento por um mesmo usuário.                                                    |
-| **RN11** | Histórico de presença é pessoal e intransferível         | O histórico de eventos é exclusivo de cada usuário e não pode ser visualizado por outros.                                                             |
-| **RN12** | Relatórios acessíveis apenas a administradores           | A geração de relatórios e dashboards é restrita a perfis administrativos.                                                                            |
-| **RN13** | Exportação só com permissão administrativa               | A exportação de dados (eventos, usuários, presenças) deve ser permitida apenas para administradores.                                                 |
-| **RN14** | Posts precisam de aprovação para serem exibidos          | Posts devem ter status “Publicado” para aparecerem no blog, após passarem por uma etapa de revisão.                                                  |
-| **RN15** | Posts reprovados ou rascunhos não são exibidos           | Posts com status “Rascunho” ou “Rejeitado” não devem ser exibidos aos usuários.                                                                      |
-| **RN16** | Visualização de conteúdo do blog é livre                 | Qualquer usuário pode visualizar posts do blog que estejam com status “Publicado”.                                                                   |
+| ID    | Nome                                 | Descrição                                                       |
+|-------|--------------------------------------|------------------------------------------------------------------|
+| RN01  | Validação no Cadastro                | Campos como nome, email e BI são obrigatórios.                  |
+| RN02  | Senha Segura                         | Senhas devem usar hash e salt.                                  |
+| RN03  | Permissões por Perfil                | Acesso conforme perfil: Admin, Organizador ou Membro.           |
+| RN04  | Tipos de Evento                      | Apenas organizadores podem criar ou editar.                     |
+| RN05  | Dados Obrigatórios em Evento         | Eventos exigem título, tipo, data, local e imagem.              |
+| RN06  | Edição Limitada                      | Organizadores só podem editar/excluir seus próprios eventos.    |
+| RN07  | Exibição de Eventos                  | Apenas eventos ativos e aprovados são visíveis.                 |
+| RN08  | Confirmação Única de Presença        | Um usuário só pode confirmar presença uma vez por evento.       |
+| RN09  | Histórico de Presença Pessoal        | Cada usuário só vê o próprio histórico.                         |
+| RN10  | Publicação de Posts                  | Só organizadores publicam posts; apenas publicados são visíveis.|

@@ -70,3 +70,12 @@ KAIROS/
 ├── LICENSE                         # Licença de uso do projeto (MIT, permissiva)
 ├── README.md                       # Introdução ao projeto, funcionalidades, estrutura e como rodar
 └── Kairos.sln                      # Arquivo de solução do Visual Studio (.NET)
+```
+
+---
+
+## Demo Screeshots
+
+![Kairos Desktop Demo](./doc/visual/wireframe/web/desktop.png "Desktop Demo")
+
+![Kairos Mobile Demo](./doc/visual/wireframe/web/mobile.png "Mobile Demo")

@@ -1,24 +1,17 @@
-# ✅ Requisitos Funcionais (RF) – Sistema Kairos
+# ✅ Requisitos Funcionais (RF) – MVP do Sistema Kairos
 
-| ID     | Nome                                              | Descrição                                                                                                                                   | Prioridade |
-|--------|---------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| **RF01** | Cadastro de Usuário                                  | O sistema deve permitir o cadastro de novos usuários, informando nome, sobrenome, email, senha, perfil, telefone, BI, etc.                   | 🔴 Alta     |
-| **RF02** | Login e Autenticação                                | O sistema deve autenticar usuários com base em email e senha (utilizando `passwordHash` e `passwordSalt`).                                   | 🔴 Alta     |
-| **RF03** | Gerenciamento de Perfil de Usuário                   | O usuário poderá editar seus dados pessoais, incluindo nome, sobrenome, email, telefone, BI e foto de perfil.                                | 🟠 Média    |
-| **RF04** | Diferenciação por Perfil                             | O sistema deve restringir permissões com base no `perfilId`, diferenciando Administrador, Organizador e Membro.                              | 🔴 Alta     |
-| **RF05** | Cadastro de Perfis                                   | Administradores poderão cadastrar e editar tipos de perfil no sistema.                                                                       | 🟢 Baixa    |
-| **RF06** | Cadastro de Tipos de Evento                          | Organizadores poderão criar e manter tipos de evento, como "Culto", "Vigília", etc.                                                          | 🟠 Média    |
-| **RF07** | Criação de Eventos                                   | Organizadores poderão cadastrar novos eventos, com título, descrição, tipo, local, data e imagem.                                            | 🔴 Alta     |
-| **RF08** | Edição e Exclusão de Eventos                         | Organizadores poderão editar ou excluir eventos cadastrados por eles.                                                                        | 🔴 Alta     |
-| **RF09** | Aprovação de Eventos                                 | Eventos cadastrados deverão passar por aprovação (campo `statusAprovacao`) antes de serem publicados.                                       | 🔴 Alta     |
-| **RF10** | Listagem de Eventos                                  | O sistema deve exibir uma lista de todos os eventos aprovados para os usuários.                                                              | 🔴 Alta     |
-| **RF11** | Visualização de Detalhes do Evento                   | O usuário poderá ver informações completas sobre o evento: título, descrição, data/hora, local, imagem e tipo.                               | 🔴 Alta     |
-| **RF12** | Registro de Presença (Check-in)                      | Usuários poderão registrar presença em eventos através do sistema (check-in digital).                                                        | 🔴 Alta     |
-| **RF13** | Confirmação de Presença                              | O sistema deve permitir confirmação da presença dos usuários, gravando o status e data/hora do check-in.                                     | 🔴 Alta     |
-| **RF14** | Histórico de Presenças                               | O usuário poderá visualizar seu histórico de participações em eventos.                                                                       | 🟠 Média    |
-| **RF15** | Dashboard de Participação                            | O sistema deve fornecer gráficos de frequência com base nos dados da `Tbl_Presenca`.                                                         | 🟠 Média    |
-| **RF16** | Geração de Relatórios de Eventos                     | O sistema deverá gerar relatórios por período com base nos eventos realizados (ex: mensal, anual).                                           | 🔴 Alta     |
-| **RF17** | Exportação de Dados                                  | Administradores poderão exportar dados de eventos, presença ou usuários nos formatos Excel ou PDF.                                           | 🟠 Média    |
-| **RF18** | Publicação de Posts no Blog                          | Organizadores poderão criar posts com título, conteúdo, imagem de capa e status.                                                             | 🟠 Média    |
-| **RF19** | Aprovação e Status de Posts                          | Os posts devem ter controle de status (rascunho, publicado, rejeitado) antes de serem exibidos no sistema.                                  | 🟠 Média    |
-| **RF20** | Visualização de Conteúdo do Blog                     | O sistema permitirá aos usuários visualizar os posts aprovados/publicados com suas respectivas informações.                                  | 🟠 Média    |
+| ID     | Nome                           | Descrição                                                                 | Prioridade |
+|--------|--------------------------------|---------------------------------------------------------------------------|------------|
+| RF01   | Cadastro de Usuário            | Cadastro de usuários com nome, email, senha, perfil, telefone e BI        | 🔴 Alta     |
+| RF02   | Login e Autenticação           | Autenticação via email e senha com hash e salt                            | 🔴 Alta     |
+| RF03   | Gerenciamento de Perfil        | Edição de dados pessoais e foto de perfil pelo próprio usuário            | 🟠 Média    |
+| RF04   | Diferenciação por Perfil       | Funções disponíveis conforme o tipo de perfil: Admin, Organizador, Membro| 🔴 Alta     |
+| RF05   | Controle de Acesso por Perfil  | Restrições de permissões conforme o perfil do usuário                     | 🔴 Alta     |
+| RF06   | Cadastro de Tipos de Evento    | Criar e gerenciar tipos como Culto, Vigília, etc.                         | 🟠 Média    |
+| RF07   | Gestão de Eventos              | Criar, editar e excluir eventos com título, tipo, local, data e imagem    | 🔴 Alta     |
+| RF08   | Listagem de Eventos            | Exibir todos os eventos disponíveis para os usuários                      | 🔴 Alta     |
+| RF09   | Detalhes do Evento             | Visualizar dados completos do evento: título, data, local, tipo e imagem  | 🔴 Alta     |
+| RF10   | Confirmação de Presença        | Confirmar presença com data/hora vinculada ao evento                      | 🔴 Alta     |
+| RF11   | Histórico de Presenças         | Exibir histórico de participação do usuário em eventos                    | 🟠 Média    |
+| RF12   | Publicação de Posts no Blog    | Criar posts com título, conteúdo e imagem de capa                         | 🟠 Média    |
+| RF13   | Visualização de Conteúdo do Blog | Visualizar posts publicados e aprovados com suas informações             | 🟠 Média    |
