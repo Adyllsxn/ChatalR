@@ -16,7 +16,6 @@ Os testes estão organizados na pasta `test/Kairos.UnitTest`, seguindo a mesma e
 ## Tipos de Testes
 
 - Testes unitários dos casos de uso
-- Testes das regras de negócio
-- Testes de validações
+- Testes integração
 
 ---
