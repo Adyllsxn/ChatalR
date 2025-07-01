@@ -10,25 +10,25 @@ public class GetTipoEventosHandler(ITipoEventoRepository repository)
             if (response.Data == null || !response.Data.Any())
             {
                 return new PagedList<List<GetTipoEventosResponse>?>(
-                    new List<GetTipoEventosResponse>(), 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: new List<GetTipoEventosResponse>(), 
+                    message:"Nenhum dado encontrado",
+                    code: StatusCode.NotFound
                     );
             }
             var result = response.Data.MapToGetTipoEventos().ToList();
             
             return new PagedList<List<GetTipoEventosResponse>?>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: "Dados encontrados",
+                code: StatusCode.OK
                 );
         }
         catch (Exception ex)
         {
             return new PagedList<List<GetTipoEventosResponse>?>(
-                null, 
-                500, 
-                $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}"
+                data: null,
+                message: $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }

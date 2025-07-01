@@ -10,9 +10,9 @@ public class GetUsuariosHandler(IUsuarioRepository repository)
             if (response.Data == null || !response.Data.Any())
             {
                 return new PagedList<List<GetUsuariosResponse>?>(
-                    null, 
-                    404, 
-                    "Nenhum dado encontrado"
+                    data: null, 
+                    message: "Nenhum dado encontrado",
+                    code: StatusCode.NotFound
                     );
             }
             var result = response.Data.MapToGetUsuarios().ToList();
