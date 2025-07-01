@@ -18,17 +18,17 @@ public class GetUsuariosHandler(IUsuarioRepository repository)
             var result = response.Data.MapToGetUsuarios().ToList();
             
             return new PagedList<List<GetUsuariosResponse>?>(
-                result, 
-                200, 
-                "Dados encontrados"
+                data: result, 
+                message: "Dados encontrados",
+                code: StatusCode.OK
                 );
         }
         catch (Exception ex)
         {
             return new PagedList<List<GetUsuariosResponse>?>(
-                null, 
-                500, 
-                $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}"
+                data:null, 
+                message: $"Erro ao manupular a operação (GET ALL). Erro: {ex.Message}",
+                code: StatusCode.InternalServerError
                 );
         }
     }
