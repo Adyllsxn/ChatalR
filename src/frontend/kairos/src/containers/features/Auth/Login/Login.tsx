@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import api from '../../../../core/service/api';
-import Alert from '../../../../components/shared/Alert/Alert';
 import './Login.css';
-
-type AlertType = 'info' | 'success' | 'warning' | 'error';
 
 type LoginProps = {
   onLogin: () => void;
@@ -15,10 +12,6 @@ export default function Login({ onLogin }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState<{ message: string; type: AlertType | '' }>({
-    message: '',
-    type: '',
-  });
 
   async function login(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,7 +54,7 @@ export default function Login({ onLogin }: LoginProps) {
         }
       }
 
-      setAlert({ message, type: 'error' });
+      alert(message);
     } finally {
       setLoading(false);
     }
@@ -69,14 +62,6 @@ export default function Login({ onLogin }: LoginProps) {
 
   return (
     <main className="loginWrap">
-      {alert.message && (
-        <Alert
-          message={alert.message}
-          type={alert.type as AlertType}
-          onClose={() => setAlert({ message: '', type: '' })}
-        />
-      )}
-
       <div className="loginConteiner">
         <form onSubmit={login}>
           <h1>Kairos</h1>

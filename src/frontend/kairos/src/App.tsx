@@ -12,8 +12,8 @@ import Login from './containers/features/Auth/Login/Login';
 import './core/style/App.css';
 import AdminLayout from './containers/pages/Administrativa/AdminLayout';
 import Dashboard from './containers/pages/Dashboard/Dashboard';
-import Evento from './containers/features/Evento/Main/Evento';
-
+import EventoList from './containers/features/Evento/List/EventoList';
+import EventoDetails from './containers/features/Evento/Details/EventoDetails';
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     setIsLoggedIn(false);
   }
 
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     return <Login onLogin={handleLogin} />
   }
 
@@ -47,11 +47,12 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/sobreNos" element={<SobreNos />} />
           <Route path="/politicaDePrivacidade" element={<PoliticaDePrivacidade />} />
+          <Route path="/eventoList" element={<EventoList />} />
+          <Route path="/detalhesEvento" element={<EventoDetails />} />
 
           <Route path="/administrativa" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="eventos" element={<Evento />} />
           </Route>
         </Routes>
       <Footer />

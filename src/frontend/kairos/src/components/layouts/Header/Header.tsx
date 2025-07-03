@@ -52,10 +52,10 @@ const Header = ({ onLogout }: HeaderProps) => {
                             <Link to="/" className={styles.navLink} onClick={closeMenu}>Início</Link>
                         </li>
                         <li className={styles.navBarItem}>
-                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Eventos</Link>
+                            <Link to="/eventoList" className={styles.navLink} onClick={closeMenu}>Eventos</Link>
                         </li>
                         <li className={styles.navBarItem}>
-                            <Link to="/listarEvento" className={styles.navLink} onClick={closeMenu}>Blog</Link>
+                            <Link to="/eventoList" className={styles.navLink} onClick={closeMenu}>Blog</Link>
                         </li>
                         <li className={styles.navBarItem}>
                             <Link to="/administrativa" className={styles.navLink} onClick={closeMenu}>Administrativa</Link>
