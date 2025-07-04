@@ -8,9 +8,9 @@ type HeaderProps = {
 
 const Header = ({ onLogout }: HeaderProps) => {
     const [email, setEmail] = useState('');
-    const [/*perfilID*/, setPerfilID] = useState<number | null>(null);
-    const navigate = useNavigate();
+    const [perfilID, setPerfilID] = useState<number | null>(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -57,9 +57,11 @@ const Header = ({ onLogout }: HeaderProps) => {
                         <li className={styles.navBarItem}>
                             <Link to="/eventoList" className={styles.navLink} onClick={closeMenu}>Blog</Link>
                         </li>
+                        {(perfilID === 1 || perfilID === 2) && (
                         <li className={styles.navBarItem}>
                             <Link to="/administrativa" className={styles.navLink} onClick={closeMenu}>Administrativa</Link>
                         </li>
+                        )}
                         <li className={`${styles.navBarItem} ${styles.dropHover}`}>
                             <span className={styles.navLink}>Perfil</span>
                             <div className={styles.dropBox}>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FaFacebookF, FaArrowUp } from 'react-icons/fa6';
+import { motion } from 'framer-motion';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -47,12 +48,17 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <button 
-                    className={styles.btnTop} 
+                {/* Botão com hover animado */}
+                <motion.button
+                    className={styles.btnTop}
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    aria-label="Voltar ao topo">
+                    aria-label="Voltar ao topo"
+                >
                     <FaArrowUp />
-                </button>
+                </motion.button>
             </footer>
         </>
     );
