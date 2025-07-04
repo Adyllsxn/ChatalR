@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kairos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250610201816_CRAETEMIGRATIONS")]
-    partial class CRAETEMIGRATIONS
+    [Migration("20250704133004_CREATEMIGRATIONS")]
+    partial class CREATEMIGRATIONS
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
