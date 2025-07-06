@@ -12,7 +12,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         {
             var userId = User.GetId();
             var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
-            if(!(user.Data?.PerfilID == 1))
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm))
             {
                 return Unauthorized("Você não tem permissão para consultar os usuários do sistema");
             }
@@ -34,7 +34,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
             {
                 command.Id = userId;
             }
-            bool isAdmin = user.Data?.PerfilID == 1;
+            bool isAdmin = user.Data?.PerfilID == PerfilConstant.Adm;
             bool consultandoProprioUsuario = user.Data?.Id == command.Id;
 
             if (!consultandoProprioUsuario && !isAdmin)
@@ -174,9 +174,6 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
 
                 await using var stream = new FileStream(caminhoNovo, FileMode.Create);
                 await model.FotoUrl.CopyToAsync(stream);
-
-                if (System.IO.File.Exists(caminhoAntigo))
-                    System.IO.File.Delete(caminhoAntigo);
             }
 
             var command = new UpdateUsuarioFotoCommand
