@@ -1,6 +1,7 @@
 namespace Kairos.Presentation.Source.Features.Blog;
 public class BlogCreateModel
 {
+    [JsonIgnore]
     [Required(ErrorMessage = "ID do autor deve ser maior que zero.")]
     public int UsuarioID { get; set; }
 

@@ -4,6 +4,7 @@ public class BlogUpdateModel
     [Required(ErrorMessage = "ID é obrigatório")]
     public int Id { get; set; }
 
+    [JsonIgnore]
     [Required(ErrorMessage = "ID do autor deve ser maior que zero.")]
     public int UsuarioID { get; set; }
 

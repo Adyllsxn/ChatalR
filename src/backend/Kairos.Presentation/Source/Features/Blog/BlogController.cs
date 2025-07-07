@@ -22,17 +22,19 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
             }
         #endregion
 
-        try
-        {
-            var response = await service.GetHandler(command, token);
-            Logger.LogToFile("ListBlog - Success", "Listando todos os posts do blog.");
-            return Ok(response);
-        }
-        catch (Exception error)
-        {
-            Logger.LogToFile("ListBlog - Error", $"Error {error.Message}");
-            return Problem($"Error: {error.Message}");
-        }
+        #region ListBlog
+            try
+            {
+                var response = await service.GetHandler(command, token);
+                Logger.LogToFile("ListBlog - Success", "Listando todos os posts do blog.");
+                return Ok(response);
+            }
+            catch (Exception error)
+            {
+                Logger.LogToFile("ListBlog - Error", $"Error {error.Message}");
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -41,17 +43,38 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Retorna um post específico pelo ID")]
     public async Task<ActionResult> GetByIdBlog([FromQuery] GetBlogByIdCommand command, CancellationToken token)
     {
-        try
-        {
-            var response = await service.GetByIdHandler(command, token);
-            Logger.LogToFile("GetByIdBlog - Success", "Retorna um post específico pelo ID");
-            return Ok(response);
-        }
-        catch (Exception error)
-        {
-            Logger.LogToFile("GetByIdBlog, - Error", $"Error: {error.Message}");
-            return Problem($"Error: {error.Message}");
-        }
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+        
+        #region GetByIdBlog
+            try
+            {
+                var response = await service.GetByIdHandler(command, token);
+                Logger.LogToFile(
+                        "GetByIdBlog - Success", 
+                        "Retorna um post específico pelo ID"
+                    );
+                return Ok(response);
+            }
+            catch (Exception error)
+            {
+                Logger.LogToFile(
+                        "GetByIdBlog, - Error", 
+                        $"Error: {error.Message}"
+                    );
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -60,21 +83,36 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Retorna imagem específico pelo ID")]
     public async Task<ActionResult> GetImageBlog([FromQuery] GetFileBlogCommand command, CancellationToken token)
     {
-        try
-        {
-            var response = await service.GetFileHandler(command, token);
-            if(response.Data?.ImagemCapaUrl == null)
+        #region Authorize
+            if(User.FindFirst("id") == null)
             {
-                return BadRequest("Imagem não encontrada");
+                return Unauthorized("Você não está autenticado no sistema.");
             }
-            var databyte = System.IO.File.ReadAllBytes(response.Data.ImagemCapaUrl);
-            return File(databyte, "image/jpg");
-        }
-        catch (Exception error)
-        {
-            Logger.LogToFile("GetImageBlog - Error", $"Error: {error.Message}");
-            return Problem($"Error: {error.Message}");
-        }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+
+        #region GetImageBlog
+            try
+            {
+                var response = await service.GetFileHandler(command, token);
+                if(response.Data?.ImagemCapaUrl == null)
+                {
+                    return BadRequest("Imagem não encontrada");
+                }
+                var databyte = System.IO.File.ReadAllBytes(response.Data.ImagemCapaUrl);
+                return File(databyte, "image/jpg");
+            }
+            catch (Exception error)
+            {
+                Logger.LogToFile("GetImageBlog - Error", $"Error: {error.Message}");
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -83,8 +121,30 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Retorna apenas posts publicados")]
     public async Task<ActionResult> GetPublishBlog([FromQuery] GetPublishBlogCommand command, CancellationToken token)
     {
-        var response = await service.GetPublishHandler(command, token);
-        return Ok(response);
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+
+        #region GetPublishBlog
+            try
+            {
+                var response = await service.GetPublishHandler(command, token);
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -93,8 +153,30 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Pesquisa posts por critérios definidos")]
     public async Task<ActionResult> SearchBlog([FromQuery] SearchBlogCommand command, CancellationToken token)
     {
-        var response = await service.SearchHendler(command, token);
-        return Ok(response);
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+        
+        #region SearchBlog
+            try
+            {
+                var response = await service.SearchHendler(command, token);
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -103,39 +185,61 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Cria um novo post no blog")]
     public async Task<ActionResult> CreateBlog([FromForm] BlogCreateModel model, CancellationToken token)
     {
-        if (model.ImagemCapaUrl == null || model.ImagemCapaUrl.Length == 0)
+        #region Authorize
+            if(User.FindFirst("id") == null)
             {
-                return BadRequest("Nenhuma imagem foi enviada.");
+                return Unauthorized("Você não está autenticado no sistema.");
             }
-
-            string pastaRaiz = "Storage";
-            string pastaImagens = Path.Combine(pastaRaiz, "Images");
-            if (!Directory.Exists(pastaImagens))
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
             {
-                Directory.CreateDirectory(pastaImagens);
+                return Unauthorized("Você não tem permissão para visualizar evento.");
             }
+        #endregion
 
-            var extensao = Path.GetExtension(model.ImagemCapaUrl.FileName).ToLower();
-            var extensoesPermitidas = new HashSet<string> { ".jpg", ".jpeg", ".png", ".gif" };
-            if (!extensoesPermitidas.Contains(extensao))
+        #region CreateBlog
+            try
             {
-                return BadRequest($"Extensão de arquivo não suportada: {extensao}. Permitidos: JPG, JPEG, PNG, GIF.");
+                if (model.ImagemCapaUrl == null || model.ImagemCapaUrl.Length == 0)
+                {
+                    return BadRequest("Nenhuma imagem foi enviada.");
+                }
+
+                string pastaRaiz = "Storage";
+                string pastaImagens = Path.Combine(pastaRaiz, "Images");
+                if (!Directory.Exists(pastaImagens))
+                {
+                    Directory.CreateDirectory(pastaImagens);
+                }
+
+                var extensao = Path.GetExtension(model.ImagemCapaUrl.FileName).ToLower();
+                var extensoesPermitidas = new HashSet<string> { ".jpg", ".jpeg", ".png", ".gif" };
+                if (!extensoesPermitidas.Contains(extensao))
+                {
+                    return BadRequest($"Extensão de arquivo não suportada: {extensao}. Permitidos: JPG, JPEG, PNG, GIF.");
+                }
+
+                string nomeArquivo = $"{Guid.NewGuid()}{extensao}";
+                string caminhoCompleto = Path.Combine(pastaImagens, nomeArquivo);
+
+                await using var stream = new FileStream(caminhoCompleto, FileMode.Create);
+                await model.ImagemCapaUrl.CopyToAsync(stream);
+
+                var newCommand = new CreateBlogCommand{
+                    UsuarioID = userId,
+                    Titulo = model.Titulo,
+                    Conteudo = model.Conteudo,
+                    ImagemCapaUrl = caminhoCompleto
+                };
+                var response = await service.CreateHandler(newCommand, token);
+                return Ok(response);
             }
-
-            string nomeArquivo = $"{Guid.NewGuid()}{extensao}";
-            string caminhoCompleto = Path.Combine(pastaImagens, nomeArquivo);
-
-            await using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-            await model.ImagemCapaUrl.CopyToAsync(stream);
-
-            var newCommand = new CreateBlogCommand{
-                UsuarioID = model.UsuarioID,
-                Titulo = model.Titulo,
-                Conteudo = model.Conteudo,
-                ImagemCapaUrl = caminhoCompleto
-            };
-        var response = await service.CreateHandler(newCommand, token);
-        return Ok(response);
+            catch(Exception error)
+            {
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -144,45 +248,67 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Edita completamente um post existente")]
     public async Task<ActionResult> EditBlog([FromForm] BlogUpdateModel model, CancellationToken token)
     {
-        var getCommand = new GetBlogByIdCommand { Id = model.Id };
-        var result = await service.GetByIdHandler(getCommand, token);
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+        
+        #region EditBlog
+            try
+            {
+                var getCommand = new GetBlogByIdCommand { Id = model.Id };
+                var result = await service.GetByIdHandler(getCommand, token);
 
-        if (result.Data is null)
-            return NotFound("Postagem não encontrada.");
+                if (result.Data is null)
+                    return NotFound("Postagem não encontrada.");
 
-        string caminhoAntigo = result.Data.ImagemCapaUrl;
-        string caminhoNovo = caminhoAntigo;
+                string caminhoAntigo = result.Data.ImagemCapaUrl;
+                string caminhoNovo = caminhoAntigo;
 
-        if (model.ImagemCapaUrl != null && model.ImagemCapaUrl.Length > 0)
-        {
-            var extensao = Path.GetExtension(model.ImagemCapaUrl.FileName).ToLower();
-            var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            if (!extensoesPermitidas.Contains(extensao))
-                return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG ou GIF.");
+                if (model.ImagemCapaUrl != null && model.ImagemCapaUrl.Length > 0)
+                {
+                    var extensao = Path.GetExtension(model.ImagemCapaUrl.FileName).ToLower();
+                    var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    if (!extensoesPermitidas.Contains(extensao))
+                        return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG ou GIF.");
 
-            string pasta = Path.Combine("Storage", "Images");
-            Directory.CreateDirectory(pasta);
+                    string pasta = Path.Combine("Storage", "Images");
+                    Directory.CreateDirectory(pasta);
 
-            string novoNome = $"{Guid.NewGuid()}{extensao}";
-            caminhoNovo = Path.Combine(pasta, novoNome);
+                    string novoNome = $"{Guid.NewGuid()}{extensao}";
+                    caminhoNovo = Path.Combine(pasta, novoNome);
 
-            await using var stream = new FileStream(caminhoNovo, FileMode.Create);
-            await model.ImagemCapaUrl.CopyToAsync(stream);
+                    await using var stream = new FileStream(caminhoNovo, FileMode.Create);
+                    await model.ImagemCapaUrl.CopyToAsync(stream);
 
-            if (System.IO.File.Exists(caminhoAntigo))
-                System.IO.File.Delete(caminhoAntigo);
-        }
+                    if (System.IO.File.Exists(caminhoAntigo))
+                        System.IO.File.Delete(caminhoAntigo);
+                }
 
-        var command = new UpdateBlogCommand
-        {
-            Id = model.Id,
-            UsuarioID = model.UsuarioID,
-            Titulo = model.Titulo,
-            Conteudo = model.Conteudo,
-            ImagemCapaUrl = caminhoNovo
-        };
-        var response = await service.UpdateHendler(command, token);
-        return Ok(response);
+                var command = new UpdateBlogCommand
+                {
+                    Id = model.Id,
+                    UsuarioID = userId,
+                    Titulo = model.Titulo,
+                    Conteudo = model.Conteudo,
+                    ImagemCapaUrl = caminhoNovo
+                };
+                var response = await service.UpdateHendler(command, token);
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -191,8 +317,30 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
     [EndpointSummary("Arquiva um post do blog")]
     public async Task<ActionResult> ArchiveBlog(ArchiveBlogCommand command, CancellationToken token)
     {
-        var response = await service.ArchiveHandler(command, token);
-        return Ok(response);
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+
+        #region ArchiveBlog
+            try
+            {
+                var response = await service.ArchiveHandler(command, token);
+                return Ok(response);
+            }
+            catch(Exception error)
+            {
+                return Problem($"Error: {error.Message}");
+            }
+        #endregion
     }
     #endregion
 
@@ -201,8 +349,30 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
         [EndpointSummary("Publicar um post do blog para visivel")]
         public async Task<ActionResult> PublishBlog(PublishBlogCommand command, CancellationToken token)
         {
-            var response = await service.PublishHandler(command, token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                {
+                    return Unauthorized("Você não tem permissão para visualizar evento.");
+                }
+            #endregion
+
+            #region PublishBlog
+                try
+                {
+                    var response = await service.PublishHandler(command, token);
+                    return Ok(response);
+                }
+                catch(Exception error)
+                {
+                    return Problem($"Error: {error.Message}");
+                }
+            #endregion
         }
     #endregion
 
@@ -211,8 +381,30 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
         [EndpointSummary("Remove um post do blog pelo ID")]
         public async Task<ActionResult> DeleteBlog([FromQuery] DeleteBlogCommand command, CancellationToken token)
         {
-            var response = await service.DeleteHandler(command, token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                {
+                    return Unauthorized("Você não tem permissão para visualizar evento.");
+                }
+            #endregion
+            
+            #region 
+                try
+                {
+                    var response = await service.DeleteHandler(command, token);
+                    return Ok(response);
+                }
+                catch(Exception error)
+                {
+                    return Problem($"Error: {error.Message}");
+                }
+            #endregion
         }
     #endregion
 
