@@ -2,13 +2,26 @@ namespace Kairos.Presentation.Source.Features.Blog;
 [ApiController]
 [Route("v1/")]
 [Authorize]
-public class BlogController(IBlogService service) : ControllerBase
+public class BlogController(IBlogService service, IUsuarioService usuario) : ControllerBase
 {
     #region List
     [HttpGet("ListBlog")]
     [EndpointSummary("Listando todos os posts do blog")]
     public async Task<ActionResult> ListBlog([FromQuery] GetBlogsCommand command, CancellationToken token)
     {
+        #region Authorize
+            if(User.FindFirst("id") == null)
+            {
+                return Unauthorized("Você não está autenticado no sistema.");
+            }
+            var userId = User.GetId();
+            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+            {
+                return Unauthorized("Você não tem permissão para visualizar evento.");
+            }
+        #endregion
+
         try
         {
             var response = await service.GetHandler(command, token);

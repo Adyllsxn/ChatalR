@@ -9,32 +9,41 @@ public class DashboardController(IDashboardService service, IUsuarioService usua
         [EndpointSummary("Retorna dados agregados do sistema para o painel do administrador.")]
         public async Task<ActionResult> GetDashboard(CancellationToken token)
         {
-            try
-            {
+            #region Authorize
                 if(User.FindFirst("id") == null)
                 {
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
-
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
                 {
-                    return Unauthorized("Reservado apenas para adm.");
+                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
                 }
-
-                Logger.LogToFile("GetDashboard - Success", "Retorna dados agregados do sistema para o painel do administrador.");
-
-                var response = await service.GetHandler(token);
-                return Ok(
-                    $" PERFIL: {response.QtdPerfil} \n USUARIO: {response.QtdUsuario}  \n TIPO DE EVENTO: {response.QtdTipoEvento} \n EVENTO: {response.QtdEvento}\n PRESENCA: {response.QtdPresenca} \n BLOG POST: {response.QtdBlog} "
-                );
-            }
-            catch(Exception error)
-            {
-                Logger.LogToFile("GetDashboard - Success", $"Error {error.Message}");
-                return Problem($"Error: {error.Message}");
-            }
+            #endregion
+            
+            #region GetDashboard
+                try
+                {
+                    var response = await service.GetHandler(token);
+                    Logger.LogToFile(
+                            "GetDashboard - Success", 
+                            "Retorna dados agregados do sistema para o painel do administrador."
+                        );
+                        
+                    return Ok(
+                        $" PERFIL: {response.QtdPerfil} \n USUARIO: {response.QtdUsuario}  \n TIPO DE EVENTO: {response.QtdTipoEvento} \n EVENTO: {response.QtdEvento}\n PRESENCA: {response.QtdPresenca} \n BLOG POST: {response.QtdBlog} "
+                    );
+                }
+                catch(Exception error)
+                {
+                    Logger.LogToFile(
+                            "GetDashboard - Success", 
+                            $"Error {error.Message}"
+                        );
+                    return Problem($"Error: {error.Message}");
+                }
+            #endregion
         }
     #endregion
 }
