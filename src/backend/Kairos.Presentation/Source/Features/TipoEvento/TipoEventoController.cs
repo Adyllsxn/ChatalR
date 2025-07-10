@@ -8,8 +8,23 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [EndpointSummary("Listar todos os tipos de evento.")]
         public async Task<ActionResult> ListTipoEvento([FromQuery] GetTipoEventosCommand command,CancellationToken token)
         {
-            var response = await service.GetHandler(command,token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                {
+                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
+                }
+            #endregion
+            
+            #region ListTipoEvento
+                var response = await service.GetHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -18,8 +33,23 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [EndpointSummary("Obter tipo de evento pelo ID.")]
         public async Task<ActionResult> GetByIdTipoEvento([FromQuery] GetTipoEventoByIdCommand command, CancellationToken token)
         {
-            var response = await service.GetByIdHandler(command,token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                {
+                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
+                }
+            #endregion
+            
+            #region GetByIdTipoEvento
+                var response = await service.GetByIdHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -28,8 +58,23 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [EndpointSummary("Pesquisar tipos de evento.")]
         public async Task<ActionResult> Search([FromQuery] SearchTipoEventoCommand command, CancellationToken token)
         {
-            var response = await service.SearchHendler(command,token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                {
+                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
+                }
+            #endregion
+            
+            #region Search
+                var response = await service.SearchHendler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -37,21 +82,24 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [HttpPost("CreateTipoEvento")]
         [EndpointSummary("Criar um novo tipo de evento.")]
         public async Task<IActionResult> CreateTipoEvento(CreateTipoEventoCommand command, CancellationToken token)
-        {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
+        {   
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                {
+                    return Unauthorized("Você não tem permissão para criar tipo de evento.");
+                }
+            #endregion
 
-            var userId = User.GetId();
-            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
-            {
-                return Unauthorized("Você não tem permissão para criar tipo de evento.");
-            }
-
-            var response = await service.CreateHandler(command,token);
-            return Ok(response);
+            #region CreateTipoEvento
+                var response = await service.CreateHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -60,20 +108,23 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [EndpointSummary("Atualizar um tipo de evento.")]
         public async Task<ActionResult> UpdateTipoEvento(UpdateTipoEventoCommand command, CancellationToken token)
         {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                {
+                    return Unauthorized("Você não tem permissão para atualizar tipo de evento.");
+                }
+            #endregion
 
-            var userId = User.GetId();
-            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
-            {
-                return Unauthorized("Você não tem permissão para atualizar tipo de evento.");
-            }
-
-            var response = await service.UpdateHendler(command,token);
-            return Ok(response);
+            #region UpdateTipoEvento
+                var response = await service.UpdateHendler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -82,19 +133,23 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
         [EndpointSummary("Excluir um tipo de evento.")]
         public async Task<ActionResult> DeleteTipoEvento([FromQuery] DeleteTipoEventoCommand command, CancellationToken token)
         {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
-
-            var userId = User.GetId();
-            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
-            {
-                return Unauthorized("Você não tem permissão para deletar tipo de evento.");
-            }
-            var response = await service.DeleteHandler(command,token);
-            return Ok(response);
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                {
+                    return Unauthorized("Você não tem permissão para deletar tipo de evento.");
+                }
+            #endregion
+            
+            #region DeleteTipoEvento
+                var response = await service.DeleteHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 }

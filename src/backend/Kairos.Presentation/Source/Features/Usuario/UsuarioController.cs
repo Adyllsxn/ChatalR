@@ -10,15 +10,19 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [Authorize]
         public async Task<ActionResult> ListUsuario([FromQuery] GetUsuariosCommand command,CancellationToken token)
         {
-            var userId = User.GetId();
-            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
-            if(!(user.Data?.PerfilID == PerfilConstant.Adm))
-            {
-                return Unauthorized("Você não tem permissão para consultar os usuários do sistema");
-            }
+            #region Authorize
+                var userId = User.GetId();
+                var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
+                {
+                    return Unauthorized("Você não tem permissão para consultar os usuários do sistema");
+                }
+            #endregion
 
-            var response = await service.GetHandler(command,token);
-            return Ok(response);
+            #region ListUsuario
+                var response = await service.GetHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -28,21 +32,25 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [Authorize]
         public async Task<ActionResult> GetById([FromQuery] GetUsuarioByIdCommand command, CancellationToken token)
         {
-            var userId = User.GetId();
-            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
-            if(command.Id == 0)
-            {
-                command.Id = userId;
-            }
-            bool isAdmin = user.Data?.PerfilID == PerfilConstant.Adm;
-            bool consultandoProprioUsuario = user.Data?.Id == command.Id;
-
-            if (!consultandoProprioUsuario && !isAdmin)
-            {
-                return Unauthorized("Você não tem permissão para consultar os usuários do sistema.");
-            }
-            var response = await service.GetByIdHandler(command,token);
-            return Ok(response);
+            #region Authorize
+                var userId = User.GetId();
+                var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
+                if(command.Id == 0)
+                {
+                    command.Id = userId;
+                }
+                bool isAdmin = user.Data?.PerfilID == PerfilConstant.Adm;
+                bool consultandoProprioUsuario = user.Data?.Id == command.Id;
+                if (!consultandoProprioUsuario && !isAdmin)
+                {
+                    return Unauthorized("Você não tem permissão para consultar os usuários do sistema.");
+                }
+            #endregion
+            
+            #region GetById
+                var response = await service.GetByIdHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
     
@@ -52,28 +60,30 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [Authorize]
         public async Task<ActionResult> GetCurrentUsuario()
         {
-            var command = new GetUsuarioByIdCommand();
-            var token = new CancellationToken();
-            
-            var userId = User.GetId();
-            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
-            if(command?.Id == 0)
-            {
-                command.Id = userId;
-            }
-            bool isAdmin = user.Data?.PerfilID == 1;
-            bool consultandoProprioUsuario = user.Data?.Id == command?.Id;
+            #region Authorize
+                var command = new GetUsuarioByIdCommand();
+                var token = new CancellationToken();
+                var userId = User.GetId();
+                var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
+                if(command?.Id == 0)
+                {
+                    command.Id = userId;
+                }
+                bool isAdmin = user.Data?.PerfilID == 1;
+                bool consultandoProprioUsuario = user.Data?.Id == command?.Id;
+                if (!consultandoProprioUsuario && !isAdmin)
+                {
+                    return Unauthorized("Você não tem permissão para consultar os usuários do sistema.");
+                }
+            #endregion
 
-            if (!consultandoProprioUsuario && !isAdmin)
-            {
-                return Unauthorized("Você não tem permissão para consultar os usuários do sistema.");
-            }
-
-            var newCommand = new GetUsuarioByIdCommand{
-                Id = userId
-            };
-            var response = await service.GetByIdHandler(newCommand,token);
-            return Ok(response);
+            #region GetCurrentUsuario
+                var newCommand = new GetUsuarioByIdCommand{
+                    Id = userId
+                };
+                var response = await service.GetByIdHandler(newCommand,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -81,21 +91,24 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [HttpGet("GetFotoUsuario")]
         [EndpointSummary("Obter a foto do usuário pelo ID.")]
         public async Task<ActionResult> GetFotoUsuario([FromQuery] GetUsuarioFotoCommand command, CancellationToken token)
-        {
-                if(User.FindFirst("id") == null)
-                {
-                    return Unauthorized("Você não está autenticado no sistema.");
-                }
-
-                var userId = User.GetId();
-
-                var response = await service.GetFotoHandler(command,token);
-                if(response.Data?.FotoUrl == null)
-                {
-                    return BadRequest("Imagem não encontrada");
-                }
-                var databyte = System.IO.File.ReadAllBytes(response.Data.FotoUrl);
-                return File(databyte, "image/jpg");
+        {       
+                #region Authorize
+                    if(User.FindFirst("id") == null)
+                    {
+                        return Unauthorized("Você não está autenticado no sistema.");
+                    }
+                    var userId = User.GetId();
+                #endregion
+                
+                #region GetFotoUsuario
+                    var response = await service.GetFotoHandler(command,token);
+                    if(response.Data?.FotoUrl == null)
+                    {
+                        return BadRequest("Imagem não encontrada");
+                    }
+                    var databyte = System.IO.File.ReadAllBytes(response.Data.FotoUrl);
+                    return File(databyte, "image/jpg");
+                #endregion
         }
     #endregion
 
@@ -105,8 +118,13 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [Authorize]
         public async Task<ActionResult> SearchUsuario([FromQuery] SearchUsuarioCommand command, CancellationToken token)
         {
-            var response = await service.SearchHendler(command,token);
-            return Ok(response);
+            #region Authorize
+            #endregion
+
+            #region SearchUsuario
+                var response = await service.SearchHendler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -115,13 +133,17 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [EndpointSummary("Atualizar usuário.")]
         public async Task<ActionResult> UpdateUsuario(UpdateUsuarioCommand command, CancellationToken token)
         {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+            #endregion
 
-            var response = await service.UpdateHandler(command,token);
-            return Ok(response);
+            #region UpdateUsuario
+                var response = await service.UpdateHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
     
@@ -130,13 +152,17 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [EndpointSummary("Atualizar o perfil do usuário.")]
         public async Task<ActionResult> UpdatePerfilUsuario(UsuarioStatusCommand command, CancellationToken token)
         {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+            #endregion
 
-            var response = await service.StatusHandler(command,token);
-            return Ok(response);
+            #region UpdatePerfilUsuario
+                var response = await service.StatusHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -145,45 +171,49 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [EndpointSummary("Atualizar a foto do usuário.")]
         public async Task<ActionResult> UpdateFotoUsuario([FromForm] UsuarioUpdateFotoModel model, CancellationToken token)
         {
-            if(User.FindFirst("id") == null)
-            {
-                return Unauthorized("Você não está autenticado no sistema.");
-            }
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+            #endregion
 
-            var getCommand = new GetUsuarioByIdCommand { Id = model.Id };
-            var result = await service.GetByIdHandler(getCommand, token);
+            #region UpdateFotoUsuario
+                var getCommand = new GetUsuarioByIdCommand { Id = model.Id };
+                var result = await service.GetByIdHandler(getCommand, token);
 
-            if (result.Data is null)
-                return NotFound("Postagem não encontrada.");
+                if (result.Data is null)
+                    return NotFound("Postagem não encontrada.");
 
-            string caminhoAntigo = result.Data.FotoUrl;
-            string caminhoNovo = caminhoAntigo;
+                string caminhoAntigo = result.Data.FotoUrl;
+                string caminhoNovo = caminhoAntigo;
 
-            if (model.FotoUrl != null && model.FotoUrl.Length > 0)
-            {
-                var extensao = Path.GetExtension(model.FotoUrl.FileName).ToLower();
-                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-                if (!extensoesPermitidas.Contains(extensao))
-                    return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG ou GIF.");
+                if (model.FotoUrl != null && model.FotoUrl.Length > 0)
+                {
+                    var extensao = Path.GetExtension(model.FotoUrl.FileName).ToLower();
+                    var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    if (!extensoesPermitidas.Contains(extensao))
+                        return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG ou GIF.");
 
-                string pasta = Path.Combine("Storage", "Images");
-                Directory.CreateDirectory(pasta);
+                    string pasta = Path.Combine("Storage", "Images");
+                    Directory.CreateDirectory(pasta);
 
-                string novoNome = $"{Guid.NewGuid()}{extensao}";
-                caminhoNovo = Path.Combine(pasta, novoNome);
+                    string novoNome = $"{Guid.NewGuid()}{extensao}";
+                    caminhoNovo = Path.Combine(pasta, novoNome);
 
-                await using var stream = new FileStream(caminhoNovo, FileMode.Create);
-                await model.FotoUrl.CopyToAsync(stream);
-            }
+                    await using var stream = new FileStream(caminhoNovo, FileMode.Create);
+                    await model.FotoUrl.CopyToAsync(stream);
+                }
 
-            var command = new UpdateUsuarioFotoCommand
-            {
-                Id = model.Id,
-                FotoUrl = caminhoNovo
-            };
+                var command = new UpdateUsuarioFotoCommand
+                {
+                    Id = model.Id,
+                    FotoUrl = caminhoNovo
+                };
 
-            var response = await service.UpdateFotoHandler(command, token);
-            return Ok(response);
+                var response = await service.UpdateFotoHandler(command, token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 
@@ -193,15 +223,19 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
         [Authorize]
         public async Task<ActionResult> DeleteAsync([FromQuery] DeleteUsuarioCommand command, CancellationToken token)
         {
-            var userId = User.GetId();
-            var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if (!(user.Data?.PerfilID == 1))
-            {
-                return Unauthorized("Você não tem permissão para deletar os usuários do sistema");
-            }
+            #region Authorize
+                var userId = User.GetId();
+                var user = await service.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
+                if (!(user.Data?.PerfilID == 1))
+                {
+                    return Unauthorized("Você não tem permissão para deletar os usuários do sistema");
+                }
+            #endregion
 
-            var response = await service.DeleteHandler(command,token);
-            return Ok(response);
+            #region DeleteUsuario
+                var response = await service.DeleteHandler(command,token);
+                return Ok(response);
+            #endregion
         }
     #endregion
 }
