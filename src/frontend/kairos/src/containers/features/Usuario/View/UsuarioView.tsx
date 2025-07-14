@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
 import apiservice from '../../../../core/service/api';
 import './UsuarioView.css';
 
+//#region CODE
 type MeuPerfilType = {
     nome: string;
     sobreNome: string;
     email: string;
+    fotoUrl: string;
     telefone: string;
     bi: string;
     dataCadastro: string;
@@ -36,6 +37,7 @@ export default function VerPerfil() {
             alert('Erro ao carregar perfil. Tente novamente mais tarde.');
         });
     }, []);
+//#endregion
 
   return (
     <main>
@@ -48,7 +50,8 @@ export default function VerPerfil() {
               <div className="perfil-conteudo">
                 {/* Foto */}
                 <div className="perfil-foto">
-                  <FaUserCircle size={140} color="#bbb" />
+                  <img src={`http://localhost:5232/${meuPerfil.fotoUrl}`}
+                    alt={meuPerfil.fotoUrl}/>
                   <p className="foto-legenda">Foto do usuário</p>
                 </div>
 
