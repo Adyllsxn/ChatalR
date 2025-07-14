@@ -11,6 +11,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                 var result = await query
                             .Skip((request.PageNumber - 1) * request.PageSize)
                             .Take(request.PageSize)
+                            .Where(x => x.UsuarioID == x.UsuarioID)
                             .ToListAsync();
                 
                 var count = await query.CountAsync();
@@ -117,7 +118,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                         code: StatusCode.BadRequest
                         );
                 }
-                var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
+                var response = await context.Presencas.Where(x => x.UsuarioID == x.UsuarioID).FirstOrDefaultAsync(x => x.Id == entityId, token);
                 if (response == null)
                 {
                     return CommandResult<bool>.Failure(

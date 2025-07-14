@@ -183,7 +183,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
                 var result = await service.GetByIdHandler(getCommand, token);
 
                 if (result.Data is null)
-                    return NotFound("Postagem não encontrada.");
+                    return NotFound("Usuario não encontrada.");
 
                 string caminhoAntigo = result.Data.FotoUrl;
                 string caminhoNovo = caminhoAntigo;

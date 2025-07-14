@@ -14,12 +14,6 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
                 {
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
-                var userId = User.GetId();
-                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
-                {
-                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
-                }
             #endregion
             
             #region ListPresenca
@@ -40,15 +34,13 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
                 var userId = User.GetId();
-                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
-                {
-                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
-                }
+                var newCommand = new GetPresencaByIdCommand{
+                    Id = userId
+                };
             #endregion
 
             #region GetByIdPresenca
-                var response = await service.GetByIdHandler(command,token);
+                var response = await service.GetByIdHandler(newCommand,token);
                 return Ok(response);
             #endregion
         }
@@ -65,15 +57,15 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
                 var userId = User.GetId();
-                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
-                {
-                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
-                }
+                var newCommand = new CreatePresencaCommand{
+                    UsuarioID = userId,
+                    EventoID = command.EventoID,
+                    Confirmado = command.Confirmado
+                };
             #endregion
             
             #region CreatePresenca
-                var response = await service.CreateHandler(command,token);
+                var response = await service.CreateHandler(newCommand,token);
                 return Ok(response);
             #endregion
         }
@@ -90,15 +82,14 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
                 var userId = User.GetId();
-                var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
-                {
-                    return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
-                }
+                var newCommand = new DeletePresencaCommand{
+                    Id = command.Id,
+                    UsuarioID = userId,
+                };
             #endregion
             
             #region DeletePresenca
-                var response = await service.DeleteHandler(command,token);
+                var response = await service.DeleteHandler(newCommand,token);
                 return Ok(response);
             #endregion
         }
