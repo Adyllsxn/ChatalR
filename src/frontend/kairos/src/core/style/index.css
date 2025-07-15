@@ -1,0 +1,13 @@
+:root {
+    --color-text-primary: #0D0D0D;  
+    --color-text-light: #FFFFFF;  
+    --color-text-dark: #000000; 
+    --color-background-light: #F9F9F9; 
+    --color-background-dark: #222222;
+    --color-overlay: #CCC7A5A4;
+    --color-surface-dark: #333333;  
+    --color-accent: #D9782C;        
+        
+
+    --font-size-base: 22px;         
+}

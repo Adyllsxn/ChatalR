@@ -4,13 +4,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: var(--font-size-base);
     font-family: "Playfair Display", serif;
     font-style: normal;
 }
 body{
     overflow-x: hidden;
-    background-color: #F9F9F9;
+    background-color: var(--color-background-light)
 }
 .layoutContainer{
     padding: 0 20px;
@@ -19,7 +19,7 @@ body{
 }
 .navLink, a{
     text-decoration: none;
-    color: #FFFFFF;
+    color: var(--color-text-light);
 }
 li{
     list-style-type: none;
