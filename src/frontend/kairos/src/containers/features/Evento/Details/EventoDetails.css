@@ -1,50 +1,83 @@
 .evento-detalhe-content{
+    padding: 50px 0;
     width: 100%;
-    background-color: #f9f9f9;
 }
-.evento-detalhe-content .evento-detalhes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 70%;
-    margin: auto;
-    padding: 20px 0;
-}
-.evento-detalhe-content .evento-detalhes .evento-detalhe-img{
-    width: 100%;
-    max-width: 320px;
-    height: 400px;
-}
-.evento-detalhe-content .evento-detalhes .evento-detalhe-img img{
-    width: 100% !important;
-    height: 100% !important;
-}
-.evento-detalhe-content .evento-detalhes .evento-detalhe-inf{
-    width: 80%;
-    padding: 30px 0;
-}
-.evento-detalhe-content .evento-detalhes .evento-detalhe-inf p{
-    white-space: wrap;
-    font-size: 16px;
-    margin: 10px 0;
-}
-.evento-detalhe-content .evento-detalhes .evento-detalhe-inf p strong{
-    font-size: 16px;
-    white-space: wrap;
-    margin: 10px 0;
-    text-shadow: #fff 1px 1px;
+.evento-detalhe-content h1{
+    color: var(--color-text-primary);
+    text-shadow: var(--color-text-shadow) 1px 1px;
+    font-size: var(--font-size-title);
+    margin-bottom: 40px;
 }
 
+.evento-detalhes{
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+
+    & .evento-detalhe-img{
+        width: 100%;
+        max-width: 420px;
+        
+        & img{
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+
+    & .evento-detalhe-inf{
+        width: 80%;
+
+        & p{
+            white-space: wrap;
+            font-size: 16px;
+            margin: 10px 0;
+            text-align: justify;
+            & strong{
+                font-size: 20px;
+                white-space: wrap;
+                margin: 10px 0;
+            }
+        }
+    }
+}
+.eventoPresenca{
+    padding: 60px 0;
+
+    & h2{
+        color: var(--color-text-primary);
+        text-transform: lowercase;
+        font-size: 19px;
+    }
+    & div{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 20px 0;
+
+        & button{
+            padding: 7px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: var(--color-accent);
+            color: var(--color-background-light);
+        }
+        & button:hover{
+            opacity: .8;
+        }
+    }
+}
 
 
 @media(max-width: 768px){
-    .evento-detalhe-content .evento-detalhes{
-        width: 100%;
-    }
-    .evento-detalhe-content .evento-detalhes .evento-detalhe-img{
-        width: 100%;
-        max-width: 320px;
-        height: 280px;
+    .evento-detalhes{
+        flex-direction: column;
+
+        & .evento-detalhe-inf{
+            width: 100%;
+        }
     }
 }

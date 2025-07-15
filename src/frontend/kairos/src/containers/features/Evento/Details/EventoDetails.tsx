@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import './EventoDetails.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import "./EventoDetails.css";
 
 export default function Detalhes() {
   const location = useLocation();
@@ -7,31 +7,53 @@ export default function Detalhes() {
   const evento = location.state?.evento;
 
   if (!evento) {
-    navigate('/');
+    navigate("/");
     return null;
   }
 
   return (
     <main>
-      <section className='evento-detalhe-content'>
-      <div className='layoutContainer'>
-          <div className='evento-detalhes'>
+      <section className="evento-detalhe-content">
+        <div className="layoutContainer">
+          <h1>Detalhes do Evento</h1>
 
-            <div className='evento-detalhe-img'>
-              <img src={`http://localhost:5232/${evento.imagemUrl}`}  alt={evento.titulo} />
+          <div className="evento-detalhes">
+            <div className="evento-detalhe-img">
+              <img
+                src={`http://localhost:5232/${evento.imagemUrl}`}
+                alt={evento.titulo}
+              />
             </div>
 
-            <div className='evento-detalhe-inf'>
-              <p><strong>Título</strong> : {evento.titulo}</p>
-              <p><strong>Descrição</strong> : {evento.descricao}</p>
-              <p><strong>Local</strong> : {evento.local}</p>
-              <p><strong>Data e Hora de Início</strong> : {new Date(evento.dataHoraInicio).toLocaleString()}</p>
-              <p><strong>Data e Hora do Fim</strong> : {new Date(evento.dataHoraFim).toLocaleString()}</p>
+            <div className="evento-detalhe-inf">
+              <p>
+                <strong>Título</strong> : {evento.titulo}
+              </p>
+              <p>
+                <strong>Descrição</strong> : {evento.descricao}
+              </p>
+              <p>
+                <strong>Local</strong> : {evento.local}
+              </p>
+              <p>
+                <strong>Data e Hora de Início</strong> :{" "}
+                {new Date(evento.dataHoraInicio).toLocaleString()}
+              </p>
+              <p>
+                <strong>Data e Hora do Fim</strong> :{" "}
+                {new Date(evento.dataHoraFim).toLocaleString()}
+              </p>
             </div>
-
           </div>
-        
-      </div>
+
+          <div className="eventoPresenca">
+            <h2>Desejas Participar do evento?</h2>
+            <div>
+              <button>Sim</button>
+              <button>Não</button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );

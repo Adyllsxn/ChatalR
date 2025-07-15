@@ -52,7 +52,6 @@ export default function VerPerfil() {
                 <div className="perfil-foto">
                   <img src={`http://localhost:5232/${meuPerfil.fotoUrl}`}
                     alt={meuPerfil.fotoUrl}/>
-                  <p className="foto-legenda">Foto do usuário</p>
                 </div>
 
                 {/* Informações */}

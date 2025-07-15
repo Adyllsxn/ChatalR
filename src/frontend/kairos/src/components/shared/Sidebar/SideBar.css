@@ -2,8 +2,8 @@
     min-width: 250px;
 }
 .sidebar nav{
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    background: var(--color-text-light);
+    box-shadow: 0 2px 8px var(--color-text-dark);
     padding: 30px 6px;
     min-height: 60vh;
     border-top-left-radius: 25px;
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: start;
     gap: 10px;
-    color: #d9782c;
+    color: var(--color-accent);
     margin-bottom: 12px;
     padding: 10px;
     border-radius: 10px;
@@ -23,8 +23,8 @@
 }
 .nav-link.active,
 .nav-link:hover {
-    background-color: #d4b37f36;
-    color: black;
+    background-color: var(--color-trasparent);
+    color: var(--color-text-shadow);
 }
 
 

@@ -13,10 +13,13 @@ import Dashboard from './containers/pages/Dashboard/Dashboard';
 import EventoList from './containers/features/Evento/List/EventoList';
 import EventoDetails from './containers/features/Evento/Details/EventoDetails';
 import UsuarioView from './containers/features/Usuario/View/UsuarioView'
+import UsuarioEdit from './containers/features/Usuario/Edit/UsuarioEdit';
 import BlogList from './containers/features/Blog/List/BlogList';
 import BlogView from './containers/features/Blog/Views/BlogView';
 import Login from './containers/features/Auth/Login/Login';
+
 import './core/style/App.css';
+import './core/style/index.css';
 
 
 function App() {
@@ -53,6 +56,7 @@ function App() {
           <Route path="/eventoList" element={<EventoList />} />
           <Route path="/eventoDetails" element={<EventoDetails />} />
           <Route path="/usuarioView" element={<UsuarioView />} />
+          <Route path="/usuarioEdit" element={<UsuarioEdit />} />
           <Route path="/blogList" element={<BlogList />} />
           <Route path="/blogView" element={<BlogView />} />
 

@@ -176,6 +176,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
                 {
                     return Unauthorized("Você não está autenticado no sistema.");
                 }
+                var userId = User.GetId();
             #endregion
 
             #region UpdateFotoUsuario
@@ -183,7 +184,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
                 var result = await service.GetByIdHandler(getCommand, token);
 
                 if (result.Data is null)
-                    return NotFound("Usuario não encontrada.");
+                    return NotFound("Usuário não encontrada.");
 
                 string caminhoAntigo = result.Data.FotoUrl;
                 string caminhoNovo = caminhoAntigo;
@@ -191,9 +192,9 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
                 if (model.FotoUrl != null && model.FotoUrl.Length > 0)
                 {
                     var extensao = Path.GetExtension(model.FotoUrl.FileName).ToLower();
-                    var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
                     if (!extensoesPermitidas.Contains(extensao))
-                        return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG ou GIF.");
+                        return BadRequest("Extensão de imagem inválida. Use JPG, JPEG, PNG, Webp ou GIF.");
 
                     string pasta = Path.Combine("Storage", "Images");
                     Directory.CreateDirectory(pasta);
@@ -207,7 +208,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
 
                 var command = new UpdateUsuarioFotoCommand
                 {
-                    Id = model.Id,
+                    Id = userId,
                     FotoUrl = caminhoNovo
                 };
 

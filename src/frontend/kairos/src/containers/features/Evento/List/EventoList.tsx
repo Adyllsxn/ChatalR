@@ -90,8 +90,8 @@ export default function Listar() {
     <main>
       <div className='layoutContainer'>
         <section className='eventos-section'>
+          <h1>Lista dos Eventos</h1>
           <div className='evento-content'>
-            <h1>Lista dos Eventos</h1>
             <form onSubmit={handleBuscar}>
               <input
                 type='text'

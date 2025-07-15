@@ -1,14 +1,7 @@
-:root{
-    --color001: #d4b37f36;
-    --color002: #000000e5;
-    --color003: #fff;
-    --color004: #d9782c;
-}
-
 /* header */
 .header{
-    background-color: var(--color001);
-    box-shadow: 1px 1px 1px var(--color002);
+    background-color: var(--color-trasparent);
+    box-shadow: 1px 1px 1px var(--color-shadow);
     backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
@@ -16,7 +9,7 @@
     padding: 2px 0 8px 0;
 }
 .userName{
-    background: #d9772cb4;
+    background: var(--color-accent-primary);
     width: 40%;
     padding: 2px 10px;
     transform: skew(-10deg);
@@ -24,8 +17,8 @@
 }
 .userName p, .userName p strong{
     font-size: 14px;
-    text-shadow: #000 1px 1px;
-    color: #fff;
+    text-shadow: var(--color-text-shadow) 1px 1px;
+    color: var(--color-text-light);
 }
 .navBar{
     min-height: 34px;
@@ -36,16 +29,16 @@
 .navBarLogo .navLink{
     font-size: 2rem !important;
     font-weight: bold;
-    text-shadow: #000 1px 1px;
-    color: #d9782c;
+    text-shadow: var(--color-text-shadow) 1px 1px;
+    color: var(--color-accent);
 }
 .navBarLogo .navLink::after{
     content: '';
     width: 70%;
     height: .3rem;
-    background-color: var(--color004);
+    background-color: var(--color-accent);
     transform: skew(-10deg);
-    box-shadow: #000 1px 1px;
+    box-shadow: var(--color-text-shadow) 1px 1px;
     display: block;
 }
 .navMenu{
@@ -58,11 +51,11 @@
     position: relative;
     padding: 0 10px;
     font-size: 16px;
-    text-shadow: #000 1px 1px;
-    color: #fff;
+    text-shadow: var(--color-text-shadow) 1px 1px;
+    color: var(--color-text-light);
 }
 .navMenu .navLink:hover{
-    color: var(--color004);
+    color: var(--color-accent);
 }
 .dropHover{
     position: relative;
@@ -70,7 +63,7 @@
 .dropHover .navLink-drop{
     display: block;
     font-size: 14px;
-    text-shadow: #000 1px 1px;
+    text-shadow: var(--color-text-shadow) 1px 1px;
 }
 .dropBox{
     position: relative;
@@ -89,7 +82,7 @@
     padding: 10px 8px;
     display: flex;
     flex-direction: column;
-    background: var(--color001);
+    background: var(--color-trasparent);
     box-shadow: 1px 1px 1px var(--color002);
     backdrop-filter: blur(20px);
 
@@ -104,10 +97,10 @@
     margin-right: 160px;
 }
 .drop .navLinkDrop:hover{
-    color: #000;
+    color: var(--color-text-shadow);
 }
 .drop .dropLogout{
-    color: #fff;
+    color: var(--color-text-light);
 }
 .dropHover:hover .drop{
     height: auto;
@@ -122,19 +115,18 @@
     height: 3px;
     border-radius: 2px;
     margin: 5px auto;
-    background-color: var(--color004);
+    background-color: var(--color-accent);
     transition: all 0.3s ease-in-out;
 }
-
 
 
 @media(max-width: 768px){
     
     .header{
-        background: var(--color002);
+        background: var(--color-shadow);
     }
     .userName{
-        background: #d9772cb4;
+        background: var(--color-accent-primary);
         width: 80%;
         padding: 3px 10px;
         transform: skew(-10deg);

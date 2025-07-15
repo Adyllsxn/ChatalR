@@ -3,6 +3,7 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import api from '../../../../core/service/api';
 import './Login.css';
 
+//#region Code
 type LoginProps = {
   onLogin: () => void;
 };
@@ -59,7 +60,8 @@ export default function Login({ onLogin }: LoginProps) {
       setLoading(false);
     }
   }
-
+//#endregion
+  
   return (
     <main className="loginWrap">
       <div className="loginConteiner">
