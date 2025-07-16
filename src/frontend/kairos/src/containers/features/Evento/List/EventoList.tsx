@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import apiservice from '../../../../core/service/api';
 import './EventoList.css';
@@ -24,7 +24,7 @@ export default function Listar() {
     },
   };
 
-  const carregarEventos = () => {
+  const carregarEventos = useCallback(() => {
     apiservice
       .get('/v1/GetAprovadosEvento', authorization)
       .then((response) => {
@@ -41,11 +41,11 @@ export default function Listar() {
         alert('Não foi possível conectar ao servidor. Verifique sua internet ou tente mais tarde.');
         setCarregado(true);
       });
-  };
+  }, [authorization]);
 
   useEffect(() => {
     carregarEventos();
-  }, []);
+  }, [carregarEventos]);
 
   const handleBuscar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,37 +88,37 @@ export default function Listar() {
 
   return (
     <main>
-      <div className='layoutContainer'>
-        <section className='eventos-section'>
+      <div className="layoutContainer">
+        <section className="eventos-section">
           <h1>Lista dos Eventos</h1>
-          <div className='evento-content'>
+          <div className="evento-content">
             <form onSubmit={handleBuscar}>
               <input
-                type='text'
-                placeholder='Buscar Eventos'
+                type="text"
+                placeholder="Buscar Eventos"
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
               />
-              <button type='submit'>Buscar</button>
+              <button type="submit">Buscar</button>
             </form>
           </div>
 
           {carregado && eventos.length === 0 && (
-            <div className='mensagem-vazia'>
+            <div className="mensagem-vazia">
               <p>🚫 Nenhum evento disponível no momento.</p>
             </div>
           )}
 
-          <div className='evento-cards'>
+          <div className="evento-cards">
             {eventosPagina.map((evento: Evento) => (
-              <div key={evento.id} className='evento-card-content'>
-                <div className='evento-card-img'>
+              <div key={evento.id} className="evento-card-content">
+                <div className="evento-card-img">
                   <img
                     src={`http://localhost:5232/${evento.imagemUrl}`}
                     alt={evento.titulo}
                   />
                 </div>
-                <div className='evento-card-inf'>
+                <div className="evento-card-inf">
                   <h5 title={evento.titulo}>
                     {evento.titulo.length > 30
                       ? evento.titulo.slice(0, 30) + '...'
@@ -126,9 +126,9 @@ export default function Listar() {
                   </h5>
                   <p>
                     <Link
-                      to='/eventoDetails'
+                      to="/eventoDetails"
                       state={{ evento }}
-                      className='evento-card-inf-link'
+                      className="evento-card-inf-link"
                     >
                       Ver Detalhes
                     </Link>
@@ -139,7 +139,7 @@ export default function Listar() {
           </div>
 
           {eventos.length > 0 && (
-            <div className='paginacao'>
+            <div className="paginacao">
               <button disabled={paginaAtual === 1} onClick={() => mudarPagina(paginaAtual - 1)}>
                 Anterior
               </button>

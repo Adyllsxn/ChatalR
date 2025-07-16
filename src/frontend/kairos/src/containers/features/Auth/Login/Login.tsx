@@ -3,7 +3,6 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import api from '../../../../core/service/api';
 import './Login.css';
 
-//#region Code
 type LoginProps = {
   onLogin: () => void;
 };
@@ -17,51 +16,24 @@ export default function Login({ onLogin }: LoginProps) {
   async function login(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    const data = { email, password };
 
     try {
-      const response = await api.post('/v1/Login', data);
+      const response = await api.post('/v1/Login', { email, password });
 
+      // Salva os dados do usuário no localStorage
+      localStorage.setItem('userId', response.data.id.toString());
       localStorage.setItem('email', response.data.email);
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('perfilID', response.data.perfilID);
+      localStorage.setItem('perfilID', response.data.perfilID.toString());
 
       onLogin();
-    } catch (error: unknown) {
-      let message = 'Erro ao fazer login.';
-
-      if (typeof error === 'object' && error !== null && 'response' in error) {
-        const axiosError = error as {
-          response?: {
-            status: number;
-            data?: { message?: string };
-          };
-          request?: unknown;
-          message: string;
-        };
-
-        if (axiosError.response) {
-          if (axiosError.response.status === 401) {
-            message = 'Email ou senha inválidos.';
-          } else if (axiosError.response.status === 404) {
-            message = 'Usuário não encontrado.';
-          } else {
-            message = axiosError.response.data?.message || 'Erro inesperado.';
-          }
-        } else if (axiosError.request) {
-          message = 'Servidor não respondeu. Verifique sua conexão.';
-        } else {
-          message = axiosError.message;
-        }
-      }
-
-      alert(message);
+    } catch (error) {
+      alert('Erro ao fazer login. Verifique os dados e tente novamente.');
     } finally {
       setLoading(false);
     }
   }
-//#endregion
-  
+
   return (
     <main className="loginWrap">
       <div className="loginConteiner">

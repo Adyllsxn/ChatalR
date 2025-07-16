@@ -75,6 +75,7 @@ public class AuthController(IUsuarioService service, IAuthIdentity authenticatio
 
             return new TokenModel
             {
+                Id = usuario.Id,
                 Token = token,
                 Nome = usuario.Nome,
                 SobreNome = usuario.SobreNome,
