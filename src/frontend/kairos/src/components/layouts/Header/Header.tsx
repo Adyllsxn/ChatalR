@@ -69,8 +69,6 @@ const Header = ({ onLogout }: HeaderProps) => {
                                     <div className={styles.dropItem}>
                                         <Link to="/usuarioView" className={styles.navLinkDrop} onClick={closeMenu}>Meu Perfil</Link>
                                         <Link to="/usuarioEdit" className={styles.navLinkDrop} onClick={closeMenu}>Editar Perfil</Link>
-                                        <Link to="/usuarioEdit" className={styles.navLinkDrop} onClick={closeMenu}>Alterar Foto</Link>
-                                        <Link to="/usuarioEdit" className={styles.navLinkDrop} onClick={closeMenu}>Alterar Senha</Link>
                                         <span className={`${styles.navLinkDrop} ${styles.dropLogout}`} onClick={handleLogoutClick}>Logout</span>
                                     </div>
                                 </div>
