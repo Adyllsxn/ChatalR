@@ -2,6 +2,7 @@
     padding: 50px 0;
     width: 100%;
 }
+
 .evento-detalhe-content h1{
     color: var(--color-text-primary);
     text-shadow: var(--color-text-shadow) 1px 1px;

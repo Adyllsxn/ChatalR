@@ -15,11 +15,11 @@ public class EventoUpdateModel
     public string Descricao { get; set; } = null!;
 
     [Required(ErrorMessage = "Data de Início é obrigatório")]
-    [DataType(DataType.Date)]
+    [DataType(DataType.DateTime)]
     public DateTime DataHoraInicio { get; set; }
 
     [Required(ErrorMessage = "Data de Fim é obrigatório")]
-    [DataType(DataType.Date)]
+    [DataType(DataType.DateTime)]
     public DateTime DataHoraFim { get; set; }
 
     [Required(ErrorMessage = "Local é obrigatório")]
