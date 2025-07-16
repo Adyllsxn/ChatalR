@@ -10,7 +10,7 @@ public static class CreateBlogExtensions
             command.Titulo,
             command.Conteudo,
             command.ImagemCapaUrl,
-            command.DataPublicacao
+            DateTime.UtcNow.AddHours(1)
         );
     }
     

@@ -27,10 +27,13 @@ const PresencaList = () => {
   async function getPresencas() {
     try {
       const response = await apiservice.get('/v1/SearchPresenca');
-      const data = response.data?.data as Presenca[];
-      setPresenca(data);
+      const data = response.data?.data;
+
+      // Garante que não quebre mesmo com null ou erro
+      setPresenca(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Erro ao buscar presenças:', error);
+      setPresenca([]);
     }
   }
 
@@ -44,7 +47,9 @@ const PresencaList = () => {
         <h1>Minhas Presenças</h1>
 
         {presencas.length === 0 ? (
-          <p>Nenhuma presença registrada.</p>
+          <div className="semPresenca">
+            <p>⚠️ Você ainda não participou de nenhum evento.</p>
+          </div>
         ) : (
           presencas.map((presenca) => (
             <div className="presencaContext" key={presenca.id}>

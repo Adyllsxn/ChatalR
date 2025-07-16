@@ -126,12 +126,6 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
             {
                 return Unauthorized("Você não está autenticado no sistema.");
             }
-            var userId = User.GetId();
-            var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-            if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
-            {
-                return Unauthorized("Você não tem permissão para visualizar evento.");
-            }
         #endregion
 
         #region GetPublishBlog
@@ -214,10 +208,10 @@ public class BlogController(IBlogService service, IUsuarioService usuario) : Con
                 }
 
                 var extensao = Path.GetExtension(model.ImagemCapaUrl.FileName).ToLower();
-                var extensoesPermitidas = new HashSet<string> { ".jpg", ".jpeg", ".png", ".gif" };
+                var extensoesPermitidas = new HashSet<string> { ".jpg", ".jpeg", ".png", ".webp",".gif" };
                 if (!extensoesPermitidas.Contains(extensao))
                 {
-                    return BadRequest($"Extensão de arquivo não suportada: {extensao}. Permitidos: JPG, JPEG, PNG, GIF.");
+                    return BadRequest($"Extensão de arquivo não suportada: {extensao}. Permitidos: JPG, JPEG, PNG, WEBP GIF.");
                 }
 
                 string nomeArquivo = $"{Guid.NewGuid()}{extensao}";
