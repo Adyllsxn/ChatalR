@@ -18,6 +18,10 @@ public static class CreatePresencaExtensions
             Id = entity.Id,
             UsuarioID = entity.UsuarioID,
             EventoID = entity.UsuarioID,
+            Evento = new EventoResponse{
+                Id = entity.Evento.Id,
+                Titulo = entity.Evento.Titulo
+            },
             DataHoraCheckin = entity.DataHoraCheckin
         };
     }

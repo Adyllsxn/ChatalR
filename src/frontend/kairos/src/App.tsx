@@ -16,6 +16,7 @@ import UsuarioView from './containers/features/Usuario/View/UsuarioView'
 import UsuarioEdit from './containers/features/Usuario/Edit/UsuarioEdit';
 import BlogList from './containers/features/Blog/List/BlogList';
 import BlogView from './containers/features/Blog/Views/BlogView';
+import PresencaList from './containers/features/Presenca/PresencaList';
 import Login from './containers/features/Auth/Login/Login';
 
 import './core/style/App.css';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/sobreNos" element={<SobreNos />} />
           <Route path="/politicaDePrivacidade" element={<PoliticaDePrivacidade />} />
+          <Route path="/minhasPresencas" element={<PresencaList />} />
           <Route path="/eventoList" element={<EventoList />} />
           <Route path="/eventoDetails" element={<EventoDetails />} />
           <Route path="/usuarioView" element={<UsuarioView />} />

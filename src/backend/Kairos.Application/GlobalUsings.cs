@@ -72,6 +72,7 @@
     global using Kairos.Application.UseCases.Presenca.Delete;
     global using Kairos.Application.UseCases.Presenca.GetAll;
     global using Kairos.Application.UseCases.Presenca.GetById;
+    global using Kairos.Application.UseCases.Presenca.Search;
 
     global using Kairos.Application.UseCases.Blog.Create;
     global using Kairos.Application.UseCases.Blog.GetAll;

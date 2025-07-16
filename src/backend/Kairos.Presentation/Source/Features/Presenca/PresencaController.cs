@@ -2,7 +2,7 @@ namespace Kairos.Presentation.Source.Features.Presenca;
 [ApiController]
 [Route("v1/")]
 [Authorize]
-public class PresencaController(IPresencaService service, IUsuarioService usuario) : ControllerBase
+public class PresencaController(IPresencaService service) : ControllerBase
 {
     #region ListPresenca
         [HttpGet("ListPresenca")]
@@ -45,6 +45,39 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
             #endregion
         }
     #endregion
+
+    #region SearchPresenca
+        [HttpGet("SearchPresenca")]
+        [EndpointSummary("Pesquisar presença por filtros do usuário.")]
+        public async Task<ActionResult> SearchPresenca([FromQuery] SearchPresencaCommand command, CancellationToken token)
+        {
+            #region Authorize
+                if(User.FindFirst("id") == null)
+                {
+                    return Unauthorized("Você não está autenticado no sistema.");
+                }
+                var userId = User.GetId();
+            #endregion
+
+            #region SearchEvento
+                try
+                {
+                    
+                    var newCommand = new SearchPresencaCommand{
+                        UsuarioID = userId
+                    };
+
+                    var response = await service.SearchHendler(newCommand,token);
+                    return Ok(response);
+                }
+                catch(Exception error)
+                {
+                    return Problem($"Error: {error.Message}");
+                }
+            #endregion
+        }
+    #endregion
+
 
     #region CreatePresenca
         [HttpPost("CreatePresenca")]
@@ -94,5 +127,6 @@ public class PresencaController(IPresencaService service, IUsuarioService usuari
             #endregion
         }
     #endregion
+
 }
 

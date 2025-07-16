@@ -12,6 +12,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                         .Skip((request.PageNumber - 1) * request.PageSize)
                         .Take(request.PageSize)
                         .Where(x => x.UsuarioID == x.UsuarioID)
+                        .Include(x => x.Evento)
                         .ToListAsync();
 
             var count = await query.CountAsync();
@@ -47,7 +48,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                     code: StatusCode.BadRequest
                     );
             }
-            var response = await context.Presencas.FirstOrDefaultAsync(x => x.Id == entityId, token);
+            var response = await context.Presencas.Include(x => x.Evento).FirstOrDefaultAsync(x => x.Id == entityId, token);
             if (response == null)
             {
                 return new QueryResult<PresencaEntity?>(
@@ -71,6 +72,47 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                 );
         }
     }
+    #endregion
+
+    #region Search
+        public async Task<QueryResult<List<PresencaEntity>?>> SearchAsync(Expression<Func<PresencaEntity, bool>> expression, string entity, CancellationToken token)
+        {
+            try
+            {
+                if(entity == null)
+                {
+                    return new QueryResult<List<PresencaEntity>?>(
+                        data: null, 
+                        message: "Parâmetros não podem estar vazio.",
+                        code: StatusCode.BadRequest
+                        );
+                }
+
+                var response = await context.Presencas.Include(x => x.Evento).Where(expression).ToListAsync(token);
+                if(response == null || response.Count == 0)
+                {
+                    return new QueryResult<List<PresencaEntity>?>(
+                        data: null,  
+                        message: "Nenhum dado encontrado.",
+                        code: StatusCode.NotFound
+                        );
+                }
+
+                return new QueryResult<List<PresencaEntity>?>(
+                    data: response,  
+                    message: "Dados encontrado.",
+                    code: StatusCode.OK
+                    );
+            }
+            catch (Exception ex)
+            {
+                return new QueryResult<List<PresencaEntity>?>(
+                    data: null, 
+                    message: $"Erro ao executar a operação (SEARCH). Erro {ex.Message}.",
+                    code: StatusCode.InternalServerError
+                    );
+            }
+        }
     #endregion
 
     #region Create
@@ -145,30 +187,4 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
         }
     }
     #endregion
-
-
-    #region 
-        public async Task<bool> ExistePresencaNoMesmoHorario(int usuarioId, int eventoId, CancellationToken token)
-        {
-            // Busca o evento atual para pegar os horários
-            var eventoAtual = await context.Eventos
-                .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Id == eventoId, token);
-
-            if (eventoAtual == null) return false;
-
-            // Verifica se já existe presença em outro evento no mesmo horário
-            return await context.Presencas
-                .Include(p => p.Evento) // inclui evento para acessar dataHora
-                .AnyAsync(p =>
-                    p.UsuarioID == usuarioId &&
-                    p.EventoID != eventoId &&
-                    (
-                        (eventoAtual.DataHoraInicio < p.Evento.DataHoraFim &&
-                        eventoAtual.DataHoraFim > p.Evento.DataHoraInicio)
-                    ), token);
-        }
-
-    #endregion
-
 }

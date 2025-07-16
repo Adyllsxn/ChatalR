@@ -5,6 +5,6 @@ public interface IPresencaRepository
     Task<PagedList<List<PresencaEntity>?>> GetAllAsync (PagedRequest request, CancellationToken token);
     Task<CommandResult<bool>> CreateAsync (PresencaEntity entity, CancellationToken token);
     Task<CommandResult<bool>> DeleteAsync (int entityId, CancellationToken token);
-    Task<bool> ExistePresencaNoMesmoHorario(int usuarioId, int eventoId, CancellationToken token);
+    Task<QueryResult<List<PresencaEntity>?>> SearchAsync(Expression<Func<PresencaEntity, bool>> expression, string entity, CancellationToken token);
 
 }

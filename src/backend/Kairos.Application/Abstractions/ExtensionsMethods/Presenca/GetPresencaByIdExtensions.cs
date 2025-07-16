@@ -8,6 +8,10 @@ public static class GetPresencaByIdExtensions
             Id = entity.Id,
             UsuarioID = entity.UsuarioID,
             EventoID = entity.EventoID,
+            Evento = new EventoResponse{
+                Id = entity.Evento.Id,
+                Titulo = entity.Evento.Titulo
+            },
             DataHoraCheckin = entity.DataHoraCheckin
         };
     }

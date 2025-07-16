@@ -5,17 +5,6 @@ public class CreatePresencaHandler(IPresencaRepository repository, IUnitOfWork u
     {
         try
         {
-            // Verifica se já tem presença em outro evento no mesmo horário
-            var existeConflito = await repository.ExistePresencaNoMesmoHorario(command.UsuarioID, command.EventoID, token);
-            if (existeConflito)
-            {
-                return CommandResult<bool>.Failure(
-                    value: false,
-                    message: "Você já confirmou presença em outro evento no mesmo horário.",
-                    code: StatusCode.Conflict
-                );
-            }
-
             var entity = command.MapToPresencaEntity();
             var response = await repository.CreateAsync(entity, token);
             await unitOfWork.CommitAsync(token);

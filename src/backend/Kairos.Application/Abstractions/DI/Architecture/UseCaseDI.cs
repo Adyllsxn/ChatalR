@@ -18,6 +18,7 @@ public static class UseCaseDI
             services.AddScoped<DeletePresencaHandler>();
             services.AddScoped<GetPresencaHandler>();
             services.AddScoped<GetPresencaByIdHandler>();
+            services.AddScoped<SearchPresencaHandler>();
         #endregion
 
 
