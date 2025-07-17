@@ -7,6 +7,11 @@ public static class SearchPresencaExtensions
         {
             Id = entity.Id,
             UsuarioID = entity.UsuarioID,
+            Usuario = new UsuarioResponse{
+                Id = entity.Usuario.Id,
+                Nome = entity.Usuario.Nome,
+                SobreNome = entity.Usuario.SobreNome
+            },
             EventoID = entity.EventoID,
             Evento = new EventoResponse{
                 Id = entity.Evento.Id,

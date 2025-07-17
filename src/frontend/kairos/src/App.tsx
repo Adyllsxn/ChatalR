@@ -13,6 +13,7 @@ import Dashboard from "./containers/pages/Dashboard/Dashboard";
 import Eventos from "./containers/features/Evento/Main/Eventos";
 import EventoList from "./containers/features/Evento/List/EventoList";
 import EventoDetails from "./containers/features/Evento/Details/EventoDetails";
+import EventoCreate from "./containers/features/Evento/Create/EventoCreate";
 import Usuarios from "./containers/features/Usuario/Main/Usuarios";
 import UsuarioView from "./containers/features/Usuario/View/UsuarioView";
 import UsuarioEdit from "./containers/features/Usuario/Edit/UsuarioEdit";
@@ -27,7 +28,6 @@ import Login from "./containers/features/Auth/Login/Login";
 
 import "./core/style/App.css";
 import "./core/style/index.css";
-
 
 
 function App() {
@@ -75,6 +75,7 @@ function App() {
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="eventos" element={<Eventos />} />
+          <Route path="/administrativa/eventoAdd" element={<EventoCreate />} />
           <Route path="tipos" element={<Tipos />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="presencas" element={<Presencas />} />

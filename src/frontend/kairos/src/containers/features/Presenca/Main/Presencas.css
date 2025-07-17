@@ -1,33 +1,30 @@
-.eventoMain{
-    width: 100%;
-}
-
-.eventoHeader{
+.presencaHeader{
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    & .eventoBtnAdd{
-        border: none;
+    & .presencaNumero{
         display: flex;
         align-items: center;
-        font-size: 16px;
-        font-weight: bold;
-        color: var(--color-text-primary);
+        min-width: 140px;
+        min-height: 20px;
         padding: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
         border-radius: 10px;
-        border: 2px solid var(--color-accent);
-        cursor: pointer;
-        background: transparent;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+        border-left: 5px solid var(--color-accent);
+
+        & h3{
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
     }
-    & .eventoBtnAdd:hover{
-        background-color: var(--color-accent);
-        transition: all .4s ease-in-out;
-        color: var(--color-background-light);
+    & .presencaNumero:hover {
+        transform: translateX(-4px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    & .eventoBuscar{
+    & .presencaBuscar{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -44,21 +41,21 @@
             border-bottom-left-radius: 10px;
             border-top-left-radius: 10px;
         }
-        & .eventoBtnSearch{
+        & .presencaBtnSearch{
             border: none;
             background: var(--color-accent);
             padding: 0 7px;
             color: var(--color-background-light);
             cursor: pointer;
         }
-        & .eventoBtnSearch:hover{
+        & .presencaBtnSearch:hover{
             color: var(--color-text-primary);
             transition: all .4s ease-in-out;
         }
     }
 }
 
-.eventoTabela{
+.presencaTabela{
     margin: 50px 0;
     width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
@@ -78,24 +75,14 @@
             background-color: var(--color-accent);
             color: var(--color-text-light);
         }
-        & .acoes button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            margin-right: 8px;
-            color: var(--color-background-dark);
-            font-size: .8rem;
-        }
-        & .acoes button:hover {
-            color: var(--color-accent);
-        }
-        & .pendenteEstado p{
+        & p{
             background: #1cc88a;
             padding: 1px;
             text-align: center;
             font-size: unset;
             font-weight: bold;
             border-radius: 10px;
+            color: var(--color-text-light);
         }
     }
 }

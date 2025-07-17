@@ -35,6 +35,10 @@ export default function Sidebar() {
           <FaCalendarAlt />Eventos
         </NavLink>
 
+        <NavLink to="/administrativa/presencas" className="nav-link">
+          <FaUserCheck />Presença
+        </NavLink>
+        
         <NavLink to="/administrativa/tipos" className="nav-link">
           <FaTags />Tipos
         </NavLink>
@@ -44,10 +48,6 @@ export default function Sidebar() {
             <FaUsersCog />Usuários
           </NavLink>
         )}
-
-        <NavLink to="/administrativa/presencas" className="nav-link">
-          <FaUserCheck />Presença
-        </NavLink>
 
         <NavLink to="/administrativa/blog" className="nav-link">
           <FaBlog />Blog
