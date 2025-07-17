@@ -16,6 +16,7 @@ import UsuarioView from './containers/features/Usuario/View/UsuarioView'
 import UsuarioEdit from './containers/features/Usuario/Edit/UsuarioEdit';
 import BlogList from './containers/features/Blog/List/BlogList';
 import BlogView from './containers/features/Blog/Views/BlogView';
+import BlogDetails from './containers/features/Blog/Details/BlogDetails';
 import PresencaList from './containers/features/Presenca/PresencaList';
 import Login from './containers/features/Auth/Login/Login';
 
@@ -60,8 +61,8 @@ function App() {
           <Route path="/usuarioView" element={<UsuarioView />} />
           <Route path="/usuarioEdit" element={<UsuarioEdit />} />
           <Route path="/blogList" element={<BlogList />} />
+          <Route path="/blogDetails/:id" element={<BlogDetails />} />
           <Route path="/blogView" element={<BlogView />} />
-
           <Route path="/administrativa" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />

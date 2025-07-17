@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiservice from '../../../../core/service/api';
 import './EventoList.css';
@@ -7,7 +7,6 @@ interface Evento {
   id: number;
   titulo: string;
   imagemUrl: string;
-  // outros campos se necessário
 }
 
 export default function Listar() {
@@ -15,6 +14,7 @@ export default function Listar() {
   const [paginaAtual, setPaginaAtual] = useState<number>(1);
   const [busca, setBusca] = useState<string>('');
   const [carregado, setCarregado] = useState<boolean>(false);
+
   const eventosPorPagina = 6;
 
   const token = localStorage.getItem('token');
@@ -24,7 +24,7 @@ export default function Listar() {
     },
   };
 
-  const carregarEventos = useCallback(() => {
+  const carregarEventos = () => {
     apiservice
       .get('/v1/GetAprovadosEvento', authorization)
       .then((response) => {
@@ -32,6 +32,7 @@ export default function Listar() {
         setEventos(data);
         setCarregado(true);
         setPaginaAtual(1);
+
         if (data.length === 0) {
           alert('Nenhum evento disponível no momento.');
         }
@@ -41,11 +42,11 @@ export default function Listar() {
         alert('Não foi possível conectar ao servidor. Verifique sua internet ou tente mais tarde.');
         setCarregado(true);
       });
-  }, [authorization]);
+  };
 
   useEffect(() => {
     carregarEventos();
-  }, [carregarEventos]);
+  }, []);
 
   const handleBuscar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,14 +58,13 @@ export default function Listar() {
 
     try {
       const response = await apiservice.get(
-        `/v1/SearchEvento?Titulo=${encodeURIComponent(busca)}`,
+        `/v1/SearchEvento?Titulo=${encodeURIComponent(busca.trim())}`,
         authorization
       );
       const resultados: Evento[] = response.data?.data || [];
 
       if (resultados.length === 0) {
         alert('Nenhum evento encontrado com esse título.');
-        carregarEventos();
         return;
       }
 

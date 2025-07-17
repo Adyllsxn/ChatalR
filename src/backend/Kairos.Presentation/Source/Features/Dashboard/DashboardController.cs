@@ -32,7 +32,7 @@ public class DashboardController(IDashboardService service, IUsuarioService usua
                         );
                         
                     return Ok(
-                        $" PERFIL: {response.QtdPerfil} \n USUARIO: {response.QtdUsuario}  \n TIPO DE EVENTO: {response.QtdTipoEvento} \n EVENTO: {response.QtdEvento}\n PRESENCA: {response.QtdPresenca} \n BLOG POST: {response.QtdBlog} "
+                        $" PERFIL: {response.QtdPerfil} \n USUARIO: {response.QtdUsuario}  \n TIPO DE EVENTO: {response.QtdTipoEvento} \n EVENTOS: {response.QtdEvento}\n PRESENCA: {response.QtdPresenca} \n BLOG POST: {response.QtdBlog} "
                     );
                 }
                 catch(Exception error)

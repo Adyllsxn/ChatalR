@@ -1,9 +1,10 @@
-import './BlogView.css';
-import { FaRegCalendarAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+// src/components/BlogView.tsx
+import "./BlogView.css";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Usuario {
   nome: string;
@@ -26,10 +27,10 @@ const BlogView = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5232/v1/GetPublishBlog', {
+        const response = await axios.get("http://localhost:5232/v1/GetPublishBlog", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         });
 
         if (response.data?.data) {
@@ -37,7 +38,7 @@ const BlogView = () => {
           setPosts(ordered);
         }
       } catch (error) {
-        console.error('Erro ao carregar os posts:', error);
+        console.error("Erro ao carregar os posts:", error);
       } finally {
         setLoading(false);
       }
@@ -49,12 +50,14 @@ const BlogView = () => {
   const formatDate = (data: string) => {
     const date = new Date(data);
     return isNaN(date.getTime())
-      ? 'Data inválida'
-      : date.toLocaleDateString('pt-PT', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }).toLowerCase();
+      ? "Data inválida"
+      : date
+          .toLocaleDateString("pt-PT", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })
+          .toLowerCase();
   };
 
   return (
@@ -78,7 +81,7 @@ const BlogView = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p style={{ textAlign: 'center', fontSize: '1.1rem', color: '#555' }}>
+            <p style={{ textAlign: "center", fontSize: "1.1rem", color: "#555" }}>
               Nenhum post publicado ainda. Volte em breve para mais novidades do Kairos! 🙌
             </p>
           </motion.div>
@@ -105,7 +108,9 @@ const BlogView = () => {
                     <FaRegCalendarAlt /> {formatDate(post.dataPublicacao)}
                   </span>
                   <h2 className="blogCardTitle">{post.titulo}</h2>
-                  <Link to="#" className="blogReadMore">Ler mais</Link>
+                  <Link to={`/blogDetails/${post.id}`} className="blogReadMore">
+                    Ler mais
+                  </Link>
                 </div>
               </motion.div>
             ))}
