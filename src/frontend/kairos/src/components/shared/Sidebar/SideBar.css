@@ -5,7 +5,7 @@
     background: var(--color-text-light);
     box-shadow: 0 2px 8px var(--color-text-dark);
     padding: 30px 6px;
-    min-height: 60vh;
+    min-height: 75vh;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }

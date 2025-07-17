@@ -43,7 +43,7 @@ export default function Dashboard() {
           perfil: extrairValor(texto, 'PERFIL'),
           usuario: extrairValor(texto, 'USUARIO'),
           tipoEvento: extrairValor(texto, 'TIPO DE EVENTO'),
-          evento: extrairValor(texto, 'EVENTO'),
+          evento: extrairValor(texto, 'EVENTOS'),
           presenca: extrairValor(texto, 'PRESENCA'),
           blogPost: extrairValor(texto, 'BLOG POST'),
         };
