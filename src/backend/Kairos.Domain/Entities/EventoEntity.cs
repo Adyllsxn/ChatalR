@@ -1,5 +1,3 @@
-
-
 namespace Kairos.Domain.Entities;
 public sealed class EventoEntity : EntityBase, IAggragateRoot
 {

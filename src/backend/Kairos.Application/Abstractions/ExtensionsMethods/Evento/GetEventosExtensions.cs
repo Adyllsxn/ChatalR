@@ -25,6 +25,7 @@ public static class GetEventosExtensions
                 Email = entity.Usuario.Email
             },
             UsuarioID = entity.UsuarioID,
+            StatusAprovacao = entity.StatusAprovacao,
             ImagemUrl = entity.ImagemUrl
         };
     }

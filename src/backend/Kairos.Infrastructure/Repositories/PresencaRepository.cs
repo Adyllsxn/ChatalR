@@ -88,7 +88,7 @@ public class PresencaRepository(AppDbContext context) : IPresencaRepository
                         );
                 }
 
-                var response = await context.Presencas.Include(x => x.Evento).Where(expression).ToListAsync(token);
+                var response = await context.Presencas.Include(x => x.Evento).Include(x =>x.Usuario).Where(expression).ToListAsync(token);
                 if(response == null || response.Count == 0)
                 {
                     return new QueryResult<List<PresencaEntity>?>(

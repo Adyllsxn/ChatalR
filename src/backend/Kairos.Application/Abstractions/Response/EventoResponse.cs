@@ -11,5 +11,6 @@ public record EventoResponse
     public TipoEventoResponse TipoEvento { get; set; } = null!;
     public int UsuarioID { get; set; }
     public UsuarioResponse Usuario { get; set; } = null!;
+    public EAprovacao StatusAprovacao { get; set; }
     public string ImagemUrl { get; set; } = null!;
 }

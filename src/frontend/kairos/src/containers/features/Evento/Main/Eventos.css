@@ -89,14 +89,37 @@
         & .acoes button:hover {
             color: var(--color-accent);
         }
-        & .pendenteEstado p{
-            background: #1cc88a;
+        & .status-0 {
+            background-color: #ffdd57; 
             padding: 1px;
             text-align: center;
             font-size: unset;
             font-weight: bold;
             border-radius: 10px;
         }
+        & .status-1 {
+            background-color: #4caf50; 
+            padding: 1px;
+            text-align: center;
+            font-size: unset;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        & .status-2 {
+            background-color: #f44336; 
+            padding: 1px;
+            text-align: center;
+            font-size: unset;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+    }
+}
+
+.paginacao{
+    & span{
+        font-size: 16px;
+        font-weight: bold;
     }
 }
 
@@ -117,3 +140,8 @@
     transition: all .4s ease-in-out;
     color: var(--color-accent);
 }
+
+
+
+
+
