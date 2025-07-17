@@ -1,8 +1,8 @@
-import './PresencaList.css';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa';
-import apiservice from '../../../core/service/api';
+import "./PresencaList.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import apiservice from "../../../../core/service/api";
 
 type Evento = {
   id: number;
@@ -26,13 +26,13 @@ const PresencaList = () => {
 
   async function getPresencas() {
     try {
-      const response = await apiservice.get('/v1/SearchPresenca');
+      const response = await apiservice.get("/v1/SearchPresenca");
       const data = response.data?.data;
 
       // Garante que não quebre mesmo com null ou erro
       setPresenca(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error('Erro ao buscar presenças:', error);
+      console.error("Erro ao buscar presenças:", error);
       setPresenca([]);
     }
   }
@@ -55,8 +55,8 @@ const PresencaList = () => {
             <div className="presencaContext" key={presenca.id}>
               <div>
                 <p>
-                  <strong>Título:</strong>{' '}
-                  <span>{presenca.evento?.titulo || 'Evento sem título'}</span>
+                  <strong>Título:</strong>{" "}
+                  <span>{presenca.evento?.titulo || "Evento sem título"}</span>
                 </p>
               </div>
 
@@ -66,7 +66,7 @@ const PresencaList = () => {
                   state={{ evento: presenca.evento }}
                   className="btnDetalhes"
                 >
-                  <FaEye style={{ marginRight: '5px' }} />
+                  <FaEye style={{ marginRight: "5px" }} />
                   Ver Detalhes
                 </Link>
               </div>
