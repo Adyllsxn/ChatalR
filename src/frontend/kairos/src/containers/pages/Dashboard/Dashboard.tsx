@@ -113,7 +113,7 @@ export default function Dashboard() {
       </div>
 
       <div className="chart-row">
-        <PieChart width={700} height={300}>
+        <PieChart width={700} height={280}>
           <Pie
             data={pieData}
             dataKey="value"
@@ -131,6 +131,29 @@ export default function Dashboard() {
           <Tooltip />
           <Legend />
         </PieChart>
+      </div>
+
+      <div className='perfilUsuario'>
+            <div className='administradores'>
+              <div>
+                2
+              </div>
+              <p>Administradores</p>
+            </div>
+
+            <div className='organizadores'>
+              <div>
+                6
+              </div>
+              <p>Organizadores</p>
+            </div>
+
+            <div className='membros'>
+              <div>
+                20
+              </div>
+              <p>Membros Comuns</p>
+            </div>
       </div>
     </div>
   );
