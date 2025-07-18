@@ -13,7 +13,7 @@ public class UsuarioController(IUsuarioService service)  : ControllerBase
             #region Authorize
                 var userId = User.GetId();
                 var user = await service.GetByIdHandler(new GetUsuarioByIdCommand{Id = userId}, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
                 {
                     return Unauthorized("Você não tem permissão para consultar os usuários do sistema");
                 }

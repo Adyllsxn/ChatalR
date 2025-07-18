@@ -6,44 +6,48 @@
 
 .footerTop{
     padding: 50px 0;
-}
-.footerTop .footerTitle h1{
-    color: var(--color-text-light);
-    font-size: 40px;
-    text-align: center;
-    font-weight: 300;
-}
-.footerTop .footerLinks{
-    padding: 30px 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-}
-.footerTop .footerLinks .footerColumn{
-    padding: 10px;
-    height: 100%;
-    min-height: 176px;
-}
-.footerTop .footerLinks .footerColumn h3{
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bolder;
-}
-.footerTop .footerLinks .footerColumn a, li{
-    font-size: 16px;
-    margin: 10px 0;
-}
-.footerTop .footerLinks .footerColumn a:hover{
-    text-decoration: underline;
-}
-.footerTop .footerLinks .footerColumn .navLink, li{
-    font-size: 16px;
-    margin: 10px 0;
-}
-.footerTop .footerLinks .footerColumn .navLink:hover{
-    text-decoration: underline;
+    
+    & .footerTitle h1{
+        color: var(--color-text-light);
+        font-size: 40px;
+        text-align: center;
+        font-weight: 300;
+    }
+
+    & .footerLinks{
+        padding: 30px 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+
+        & .footerColumn{
+            padding: 10px;
+            height: 100%;
+            min-height: 176px;
+
+            & h3{
+                margin: 10px 0;
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            & a, li{
+                font-size: 16px;
+                margin: 10px 0;
+            }
+            & a:hover{
+                text-decoration: underline;
+            }
+            & .navLink, li{
+                font-size: 16px;
+                margin: 10px 0;
+            }
+            & .navLink:hover{
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .footerBottom{
@@ -54,16 +58,19 @@
     font-size: 13px;
     padding: 30px 0;
     border-top: 1px solid var(--color-text-light);
-}
-.footerBottom p, .footerBottom p a{
-    font-size: 14px;
-}
-.footerBottom a{
-    margin: 0 7px;
-    font-size: 16px;
-}
-.footerBottom a:hover{
-    text-decoration: underline;
+
+    & p, .footerBottom p a{
+        font-size: 14px;
+    }
+
+    & a{
+        margin: 0 7px;
+        font-size: 16px;
+    }
+
+    & a:hover{
+        text-decoration: underline;
+    }
 }
 
 .socialIcons {
@@ -71,14 +78,17 @@
     gap: 15px;
     font-size: 24px;
     margin-top: 10px;
-}
-.socialIcons a {
-    color: var(--color-text-light);
-    transition: color 0.3s ease;
-}
-.socialIcons a:hover {
-    color: var(--color-accent);
-}
+
+    & a {
+        color: var(--color-text-light);
+        transition: color 0.3s ease;
+    }
+
+    & a:hover {
+        color: var(--color-accent);
+    }
+} 
+
 .btnTop {
     position: fixed;
     bottom: 20px;

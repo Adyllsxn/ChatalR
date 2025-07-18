@@ -39,9 +39,11 @@ export default function Sidebar() {
           <FaUserCheck />Presença
         </NavLink>
         
-        <NavLink to="/administrativa/tipos" className="nav-link">
-          <FaTags />Tipos
-        </NavLink>
+        {acessoTotal && (
+          <NavLink to="/administrativa/tipos" className="nav-link">
+            <FaTags />Tipos
+          </NavLink>
+        )}
 
         {acessoTotal && (
           <NavLink to="/administrativa/usuarios" className="nav-link">

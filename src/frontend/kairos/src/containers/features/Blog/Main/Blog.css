@@ -1,0 +1,59 @@
+.blogMain{
+    width: 100%;
+}
+
+.blogHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & .blogBtnAdd{
+        border: none;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--color-text-primary);
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid var(--color-accent);
+        cursor: pointer;
+        background: transparent;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+    }
+    & .blogBtnAdd:hover{
+        background-color: var(--color-accent);
+        transition: all .4s ease-in-out;
+        color: var(--color-background-light);
+    }
+
+    & .blogBuscar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+        border-radius: 10px;
+        background-color: var(--color-accent);
+        padding-right: 3px;
+
+        & input{
+            outline: none;
+            border: 2px solid var(--color-accent);
+            padding: 10px;
+            font-size: 16px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        & .blogBtnSearch{
+            border: none;
+            background: var(--color-accent);
+            padding: 0 7px;
+            color: var(--color-background-light);
+            cursor: pointer;
+        }
+        & .blogBtnSearch:hover{
+            color: var(--color-text-primary);
+            transition: all .4s ease-in-out;
+        }
+    }
+}

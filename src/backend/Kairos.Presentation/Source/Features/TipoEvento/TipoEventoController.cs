@@ -15,7 +15,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
                 }
@@ -40,7 +40,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
                 }
@@ -65,7 +65,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == PerfilConstant.Adm || user.Data?.PerfilID == PerfilConstant.Organizador))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para Visualizar a Dashboard.");
                 }
@@ -90,7 +90,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para criar tipo de evento.");
                 }
@@ -115,7 +115,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para atualizar tipo de evento.");
                 }
@@ -140,7 +140,7 @@ public class TipoEventoController(ITipoEventoService service, IUsuarioService us
                 }
                 var userId = User.GetId();
                 var user = await usuario.GetByIdHandler(new GetUsuarioByIdCommand { Id = userId }, token);
-                if(!(user.Data?.PerfilID == 1 || user.Data?.PerfilID == 2))
+                if(!(user.Data?.PerfilID == PerfilConstant.Adm))
                 {
                     return Unauthorized("Você não tem permissão para deletar tipo de evento.");
                 }

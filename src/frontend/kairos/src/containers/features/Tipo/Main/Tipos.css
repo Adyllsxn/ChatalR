@@ -1,0 +1,93 @@
+.tipoMain{
+    width: 100%;
+}
+
+.tipoHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & .tipoBtnAdd{
+        border: none;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--color-text-primary);
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid var(--color-accent);
+        cursor: pointer;
+        background: transparent;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+    }
+    & .tipoBtnAdd:hover{
+        background-color: var(--color-accent);
+        transition: all .4s ease-in-out;
+        color: var(--color-background-light);
+    }
+
+    & .tipoBuscar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+        border-radius: 10px;
+        background-color: var(--color-accent);
+        padding-right: 3px;
+
+        & input{
+            outline: none;
+            border: 2px solid var(--color-accent);
+            padding: 10px;
+            font-size: 16px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        & .tipoBtnSearch{
+            border: none;
+            background: var(--color-accent);
+            padding: 0 7px;
+            color: var(--color-background-light);
+            cursor: pointer;
+        }
+        & .tipoBtnSearch:hover{
+            color: var(--color-text-primary);
+            transition: all .4s ease-in-out;
+        }
+    }
+}
+
+.tipoTabela{
+    margin: 50px 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+    border-radius: 8px;
+    overflow: hidden;
+
+    & table{
+        width: 100%;
+        border-collapse: collapse;
+
+        & th, td{
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+        & th {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+        }
+        & .acoes button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 8px;
+            color: var(--color-background-dark);
+            font-size: .8rem;
+        }
+        & .acoes button:hover {
+            color: var(--color-accent);
+        }
+    }
+}
