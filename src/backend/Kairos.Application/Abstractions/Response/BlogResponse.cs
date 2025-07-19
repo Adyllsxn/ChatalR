@@ -8,4 +8,5 @@ public record BlogResponse
     public string Conteudo { get; set; } = null!;
     public string ImagemCapaUrl { get; set; } = null!;
     public DateTime DataPublicacao { get; set; }
+    public EBlog Status { get; set; }
 }
