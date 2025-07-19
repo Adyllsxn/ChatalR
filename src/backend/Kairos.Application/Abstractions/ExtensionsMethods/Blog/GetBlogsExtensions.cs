@@ -17,7 +17,8 @@ public static class GetBlogsExtensions
             Titulo = entity.Titulo,
             Conteudo = entity.Conteudo,
             ImagemCapaUrl = entity.ImagemCapaUrl,
-            DataPublicacao = entity.DataPublicacao
+            DataPublicacao = entity.DataPublicacao,
+            Status = entity.Status
 
         };
     }
