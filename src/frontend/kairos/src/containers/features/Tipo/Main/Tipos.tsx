@@ -251,7 +251,7 @@ const Tipos = () => {
             <p><strong>ID:</strong> {tipoEmVisualizacao.id}</p>
             <p><strong>Nome:</strong> {tipoEmVisualizacao.nome}</p>
             <button className="btn-cancelar" onClick={() => setShowDetalhesModal(false)}>
-              Fechar
+              Cancelar
             </button>
           </div>
         </div>

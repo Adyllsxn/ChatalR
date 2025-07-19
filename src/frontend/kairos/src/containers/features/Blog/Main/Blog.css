@@ -57,3 +57,37 @@
         }
     }
 }
+
+.blogTabela{
+    margin: 50px 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.17);
+    border-radius: 8px;
+    overflow: hidden;
+
+    & table{
+        width: 100%;
+        border-collapse: collapse;
+
+        & th, td{
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+        & th {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+        }
+        & .acoes button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 8px;
+            color: var(--color-background-dark);
+            font-size: .8rem;
+        }
+        & .acoes button:hover {
+            color: var(--color-accent);
+        }
+    }
+}
