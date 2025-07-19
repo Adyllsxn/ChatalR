@@ -12,7 +12,9 @@
     --color-accent-primary: #d9772cb4;
     --color-trasparent: #d4b37f36;  
     --color-shadow: #000000e5; 
-    --color-btnTop-hover: #d4b37f;     
+    --color-btnTop-hover: #d4b37f; 
+    --color-btnNot: #d10808; 
+    --color-btnYes: #7fd4cd;     
         
 
     --font-size-base: 22px; 

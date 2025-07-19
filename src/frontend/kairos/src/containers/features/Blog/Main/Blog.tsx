@@ -1,6 +1,6 @@
-import { FaMagnifyingGlass, FaPlus } from "react-icons/fa6";
+import { FaInfo, FaMagnifyingGlass, FaPen, FaPlus, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import './Blog.css';
+import "./Blog.css";
 
 const Blog = () => {
   return (
@@ -17,8 +17,53 @@ const Blog = () => {
           </button>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default Blog
+      <div className="blogTabela">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tutulo</th>
+              <th>Data</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Agno</td>
+                  <td>01 / 09 / 2025</td>
+                  <td className="acoes">
+                    <button
+                      title="Editar">
+                      <FaPen />
+                    </button>
+                    <button
+                      title="Detalhes">
+                      <FaInfo />
+                    </button>
+                    <button
+                      title="Arquivar">
+                      <FaInfo />
+                    </button>
+                    <button
+                      title="Publicar">
+                      <FaInfo />
+                    </button>
+                    <button
+                      title="Eliminar">
+                      <FaTrash />
+                    </button>
+                  </td>
+                </tr>
+              <tr>
+                <td colSpan={3}>Nenhum pos encontrado.</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+};
+
+export default Blog;
