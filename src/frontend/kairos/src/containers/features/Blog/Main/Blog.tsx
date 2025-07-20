@@ -354,7 +354,7 @@ export default function Blog() {
         </div>
       )}
 
-      {/* Modal Confirmar Exclusão */}
+      {/* Modal Confirmar Exclusão */ }
       {isModalDelete && postToDelete && (
         <div className="modal-overlay">
           <div className="modal">
