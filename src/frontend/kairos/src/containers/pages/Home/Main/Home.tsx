@@ -7,6 +7,7 @@ import videoSrc from '../../../../core/assets/videos/background.mp4';
 import ChurchMap from '../ChurchMap/ChurchMap';
 import InspirationalSlider from '../Inspirational/InspirationalSlider';
 import styles from './Home.module.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   useEffect(() => {
@@ -40,7 +41,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a href="#" className={styles.btnDescubra}>Descubra o Kairos</a>
+                <Link to='/eventoList' className={styles.btnDescubra}>Veja os Eventos</Link>
               </motion.div>
             </motion.div>
           </div>

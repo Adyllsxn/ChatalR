@@ -34,10 +34,6 @@ export default function Sidebar() {
         <NavLink to="/administrativa/eventos" className="nav-link">
           <FaCalendarAlt />Eventos
         </NavLink>
-
-        <NavLink to="/administrativa/presencas" className="nav-link">
-          <FaUserCheck />Presença
-        </NavLink>
         
         {acessoTotal && (
           <NavLink to="/administrativa/tipos" className="nav-link">
