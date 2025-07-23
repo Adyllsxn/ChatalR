@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kairos.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CREATEMIGRATION : Migration
+    public partial class MIGRATIONSCREATE : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
