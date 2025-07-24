@@ -7,7 +7,7 @@ public class AuthModel
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "Password é obrigatório")]
-    [MinLength(4, ErrorMessage = "A senha deve conter no mínimo 4 caracteres.")]
+    [MinLength(8, ErrorMessage = "A senha deve conter no mínimo 8 caracteres.")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
 }
