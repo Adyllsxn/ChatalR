@@ -20,14 +20,13 @@ export default function Login({ onLogin }: LoginProps) {
     try {
       const response = await api.post('/v1/Login', { email, password });
 
-      // Salva os dados do usuário no localStorage
       localStorage.setItem('userId', response.data.id.toString());
       localStorage.setItem('email', response.data.email);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('perfilID', response.data.perfilID.toString());
 
       onLogin();
-    } catch (error) {
+    } catch (_) {
       alert('Erro ao fazer login. Verifique os dados e tente novamente.');
     } finally {
       setLoading(false);
