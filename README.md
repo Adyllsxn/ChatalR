@@ -77,4 +77,3 @@ KAIROS/
 
 ![Kairos Desktop Demo](./doc/visual/wireframe/web/desktop.png "Desktop Demo")
 
-![Kairos Mobile Demo](./doc/visual/wireframe/web/mobile.png "Mobile Demo")
