@@ -15,10 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Application", "src\b
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Presentation", "src\backend\Kairos.Presentation\Kairos.Presentation.csproj", "{287EDA81-476F-402D-8B45-7822D9C9A094}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E72DEEA9-8C19-4908-9440-E81785170BB9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Tests", "test\Kairos.Tests\Kairos.Tests.csproj", "{00CBC71F-C59D-4876-9BE5-B917AE67286B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +37,6 @@ Global
 		{287EDA81-476F-402D-8B45-7822D9C9A094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{287EDA81-476F-402D-8B45-7822D9C9A094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{287EDA81-476F-402D-8B45-7822D9C9A094}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00CBC71F-C59D-4876-9BE5-B917AE67286B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00CBC71F-C59D-4876-9BE5-B917AE67286B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00CBC71F-C59D-4876-9BE5-B917AE67286B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00CBC71F-C59D-4876-9BE5-B917AE67286B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +47,5 @@ Global
 		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
 		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
 		{287EDA81-476F-402D-8B45-7822D9C9A094} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
-		{00CBC71F-C59D-4876-9BE5-B917AE67286B} = {E72DEEA9-8C19-4908-9440-E81785170BB9}
 	EndGlobalSection
 EndGlobal

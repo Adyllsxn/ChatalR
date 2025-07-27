@@ -64,10 +64,6 @@ KAIROS/
 │   │   ├── kairos-web/             # Código do frontend (componentes, páginas, serviços)
 │   │   └── frontend.md             # Explicação da stack e organização do frontend
 │
-├── test/                           # Testes automatizados
-│   └── Kairos.Tests/               # Projeto de Testes unitários e Integração com xUnit
-│       └── test.md                 # Explicação dos testes, bibliotecas e estrutura
-│
 ├── .gitattributes                  # Define atributos de arquivos para Git (ex: fim de linha, linguagens)
 ├── .gitignore                      # Ignora arquivos/diretórios (ex: bin/, obj/, node_modules/)
 ├── LICENSE                         # Licença de uso do projeto (MIT, permissiva)
