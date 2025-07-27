@@ -128,7 +128,7 @@ export default function Blog() {
       } else {
         alert("Erro ao deletar: " + r.data?.message);
       }
-    } catch (_) {}
+    } catch {}
   };
 
   const publicarPost = async (id: number) => {
@@ -202,7 +202,7 @@ export default function Blog() {
       } else {
         alert("Erro: " + r.data?.message);
       }
-    } catch (error) {
+    } catch {
       alert("Erro ao atualizar post.");
     }
   };

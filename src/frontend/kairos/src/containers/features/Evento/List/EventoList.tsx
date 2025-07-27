@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import apiservice from '../../../../core/service/api';
 import './EventoList.css';
@@ -24,7 +24,7 @@ export default function Listar() {
     },
   };
 
-  const carregarEventos = () => {
+  const carregarEventos = useCallback(() => {
     apiservice
       .get('/v1/GetAprovadosEvento', authorization)
       .then((response) => {
@@ -42,11 +42,11 @@ export default function Listar() {
         alert('Não foi possível conectar ao servidor. Verifique sua internet ou tente mais tarde.');
         setCarregado(true);
       });
-  };
+  }, [authorization]);
 
   useEffect(() => {
     carregarEventos();
-  }, []);
+  }, [carregarEventos]);
 
   const handleBuscar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

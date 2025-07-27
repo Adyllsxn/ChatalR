@@ -3,6 +3,12 @@ import { useState, useEffect } from 'react';
 import api from '../../../../core/service/api';
 import './EventoDetails.css';
 
+interface Presenca {
+  usuarioID: number;
+  eventoID: number;
+  // outros campos se tiverem...
+}
+
 export default function Detalhes() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,10 +41,10 @@ export default function Detalhes() {
     const verificarPresenca = async () => {
       try {
         const response = await api.get('/v1/ListPresenca');
-        const presencas = response.data?.data || [];
+        const presencas: Presenca[] = response.data?.data || [];
 
         const jaRespondeu = presencas.some(
-          (p: any) =>
+          (p) =>
             p.usuarioID === parseInt(userId) &&
             p.eventoID === evento.id
         );

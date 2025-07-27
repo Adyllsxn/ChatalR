@@ -1,43 +1,47 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import apiservice from '../../../../core/service/api';
 import './UsuarioView.css';
 
 //#region CODE
 type MeuPerfilType = {
+  nome: string;
+  sobreNome: string;
+  email: string;
+  fotoUrl: string;
+  telefone: string;
+  bi: string;
+  dataCadastro: string;
+  perfil?: {
     nome: string;
-    sobreNome: string;
-    email: string;
-    fotoUrl: string;
-    telefone: string;
-    bi: string;
-    dataCadastro: string;
-    perfil?: {
-        nome: string;
-    };
+  };
 };
 
 export default function VerPerfil() {
-    const [meuPerfil, setMeuPerfil] = useState<MeuPerfilType | null>(null);
+  const [meuPerfil, setMeuPerfil] = useState<MeuPerfilType | null>(null);
 
+  // useMemo garante que authorization não seja recriado a cada render
+  const authorization = useMemo(() => {
     const token = localStorage.getItem('token');
-    const authorization = {
-        headers: {
+    return {
+      headers: {
         Authorization: `Bearer ${token}`,
-        },
+      },
     };
+  }, []);
 
-    useEffect(() => {
-        apiservice
-        .get('/v1/GetCurrentUsuario', authorization)
-        .then((response) => {
-            setMeuPerfil(response.data.data);
-        })
-        .catch((error) => {
-            console.error('Erro ao buscar usuário:', error);
-            alert('Erro ao carregar perfil. Tente novamente mais tarde.');
-        });
-    }, []);
-//#endregion
+  useEffect(() => {
+    apiservice
+      .get('/v1/GetCurrentUsuario', authorization)
+      .then((response) => {
+        setMeuPerfil(response.data.data);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar usuário:', error);
+        alert('Erro ao carregar perfil. Tente novamente mais tarde.');
+      });
+  }, [authorization]); // agora authorization está como dependência
+  //#endregion
+
 
   return (
     <main>

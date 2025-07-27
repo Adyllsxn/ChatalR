@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   FaPen,
   FaInfo,
@@ -69,16 +69,7 @@ const Eventos = () => {
     imagemUrl: "",
   });
 
-  const pageSize = 5;
-
-  useEffect(() => {
-    const storedPerfilID = localStorage.getItem("perfilID");
-    if (storedPerfilID) setPerfilID(parseInt(storedPerfilID, 10));
-    carregarEventos();
-    carregarTiposEvento();
-  }, []);
-
-  const carregarEventos = async () => {
+  const carregarEventos = useCallback(async () => {
     try {
       const response = await api.get("/v1/ListEvento");
       setEventosOriginais(response.data.data);
@@ -86,16 +77,23 @@ const Eventos = () => {
     } catch (error) {
       console.error("Erro ao buscar eventos:", error);
     }
-  };
+  }, []);
 
-  const carregarTiposEvento = async () => {
+  const carregarTiposEvento = useCallback(async () => {
     try {
       const tiposRes = await api.get("/v1/ListTipoEvento");
       setTiposEvento(tiposRes.data.data);
     } catch (err) {
       console.error("Erro ao carregar tipos:", err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const storedPerfilID = localStorage.getItem("perfilID");
+    if (storedPerfilID) setPerfilID(parseInt(storedPerfilID, 10));
+    carregarEventos();
+    carregarTiposEvento();
+  }, [carregarEventos, carregarTiposEvento]);
 
   const aprovarOuRejeitar = async (id: number, status: number) => {
     try {
@@ -152,8 +150,8 @@ const Eventos = () => {
     }
   };
 
-  const handleChangeNovo = (e: React.ChangeEvent<any>) => {
-    const { name, value, files } = e.target;
+  const handleChangeNovo = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, files } = e.target as HTMLInputElement;
     if (name === "imagem" && files?.length) {
       setNovoEvento((prev) => ({ ...prev, imagem: files[0] }));
     } else {
