@@ -16,6 +16,7 @@ const Header = ({ onLogout }: HeaderProps) => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
   const closeMenu = () => {
     setMenuOpen(false);
   };
@@ -37,7 +38,7 @@ const Header = ({ onLogout }: HeaderProps) => {
     onLogout();
     navigate('/login');
   }
-
+  
   return (
     <header className={styles.header}>
       <div className="layoutContainer">

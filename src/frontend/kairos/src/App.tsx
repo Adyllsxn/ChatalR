@@ -4,26 +4,33 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Header from "./components/layouts/Header/Header";
 import Footer from "./components/layouts/Footer/Footer";
+
 import Home from "./containers/pages/Home/Main/Home";
 import Ajuda from "./containers/pages/Institucional/Ajuda/Ajuda";
 import FAQ from "./containers/pages/Institucional/FAQ/FAQ";
 import SobreNos from "./containers/pages/Institucional/SobreNos/SobreNos";
 import PoliticaDePrivacidade from "./containers/pages/Politica/PoliticaDePrivacidade";
+
 import AdminLayout from "./containers/pages/Administrativa/AdminLayout";
 import Dashboard from "./containers/pages/Dashboard/Dashboard";
+
 import Eventos from "./containers/features/Evento/Main/Eventos";
 import EventoList from "./containers/features/Evento/List/EventoList";
 import EventoDetails from "./containers/features/Evento/Details/EventoDetails";
 import EventoCreate from "./containers/features/Evento/Create/EventoCreate";
+
 import Usuarios from "./containers/features/Usuario/Main/Usuarios";
 import UsuarioView from "./containers/features/Usuario/View/UsuarioView";
 import UsuarioEdit from "./containers/features/Usuario/Edit/UsuarioEdit";
+
 import Blog from "./containers/features/Blog/Main/Blog";
 import BlogList from "./containers/features/Blog/List/BlogList";
 import BlogView from "./containers/features/Blog/Views/BlogView";
 import BlogDetails from "./containers/features/Blog/Details/BlogDetails";
+
 import Presencas from "./containers/features/Presenca/Main/Presencas";
 import PresencaList from "./containers/features/Presenca/List/PresencaList";
+
 import Tipos from "./containers/features/Tipo/Main/Tipos";
 import Login from "./containers/features/Auth/Login/Login";
 
@@ -49,10 +56,10 @@ function App() {
 
   return (
     <>
-      {!isLoginPage && <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />}
+      {!isLoginPage && <Header onLogout={handleLogout} />}
 
       <Routes>
-        {/* Públicas */}
+        {/* Rotas Públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/ajuda" element={<Ajuda />} />
         <Route path="/faq" element={<FAQ />} />
@@ -68,7 +75,7 @@ function App() {
         {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
         {isLoggedIn && <Route path="/login" element={<Navigate to="/" replace />} />}
 
-        {/* Privadas */}
+        {/* Rotas Protegidas */}
         <Route path="/usuarioView" element={isProtectedRoute(<UsuarioView />)} />
         <Route path="/usuarioEdit" element={isProtectedRoute(<UsuarioEdit />)} />
         <Route path="/minhasPresencas" element={isProtectedRoute(<PresencaList />)} />
