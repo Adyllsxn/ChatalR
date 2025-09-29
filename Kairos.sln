@@ -7,45 +7,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0442AA44-EA9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{02C827DE-607D-40F1-8CB8-4E7F3F4843C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Domain", "src\backend\Kairos.Domain\Kairos.Domain.csproj", "{72E5304A-14F3-4876-AEB9-53F0EDA636CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos", "src\backend\Kairos\Kairos.csproj", "{05C6079E-EBAC-464A-95C9-C308A1C586CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Infrastructure", "src\backend\Kairos.Infrastructure\Kairos.Infrastructure.csproj", "{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{08F7E946-81B7-4266-A535-5C54F921FA59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Application", "src\backend\Kairos.Application\Kairos.Application.csproj", "{AF5938D0-8383-4DD6-B492-C95B5BE8D99D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Presentation", "src\backend\Kairos.Presentation\Kairos.Presentation.csproj", "{287EDA81-476F-402D-8B45-7822D9C9A094}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kairos.Tests", "tests\Kairos.Tests\Kairos.Tests.csproj", "{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{72E5304A-14F3-4876-AEB9-53F0EDA636CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72E5304A-14F3-4876-AEB9-53F0EDA636CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72E5304A-14F3-4876-AEB9-53F0EDA636CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72E5304A-14F3-4876-AEB9-53F0EDA636CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{287EDA81-476F-402D-8B45-7822D9C9A094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{287EDA81-476F-402D-8B45-7822D9C9A094}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{287EDA81-476F-402D-8B45-7822D9C9A094}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{287EDA81-476F-402D-8B45-7822D9C9A094}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{02C827DE-607D-40F1-8CB8-4E7F3F4843C9} = {0442AA44-EA97-4F69-A8E7-DC1A1FECB8BE}
-		{72E5304A-14F3-4876-AEB9-53F0EDA636CE} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
-		{F5F862F9-FD91-43D3-8A97-5F81AA49FF6B} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
-		{AF5938D0-8383-4DD6-B492-C95B5BE8D99D} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
-		{287EDA81-476F-402D-8B45-7822D9C9A094} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
+		{05C6079E-EBAC-464A-95C9-C308A1C586CD} = {02C827DE-607D-40F1-8CB8-4E7F3F4843C9}
+		{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA} = {08F7E946-81B7-4266-A535-5C54F921FA59}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05C6079E-EBAC-464A-95C9-C308A1C586CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C6079E-EBAC-464A-95C9-C308A1C586CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C6079E-EBAC-464A-95C9-C308A1C586CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C6079E-EBAC-464A-95C9-C308A1C586CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8BBE164-3E20-412E-81B7-4AAF17B4A0BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
