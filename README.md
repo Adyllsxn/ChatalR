@@ -58,4 +58,5 @@ npm run dev
 
 ## 📸 Demo Screenshot
 
-![Frapi Demo](./Assets/screem.png "Screem")
+![Frapi Demo](./src/assets/screem.png "Screem")
+
