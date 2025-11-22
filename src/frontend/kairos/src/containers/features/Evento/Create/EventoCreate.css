@@ -1,8 +1,0 @@
-.eventoCreate{
-    & h1{
-        color: var(--color-text-primary);
-        text-shadow: var(--color-text-shadow) 1px 1px;
-        font-size: var(--font-size-title);
-        margin-bottom: 30px;
-    }
-}

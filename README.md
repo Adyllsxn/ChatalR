@@ -1,79 +1,73 @@
-# KAIROS (Gestão de Eventos e Cultos)
+# React + TypeScript + Vite
 
-**Kairos** é uma plataforma web desenvolvida para auxiliar igrejas na gestão de cultos, eventos e presença de membros. Com uma abordagem moderna, o sistema organiza e automatiza processos como o cadastro de eventos, controle de participantes, visualização de conteúdos e administração de perfis.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-> 💡 MVP desenvolvido no contexto de estágio curricular, com foco na Igreja Sossego em Cristo – UTANGA.
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## ✨ Funcionalidades Principais
+## React Compiler
 
-- ✅ **Cadastro e autenticação de usuários** (com perfis de Membro, Organizador e Administrador)
-- 📅 **Criação, edição e listagem de eventos** e cultos
-- ⛪ **Classificação por tipo de evento** (ex: Culto, Vigília, Ensaio)
-- 🧾 **Registro de presença (check-in digital)** com histórico individual
-- 👥 **Gestão de membros e organizadores**
-- 📝 **Publicação de posts no blog da igreja**
-- 📊 **Dashboard com gráficos de participação**
-- 🔐 **Permissões por perfil e segurança de dados**
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
----
+## Expanding the ESLint configuration
 
-## 🚀 Tecnologias Utilizadas
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- **Backend**: ASP.NET Core, EF Core, SQL Server
-- **Frontend**: React.js, Vite
-- **Testes**: xUnit, Moq
-- **Infraestrutura**: Docker, JWT, Swagger
-- **CI/CD**: GitHub Actions
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
----
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-## 📁 Estrutura do Projeto
-
-```bash
-KAIROS/
-│
-├── .github/                        # Configurações de CI/CD com GitHub Actions
-│   ├── workflows/
-│   │   └── (ex: Applicatio.yml)    # Arquivos de automação para build/teste
-│   │    
-│   └── workflows.md                #Explica os fluxos automatizados (CI/CD)  
-│
-├── .vscode/                        # Configs de ambiente para o VSCode (ex: launch.json, settings.json)
-│
-├── doc/                            # Documentação geral do projeto
-│   ├── blueprint/                  # Documentação técnica e de requisitos
-│   │   ├── DD.md                   # Dicionario de Dados
-│   │   ├── Overview.md             # Visão geral, objetivos, funcionalidades e futuras melhorias
-│   │   ├── RN.md                   # Regras de negócio
-│   │   ├── RF.md                   # Requisitos funcionais
-│   │   ├── RNF.md                  # Requisitos não funcionais
-│   │   └── Setup.md                # Guia de instalação e uso local (manual do dev)
-│   └── visual/                     # Diagramas, wireframes, fluxogramas etc. (a adicionar)
-│
-├── src/                            # Código-fonte principal
-│   ├── backend/                    # Projeto ASP.NET Core (API REST)
-│   │   ├── Kairos.Application/     # Casos de uso e lógica de aplicação
-│   │   ├── Kairos.Domain/          # Entidades e regras de domínio
-│   │   ├── Kairos.Infrastructure/  # Persistência, repositórios, external services
-│   │   ├── Kairos.Presentation/    # Controllers e configurações de API
-│   │   └── backend.md              # Documentação explicando a arquitetura e libs usadas
-│   │
-│   ├── frontend/                   # Projeto React com Vite
-│   │   ├── kairos-web/             # Código do frontend (componentes, páginas, serviços)
-│   │   └── frontend.md             # Explicação da stack e organização do frontend
-│
-├── .gitattributes                  # Define atributos de arquivos para Git (ex: fim de linha, linguagens)
-├── .gitignore                      # Ignora arquivos/diretórios (ex: bin/, obj/, node_modules/)
-├── LICENSE                         # Licença de uso do projeto (MIT, permissiva)
-├── README.md                       # Introdução ao projeto, funcionalidades, estrutura e como rodar
-└── Kairos.sln                      # Arquivo de solução do Visual Studio (.NET)
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## Demo Screeshots
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-![Kairos Desktop Demo](./doc/visual/wireframe/web/desktop.png "Desktop Demo")
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
