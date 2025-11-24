@@ -108,9 +108,9 @@ const Footer = () => {
             
             {/* Contact Info */}
             <div className="space-y-3">
-              {contactInfo.map((item, index) => (
+              {contactInfo.map((item) => (
                 <motion.a
-                  key={index}
+                  key={item.text}
                   href={item.href}
                   whileHover={{ x: 5, color: '#c084fc' }}
                   className="flex items-center space-x-3 text-gray-300 hover:text-purple-300 transition-colors duration-300"
@@ -128,7 +128,7 @@ const Footer = () => {
               transition={{ delay: 0.3 }}
               className="flex space-x-4 mt-6"
             >
-              {socialLinks.map((social, index) => (
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
@@ -148,19 +148,19 @@ const Footer = () => {
           </motion.div>
 
           {/* Links Sections */}
-          {footerSections.map((section, sectionIndex) => (
+          {footerSections.map((section) => (
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+              transition={{ duration: 0.6 }}
               className="lg:col-span-1"
             >
               <h4 className="text-lg font-semibold mb-6 text-white">
                 {section.title}
               </h4>
               <ul className="space-y-3">
-                {section.links.map((link, linkIndex) => (
+                {section.links.map((link) => (
                   <motion.li key={link}>
                     <motion.a
                       href="#"

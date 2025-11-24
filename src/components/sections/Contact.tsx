@@ -151,13 +151,13 @@ const Contact = () => {
               </p>
 
               <div className="space-y-6">
-                {contactInfo.map((item, index) => (
+                {contactInfo.map((item) => (
                   <motion.a
-                    key={index}
+                    key={item.title}
                     href={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5 }}
                     whileHover={{ x: 5 }}
                     className="flex items-start space-x-4 group"
                   >
@@ -182,7 +182,7 @@ const Contact = () => {
               >
                 <h4 className="font-semibold mb-4">Siga-nos nas redes sociais</h4>
                 <div className="flex space-x-4">
-                  {['Instagram', 'Facebook', 'LinkedIn'].map((social, index) => (
+                  {['Instagram', 'Facebook', 'LinkedIn'].map((social) => (
                     <motion.a
                       key={social}
                       href="#"

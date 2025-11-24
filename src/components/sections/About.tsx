@@ -16,7 +16,7 @@ import {
 const AnimatedSphere = () => {
   const meshRef = useRef<any>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.x += delta * 0.2;
       meshRef.current.rotation.y += delta * 0.3;
@@ -137,7 +137,7 @@ const About = () => {
             <div className="space-y-4">
               {values.map((value, index) => (
                 <motion.div
-                  key={index}
+                  key={value}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -208,7 +208,7 @@ const About = () => {
         >
           {features.map((feature, index) => (
             <motion.div
-              key={index}
+              key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -10, scale: 1.02 }}
@@ -238,7 +238,7 @@ const About = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
-                key={index}
+                key={stat.label}
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
