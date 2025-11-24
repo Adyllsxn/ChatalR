@@ -15,8 +15,8 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    /* Alias*/
-    "baseUrl": ".",
+
+    /* Alias - Modern approach */
     "paths": {
       "@/*": ["./src/*"]
     },
