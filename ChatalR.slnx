@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/src/" />
-  <Folder Name="/src/api/">
-    <Project Path="src/api/ChatalR.API/ChatalR.API.csproj" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/ChatalR.API.Tests/ChatalR.API.Tests.csproj" />
-  </Folder>
-</Solution>
