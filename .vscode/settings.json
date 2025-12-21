@@ -1,14 +1,19 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortMembers": "explicit"
+  },
   "workbench.colorCustomizations": {
-    "statusBar.background": "#708090",
-    "statusBar.foreground": "#ffffff",
-    "statusBar.noFolderBackground": "#708090",
-    "statusBar.noFolderForeground": "#ffffff",
-    "statusBar.debuggingBackground": "#708090",
-    "statusBar.debuggingForeground": "#ffffff",
-    "titleBar.activeBackground": "#708090",
-    "titleBar.activeForeground": "#ffffff",
-    "titleBar.inactiveBackground": "#708090",
-    "titleBar.inactiveForeground": "#ffffff"
+    "statusBar.background": "#dcb7b7",
+    "statusBar.foreground": "#000000",
+    "statusBar.noFolderBackground": "#dcb7b7",
+    "statusBar.noFolderForeground": "#000000",
+    "statusBar.debuggingBackground": "#dcb7b7",
+    "statusBar.debuggingForeground": "#000000",
+    "titleBar.activeBackground": "#dcb7b7",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveBackground": "#dcb7b7",
+    "titleBar.inactiveForeground": "#000000"
   }
 }

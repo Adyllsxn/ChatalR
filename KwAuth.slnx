@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="KwAuth.API.Tests/KwAuth.API.Tests.csproj" />
-  <Project Path="KwAuth.API/KwAuth.API.csproj" />
-</Solution>
