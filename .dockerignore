@@ -1,0 +1,33 @@
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.swp
+*.tmp
+
+# Logs
+*.log
+
+# IDE folders
+.vscode/
+.idea/
+*.dbmdl
+
+# Git
+.git/
+.gitignore
+
+# Docker
+docker-compose.override.yml
+Dockerfile*
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Docs (optional, if you don’t need them inside the container)
+docs/
+README.md
