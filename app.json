@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rnnotion-ui",
-    "slug": "rnnotion-ui",
+    "name": "rn-notion-ui",
+    "slug": "rn-notion-ui",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -1,5 +1,5 @@
 {
-  "name": "rnnotion-ui",
+  "name": "rn-notion-ui",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
