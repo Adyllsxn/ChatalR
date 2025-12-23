@@ -1,9 +1,7 @@
-import { View, Text } from "react-native";
+import HomeScreen from "@/screens/HomeScreen";
 
-export default function Index(){
+export default function Edit(){
     return(
-        <View style={{flex:1}}>
-            
-        </View>
+        <HomeScreen/>
     )
 }

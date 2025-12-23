@@ -49,6 +49,11 @@ npx expo start
 
 ---
 
+## 📸 Demo
+![Demo](./assets/demo/rn-notion-ui.png "Visual Demo")
+
+---
+
 ## 👨‍💻 Author
 **Domingos Nascimento (Adyllsxn)**  
 
